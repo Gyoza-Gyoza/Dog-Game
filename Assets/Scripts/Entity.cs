@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public class Entity
 {
     [SerializeField]
     protected string
@@ -43,10 +43,9 @@ public class Entity : MonoBehaviour
     {
         get { return movementSpeed; }
     }
-    
-    public virtual void SetStats(string name, int hp, int attack, int attackSpeed, int movementSpeed)
+    public Entity(string entityName, int hp, int attack, int attackSpeed, int movementSpeed)
     {
-        this.entityName = name;
+        this.entityName = entityName;
         this.hp = hp;
         this.attack = attack;
         this.attackSpeed = attackSpeed;
