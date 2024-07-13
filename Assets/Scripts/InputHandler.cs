@@ -1,14 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class InputHandler : MonoBehaviour
 {
     private IInputReceiver activeReceiver;
+    private bool
+        menuOpen = false;
+    private enum Menus
+    {
+        Augments, 
+        Equipment
+    }
     private void Awake()
     {
-        Game._inputHandler = this;
+        if(Game._inputHandler == null)
+        {
+            Game._inputHandler = this;
+        }
     }
     public void SetInputReceiver(IInputReceiver inputReceiver)
     {
@@ -17,14 +30,27 @@ public class InputHandler : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Movement(); 
+        //Movement(); 
     }
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if(Input.GetMouseButtonDown(1))
         {
-            //Game._gameSceneManager.OpenScene("Stage2");
+            SetClickDestination();
+        }
+        //GetKeyInput();
+        //GetMovementInput();
+    }
+    private void SetClickDestination()
+    {
+        Game._player.LeagueMovement(Game._cursor._mousePos);
+        Game._cursor.SpawnArrowIndicator(Game._cursor._mousePos);
+    }
+    private void GetKeyInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
             Game._enemyFactory.GetEnemy(EnemyTypes.Basic);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -39,8 +65,18 @@ public class InputHandler : MonoBehaviour
         {
             Game._enemyFactory.DestroyEnemy(GameObject.FindGameObjectWithTag("Enemy"));
         }
-
-        GetMovementInput();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ToggleMenus(Menus.Augments);
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            ToggleMenus(Menus.Equipment);
+        }
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            Game._lootManager.DropLoot(Game._player.transform, Game._database._itemList[1]);
+        }
     }
     private void Movement()
     {
@@ -87,6 +123,45 @@ public class InputHandler : MonoBehaviour
         else if (Input.GetButtonDown("Cancel"))
         {
             activeReceiver.DoCancelAction();
+        }
+    }
+    private void ToggleMenus(Menus menuToOpen)
+    {
+        switch (menuToOpen)
+        {
+            case Menus.Augments:
+                if(!menuOpen)
+                {
+                    Time.timeScale = 0f;
+                    Game._gameSceneManager.OpenScene("AugmentsMenu", true, () =>
+                    {
+                        Game._augmentManager.InitializeList();
+                        Game._augmentManager.SetAugment();
+                    });
+                    menuOpen = true;
+                }
+                else
+                {
+                    Time.timeScale = 1f;
+                    Game._gameSceneManager.CloseScene("AugmentsMenu");
+                    menuOpen = false;
+                }
+                break;
+
+            case Menus.Equipment:
+                if (!menuOpen)
+                {
+                    Time.timeScale = 0f;
+                    Game._gameSceneManager.OpenScene("PlayerEquipmentMenu", true, null);
+                    menuOpen = true;
+                }
+                else
+                {
+                    Time.timeScale = 1f;
+                    Game._gameSceneManager.CloseScene("PlayerEquipmentMenu");
+                    menuOpen = false;
+                }
+                break;
         }
     }
 }

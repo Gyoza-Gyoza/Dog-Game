@@ -14,5 +14,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage2.unity
     guid: 94a2018aacfc5454391d8ad69c5e9e5f
+  - enabled: 1
+    path: Assets/Scenes/AugmentsMenu.unity
+    guid: 718fbbc24e9dd9241a4ab09f366b5a0c
+  - enabled: 1
+    path: Assets/Scenes/PlayerEquipmentMenu.unity
+    guid: caa1b3cd108e4db4298cb1f9ad72b0d0
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 93bcd17d5632fa14fa8cb09dbe344783, type: 2}

@@ -22,13 +22,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 936a13f9c731330409da040caa71f2b8
-    m_Address: Assets/Databases/Test.txt
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0561d5a1f7506e34a9e57bac47cdfc0f
-    m_Address: Assets/Databases/Equipment List.csv
+  - m_GUID: ef420c30a4161d3478aaa835f5463ae1
+    m_Address: Assets/Images/SadHamster.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
