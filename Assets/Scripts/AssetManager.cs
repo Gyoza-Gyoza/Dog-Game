@@ -1,16 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 public static class AssetManager 
 {
-    private static string imagePath = "Assets/Images/{0}";
-
-    public static void LoadSprites(string spriteName, System.Action<Sprite> onLoaded)
+    private static void LoadSprites(string spriteURL, Action<Sprite> onLoaded)
     {
-        Addressables.LoadAssetAsync<Sprite>(string.Format(imagePath, spriteName)).Completed += (loadedSprite) =>
+        Addressables.LoadAssetAsync<Sprite>(spriteURL).Completed += (loadedSprite) =>
         {
             onLoaded?.Invoke(loadedSprite.Result);
         };
+    }
+
+    public static void SetSprite(string spriteURL, GameObject go)
+    {
+        LoadSprites(spriteURL, (Sprite sp) =>
+        {
+            go.GetComponent<SpriteRenderer>().sprite = sp;
+        });
     }
 }

@@ -13,15 +13,11 @@ public enum EnemyTypes
 [System.Serializable]
 public class Enemy : Entity
 {
-    [SerializeField]
     private EnemyTypes
         enemyType;
 
-    private NavMeshAgent
-        nav;
-
-    private SpriteRenderer
-        spriteRenderer;
+    private string
+        enemySprite;
 
     public EnemyTypes
         _enemyType
@@ -29,45 +25,12 @@ public class Enemy : Entity
         get { return enemyType; }
     }
 
-    private GameObject
-        target; 
-    private void Start()
-    {
-        nav = GetComponent<NavMeshAgent>();
-        nav.updateRotation = false; 
-        nav.updateUpAxis = false;
-        target = Game._player.gameObject;
+    public string _enemySprite
+    { get { return enemySprite; } }
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    private void Update()
+    public Enemy(string name, int hp, int attack, int attackSpeed, int movementSpeed, EnemyTypes enemyType, string enemySprite) : base (name, hp, attack, attackSpeed, movementSpeed)
     {
-        nav.SetDestination(target.transform.position);
-    }
-
-    public Enemy(string name, int hp, int attack, int attackSpeed, int movementSpeed, EnemyTypes enemyType)
-    {
-        this.entityName = name;
-        this.hp = hp;
-        this.attack = attack;
-        this.attackSpeed = attackSpeed;
-        this.movementSpeed = movementSpeed;
         this.enemyType = enemyType;
-    }
-
-    public void SetEnemyStats(string enemyName, int hp, int attack, int attackSpeed,int movementSpeed, EnemyTypes enemyType)
-    {
-        this.entityName = enemyName;
-        this.hp = hp;
-        this.attack = attack;
-        this.attackSpeed = attackSpeed;
-        this.movementSpeed = movementSpeed;
-        this.enemyType = enemyType;
-    }
-
-    public void ChangeDestination(GameObject newTarget)
-    {
-        target = newTarget;
+        this.enemySprite = enemySprite;
     }
 }

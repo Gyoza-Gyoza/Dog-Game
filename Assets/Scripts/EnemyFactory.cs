@@ -14,7 +14,10 @@ public class EnemyFactory : MonoBehaviour
 
     private void Awake()
     {
-        Game._enemyFactory = this;
+        if(Game._enemyFactory == null)
+        {
+            Game._enemyFactory = this;
+        }
     }
     private void Start()
     {
@@ -54,7 +57,7 @@ public class EnemyFactory : MonoBehaviour
         {
             if (enemy._enemyType == type)
             {
-                chosenEnemy.GetComponent<Enemy>().SetEnemyStats(enemy._name, enemy._hp, enemy._attack, enemy._attackSpeed, enemy._movementSpeed, enemy._enemyType); 
+                chosenEnemy.GetComponent<EnemyBehaviour>().SetStats(enemy._name, enemy._hp, enemy._attack, enemy._attackSpeed, enemy._movementSpeed, enemy._enemyType, enemy._enemySprite); 
                 chosenEnemy.name = enemy._name;
                 Debug.Log($"Spawning one {enemy._name}, renaming to {chosenEnemy.name}");
                 break;
@@ -62,5 +65,6 @@ public class EnemyFactory : MonoBehaviour
         }
         return chosenEnemy;
     }
+
 }
 

@@ -11,7 +11,7 @@ public class EnemyWaves
 
     [SerializeField] 
     private List<EnemyBatch>
-        enemyBatch = new List<EnemyBatch>(); 
+        enemyBatch = new List<EnemyBatch>();
 
     public EnemyWaves(string waveId, string enemyCode)
     {
