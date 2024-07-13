@@ -1505,11 +1505,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecdc0a0ee368c2148a11c8544665f5af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityName: 
-  hp: 0
-  attack: 0
-  attackSpeed: 0
-  movementSpeed: 0
 --- !u!212 &1044005785
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15930,9 +15925,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7db85d998cc57459b7ec79e5d95f70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyList: []
-  playerClassList: []
-  enemyWaves: []
 --- !u!4 &1335708661
 Transform:
   m_ObjectHideFlags: 0
@@ -16129,7 +16121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1460444569}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Unwalkable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18328,6 +18320,6 @@ SceneRoots:
   - {fileID: 921142183}
   - {fileID: 35555366}
   - {fileID: 149866533}
+  - {fileID: 1460444569}
   - {fileID: 1005464936}
   - {fileID: 211726971}
-  - {fileID: 1460444569}
