@@ -17,30 +17,30 @@ public class EnemyWaves
     {
         this.waveId = waveId;
 
-        Database db = Game._database;
-        string[] enemyBatchResult = enemyCode.Split('#');
-        foreach(string s in enemyBatchResult)
-        {
-            List<int> result = new List<int>(); 
+        //Database db = Game._database;
+        //string[] enemyBatchResult = enemyCode.Split('#');
+        //foreach(string s in enemyBatchResult)
+        //{
+        //    List<int> result = new List<int>(); 
 
-            string[] arr = s.Split('@');
-            for (int i = 0; i < arr.Length; i++)
-            {
-                int number;
+        //    string[] arr = s.Split('@');
+        //    for (int i = 0; i < arr.Length; i++)
+        //    {
+        //        int number;
 
-                bool success = int.TryParse(arr[i], out number);
-                if(success)
-                {
-                    result.Add(number);
-                }
-                else
-                {
-                    result.Add(0);
-                    Debug.Log("Unable to parse value"); 
-                }
-            }
-            enemyBatch.Add(new EnemyBatch((EnemyTypes)result.ElementAt(0), result.ElementAt(1)));
-        }
+        //        bool success = int.TryParse(arr[i], out number);
+        //        if(success)
+        //        {
+        //            result.Add(number);
+        //        }
+        //        else
+        //        {
+        //            result.Add(0);
+        //            Debug.Log("Unable to parse value"); 
+        //        }
+        //    }
+        //    enemyBatch.Add(new EnemyBatch((EnemyTypes)result.ElementAt(0), result.ElementAt(1)));
+        //}
     }
 }
 
@@ -48,16 +48,16 @@ public class EnemyWaves
 public class EnemyBatch
 {
     [SerializeField]
-    private EnemyTypes
-        enemyType;
+    private string
+        enemyName;
 
     [SerializeField]
     private int 
         enemyCount;
 
-    public EnemyBatch(EnemyTypes enemyType, int enemyCount)
+    public EnemyBatch(string enemyName, int enemyCount)
     {
-        this.enemyType = enemyType;
+        this.enemyName = enemyName;
         this.enemyCount = enemyCount;
     }
 }

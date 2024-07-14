@@ -5,15 +5,28 @@ using UnityEngine.AI;
 
 public class PlayerBehaviour : MonoBehaviour, IInputReceiver
 {
-    private string
-        entityName;
+    [SerializeField]
+    protected string
+        entityId,
+        entityName,
+        weaponType;
 
-    private int
+    [SerializeField]
+    protected int
         hp,
         attack,
-        attackSpeed,
-        movementSpeed;
-    private Vector2 moveDir;
+        magicAttack,
+        movementSpeed,
+        armor,
+        magicResist,
+        attackSpeed; 
+
+    [SerializeField]
+    protected string
+        entitySprite;
+
+    private Vector2
+        moveDir;
 
     private NavMeshAgent
         nav; 
@@ -28,8 +41,8 @@ public class PlayerBehaviour : MonoBehaviour, IInputReceiver
 
     void Start()
     {
-        Entity chosenEntity = Game._database._playerClassList[0];
-        SetStats(chosenEntity._name, chosenEntity._hp, chosenEntity._attack, chosenEntity._attackSpeed, chosenEntity._movementSpeed);
+        Player chosenEntity = Game._database._playerClassList[0] as Player;
+        SetStats(chosenEntity._entityId, chosenEntity._name, chosenEntity._hp, chosenEntity._attack, chosenEntity._magicAttack, chosenEntity._movementSpeed, chosenEntity._armor, chosenEntity._magicResist, chosenEntity._entitySprite, chosenEntity._attackSpeed, chosenEntity._weaponType);
         Game._inputHandler.SetInputReceiver(this);
         nav = GetComponent<NavMeshAgent>();
     }
@@ -57,13 +70,19 @@ public class PlayerBehaviour : MonoBehaviour, IInputReceiver
             this.transform.up = moveDir;
         }
     }
-    public virtual void SetStats(string name, int hp, int attack, int attackSpeed, int movementSpeed)
+    public virtual void SetStats(string entityId, string entityName, int hp, int attack, int magicAttack, int movementSpeed, int armor, int magicResist, string entitySprite, int attackSpeed, string weaponType)
     {
-        this.entityName = name;
+        this.entityId = entityId;
+        this.entityName = entityName;
         this.hp = hp;
         this.attack = attack;
-        this.attackSpeed = attackSpeed;
+        this.magicAttack = magicAttack;
         this.movementSpeed = movementSpeed;
+        this.armor = armor;
+        this.magicResist = magicResist;
+        this.entitySprite = entitySprite;
+        this.attackSpeed = attackSpeed;
+        this.weaponType = weaponType;
     }
     public void DoLeftAction()
     {

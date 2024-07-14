@@ -39,7 +39,7 @@ public class InputHandler : MonoBehaviour
         {
             SetClickDestination();
         }
-        //GetKeyInput();
+        GetKeyInput();
         //GetMovementInput();
     }
     private void SetClickDestination()
@@ -51,19 +51,19 @@ public class InputHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Game._enemyFactory.GetEnemy(EnemyTypes.Basic);
+            Game._enemyFactory.GetEnemy(Game._database._enemyList[0]._name);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Game._enemyFactory.GetEnemy(EnemyTypes.Elite);
+            Game._enemyFactory.GetEnemy(Game._database._enemyList[1]._name);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Game._enemyFactory.GetEnemy(EnemyTypes.Boss);
+            Game._enemyFactory.GetEnemy(Game._database._enemyList[2]._name);
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Game._enemyFactory.DestroyEnemy(GameObject.FindGameObjectWithTag("Enemy"));
+            Game._enemyFactory.DestroyEnemy(GameObject.FindGameObjectWithTag("Enemy")); 
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {

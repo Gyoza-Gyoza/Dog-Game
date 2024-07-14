@@ -14,14 +14,15 @@ public enum DatabaseTypes
 public class Database : MonoBehaviour
 {
     private StreamReader
-        sr; 
+        sr;
 
-    private string
-        csvToRead; 
-
+    [SerializeField]
     private List<Entity> 
         enemyList = new List<Entity>(), 
         playerClassList = new List<Entity>();
+
+    [SerializeField]
+    private List<Player> playerList = new List<Player>();
 
     private List<EnemyWaves>
         enemyWaves = new List<EnemyWaves>();
@@ -32,35 +33,20 @@ public class Database : MonoBehaviour
     private List<Item> 
         itemList = new List<Item>();
 
-    public List<Entity>
-        _enemyList 
-    { 
-        get { return enemyList; } 
-    }
+    public List<Entity> _enemyList 
+    { get { return enemyList; } }
 
-    public List<Entity>
-        _playerClassList
-    { 
-        get { return playerClassList; } 
-    }
+    public List<Entity> _playerClassList
+    { get { return playerClassList; } }
 
-    public List<EnemyWaves>
-        _enemyWaves
-    { 
-        get { return enemyWaves; } 
-    }
+    public List<EnemyWaves> _enemyWaves
+    { get { return enemyWaves; } }
 
-    public List<Augment>
-        _augmentList
-    {
-        get { return augmentList; }
-    }
+    public List<Augment> _augmentList
+    { get { return augmentList; } }
 
-    public List<Item>
-        _itemList
-    {
-        get { return itemList; }
-    }
+    public List<Item> _itemList
+    { get { return itemList; } }
 
     private void Awake()
     {
@@ -69,15 +55,52 @@ public class Database : MonoBehaviour
             Game._database = this;
         }
 
-        Debug.Log(ParseCSV("Assets/Databases/Equipment List.csv"));
+        List<string> enemies = ParseCSV("Assets/Databases/EnemyList.csv");
+        foreach (string enemy in enemies)
+        {
+            string[] enemyEntry = enemy.Split(',');
+            enemyList.Add(new Enemy(
+                enemyEntry[0],
+                enemyEntry[1],
+                int.Parse(enemyEntry[2]),
+                int.Parse(enemyEntry[3]),
+                int.Parse(enemyEntry[4]),
+                int.Parse(enemyEntry[5]),
+                int.Parse(enemyEntry[6]),
+                int.Parse(enemyEntry[7]),
+                enemyEntry[8]));
+            Debug.Log($"{enemyEntry[1]} created and added into database");
+        }
 
-        enemyList.Add(new Enemy("Slime", 1, 1, 1, 1, (EnemyTypes)0, "Assets/Images/SadHamster.png"));
-        enemyList.Add(new Enemy("Fat Slime", 2, 2, 2, 2, (EnemyTypes)1, "Assets/Images/SadHamster.png"));
-        enemyList.Add(new Enemy("Boss Slime", 5, 5, 5, 5, (EnemyTypes)2, "Assets/Images/SadHamster.png"));
+        List<string> players = ParseCSV("Assets/Databases/ClassList.csv"); 
+        foreach (string player in players)
+        {
+            string[] playerEntry = player.Split(',');
+            playerClassList.Add(new Player(
+                playerEntry[0],
+                playerEntry[1],
+                int.Parse(playerEntry[2]),
+                int.Parse(playerEntry[3]),
+                int.Parse(playerEntry[4]),
+                int.Parse(playerEntry[5]),
+                int.Parse(playerEntry[6]),
+                int.Parse(playerEntry[7]),
+                playerEntry[8],
+                int.Parse(playerEntry[9]),
+                playerEntry[10]));
+        }
+
+        foreach (Entity ent in playerClassList)
+        {
+            playerList.Add(ent as Player);
+        }
+        //enemyList.Add(new Enemy("Slime", 1, 1, 1, 1, (EnemyTypes)0, "Assets/Images/SadHamster.png"));
+        //enemyList.Add(new Enemy("Fat Slime", 2, 2, 2, 2, (EnemyTypes)1, "Assets/Images/SadHamster.png"));
+        //enemyList.Add(new Enemy("Boss Slime", 5, 5, 5, 5, (EnemyTypes)2, "Assets/Images/SadHamster.png"));
 
         //Change to read from player tables
-        playerClassList.Add(new Player("Warrior", 1, 1, 1, 10));
-        playerClassList.Add(new Player("Archer", 1, 1, 1, 10));
+        //playerClassList.Add(new Player("Warrior", 1, 1, 1, 10));
+        //playerClassList.Add(new Player("Archer", 1, 1, 1, 10));
 
         //Change to read from enemywaves table
         //The code will be structured so that the first number will be the entry
@@ -91,14 +114,17 @@ public class Database : MonoBehaviour
         itemList.Add(new Item("Sword", "1", "A short sword, not used for much", 1, 1, EquipmentSlot.Weapon));
         itemList.Add(new Equipment("Helmet", "2", "A basic helmet, offers little protection", 1, 1, EquipmentSlot.Helmet, EquipmentEffect.HealthRegen, 10, 10, 30));
     }
-    private string ParseCSV(string filePath)
+    private List<string> ParseCSV(string filePath)
     {
-        string result = "";
+        List<string> result = new List<string>();
 
         sr = File.OpenText(filePath); 
 
         sr.ReadLine();
-        result = sr.ReadToEnd();
+        while (!sr.EndOfStream)
+        {
+            result.Add(sr.ReadLine());
+        }
 
         return result;
     }

@@ -4,33 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum EnemyTypes
-{
-    Basic, 
-    Elite, 
-    Boss
-}
-[System.Serializable]
 public class Enemy : Entity
 {
-    private EnemyTypes
-        enemyType;
-
-    private string
-        enemySprite;
-
-    public EnemyTypes
-        _enemyType
+    public Enemy(string entityId, string entityName, int hp, int attack, int magicAttack, int movementSpeed, int armor, int magicResist, string entitySprite) 
+        : base (entityId, entityName, hp, attack, magicAttack, movementSpeed, armor, magicResist, entitySprite)
     {
-        get { return enemyType; }
-    }
-
-    public string _enemySprite
-    { get { return enemySprite; } }
-
-    public Enemy(string name, int hp, int attack, int attackSpeed, int movementSpeed, EnemyTypes enemyType, string enemySprite) : base (name, hp, attack, attackSpeed, movementSpeed)
-    {
-        this.enemyType = enemyType;
-        this.enemySprite = enemySprite;
+        //this.enemyType = enemyType;
     }
 }
