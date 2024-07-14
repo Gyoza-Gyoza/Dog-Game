@@ -9,8 +9,8 @@ public class EnemyFactory : MonoBehaviour
     private GameObject
         enemyBase; 
 
-    private Dictionary<EnemyTypes, Stack<GameObject>>
-        enemyPool = new Dictionary<EnemyTypes, Stack<GameObject>>();
+    private Dictionary<string, Stack<GameObject>>
+        enemyPool = new Dictionary<string, Stack<GameObject>>();
 
     private void Awake()
     {
@@ -19,16 +19,10 @@ public class EnemyFactory : MonoBehaviour
             Game._enemyFactory = this;
         }
     }
-    private void Start()
+    
+    public GameObject GetEnemy(string enemyToSpawn)
     {
-        for (int i = 0; i < Enum.GetNames(typeof(EnemyTypes)).Length; i++)
-        {
-            enemyPool.Add((EnemyTypes)i, new Stack<GameObject>());
-        }
-    }
-    public GameObject GetEnemy(EnemyTypes type)
-    {
-        GetPoolStack(type).TryPop(out GameObject result);
+        GetPoolStack(enemyToSpawn).TryPop(out GameObject result);
         if (result != null)
         {
             result.SetActive(true);
@@ -36,30 +30,50 @@ public class EnemyFactory : MonoBehaviour
         }
         else
         {
-            return CreateObject(type);
+            return CreateObject(enemyToSpawn);
         }
     }
     public void DestroyEnemy(GameObject objToDestroy)
     {
-        enemyPool.TryGetValue(objToDestroy.GetComponent<Enemy>()._enemyType, out Stack<GameObject> result);
+        if (objToDestroy != null)
+        {
+            Debug.Log($"Found a gameobject named {objToDestroy.name}");
+        }
+        enemyPool.TryGetValue(objToDestroy.GetComponent<EnemyBehaviour>().gameObject.name, out Stack<GameObject> result);
         objToDestroy.SetActive(false);
         result.Push(objToDestroy);
     }
-    private Stack<GameObject> GetPoolStack(EnemyTypes type)
+    private Stack<GameObject> GetPoolStack(string enemyName)
     {
-        enemyPool.TryGetValue(type, out Stack<GameObject> stack);
-        return stack;
+        if(!enemyPool.ContainsKey(enemyName))
+        {
+            enemyPool.Add(enemyName, new Stack<GameObject>());
+            Debug.Log($"Created new {enemyName} stack");
+            foreach(KeyValuePair<string, Stack<GameObject>> keyValuePairs in enemyPool)
+            {
+                bool result = false;
+                if(keyValuePairs.Value !=null)
+                {
+                    result = true; 
+                }
+                Debug.Log($"{keyValuePairs.Key} stack found, stack exists = {result}");
+            }
+        }
+        //Write pool creation here and a debug to call when a pool is created
+        if(enemyPool.TryGetValue(enemyName, out Stack<GameObject> stack))
+        {
+            return stack;
+        }
+        return null;
     }
-    private GameObject CreateObject(EnemyTypes type)
+    private GameObject CreateObject(string enemyName)
     {
         GameObject chosenEnemy = Instantiate(enemyBase);
         foreach (Enemy enemy in Game._database._enemyList)
         {
-            if (enemy._enemyType == type)
+            if (enemy._name == enemyName)
             {
-                chosenEnemy.GetComponent<EnemyBehaviour>().SetStats(enemy._name, enemy._hp, enemy._attack, enemy._attackSpeed, enemy._movementSpeed, enemy._enemyType, enemy._enemySprite); 
-                chosenEnemy.name = enemy._name;
-                Debug.Log($"Spawning one {enemy._name}, renaming to {chosenEnemy.name}");
+                chosenEnemy.GetComponent<EnemyBehaviour>().SetStats(enemy._name, enemy._hp, enemy._attack, enemy._magicAttack, enemy._movementSpeed, enemy._armor, enemy._magicResist, enemy._entitySprite); 
                 break;
             }
         }

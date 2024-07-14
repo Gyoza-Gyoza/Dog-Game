@@ -2,53 +2,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Entity
 {
     [SerializeField]
     protected string
+        entityId,
         entityName;
+
     [SerializeField]
     protected int
         hp,
         attack,
-        attackSpeed,
-        movementSpeed; 
+        magicAttack,
+        movementSpeed,
+        armor,
+        magicResist;
 
-    public string
-        _name
-    {
-        get { return entityName; }
-    }
+    [SerializeField]
+    protected string
+        entitySprite;
 
-    public int 
-        _hp
-    {
-        get { return hp; }
-    } 
+    public string _entityId
+    { get { return entityId; } }
+    public string _name
+    { get { return entityName; } }
 
-    public int 
-        _attack
-    {
-        get { return attack; }
-    }
+    public int _hp
+    { get { return hp; } }
 
-    public int 
-        _attackSpeed
-    {
-        get { return attackSpeed; } 
-    }
+    public int _attack
+    { get { return attack; } }
 
-    public int
-        _movementSpeed
+    public int _magicAttack
+    { get { return magicAttack; } }
+
+    public int _movementSpeed
+    { get { return movementSpeed; } }
+
+    public int _armor
+    { get { return armor; } }
+
+    public int _magicResist
+    { get { return magicResist; } }
+
+    public string _entitySprite
+    { get { return entitySprite; } }
+
+    public Entity(string entityId, string entityName, int hp, int attack, int magicAttack, int movementSpeed, int armor, int magicResist, string entitySprite)
     {
-        get { return movementSpeed; }
-    }
-    public Entity(string entityName, int hp, int attack, int attackSpeed, int movementSpeed)
-    {
+        this.entityId = entityId;
         this.entityName = entityName;
-        this.hp = hp;
+        this.hp = hp; 
         this.attack = attack;
-        this.attackSpeed = attackSpeed;
+        this.magicAttack = magicAttack;
         this.movementSpeed = movementSpeed;
+        this.armor = armor; 
+        this.magicResist = magicResist;
+        this.entitySprite = entitySprite;
     }
 }

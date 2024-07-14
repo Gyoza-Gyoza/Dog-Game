@@ -1331,6 +1331,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -24170,7 +24171,6 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 361483569}
   - {fileID: 1335708661}
-  - {fileID: 1044005786}
   - {fileID: 921142183}
   - {fileID: 35555366}
   - {fileID: 149866533}
@@ -24178,3 +24178,5 @@ SceneRoots:
   - {fileID: 1265072150}
   - {fileID: 1005464936}
   - {fileID: 211726971}
+  - {fileID: 1666349551}
+  - {fileID: 1575198022}

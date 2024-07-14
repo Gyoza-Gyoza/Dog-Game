@@ -31,56 +31,34 @@ public static class Game
     private static Cursor
         cursor; 
 
-    public static PlayerBehaviour
-        _player
-    { 
-        get { return player; } 
-        set { player = value; } 
-    }
+    public static PlayerBehaviour _player
+    { get { return player; }
+        set { player = value; } }
 
-    public static Database 
-        _database
-    { 
-        get { return database; } 
-        set { database = value; } 
-    }
-    public static EnemyFactory
-        _enemyFactory
-    { 
-        get { return enemyFactory; } 
-        set { enemyFactory = value; } 
-    }
+    public static Database _database
+    { get { return database; } 
+        set { database = value; } }
 
-    public static InputHandler 
-        _inputHandler
-    { 
-        get { return inputHandler; } 
-        set { inputHandler = value; } 
-    }
+    public static EnemyFactory _enemyFactory
+    { get { return enemyFactory; } 
+        set { enemyFactory = value; } }
 
-    public static GameSceneManager
-        _gameSceneManager
-    { 
-        get { return gameSceneManager; } 
-        set { gameSceneManager = value; } 
-    }
+    public static InputHandler _inputHandler
+    { get { return inputHandler; } 
+        set { inputHandler = value; } }
 
-    public static AugmentManager 
-        _augmentManager
-    {
-        get { return augmentManager; }
-        set { augmentManager = value; }
-    }
-    public static LootManager 
-        _lootManager
-    {
-        get { return lootManager; }
-        set { lootManager = value; }
-    }
-    public static Cursor
-        _cursor
-    {
-        get { return cursor; }
-        set { cursor = value; }
-    }
+    public static GameSceneManager _gameSceneManager
+    { get { return gameSceneManager; } 
+        set { gameSceneManager = value; } }
+
+    public static AugmentManager _augmentManager
+    { get { return augmentManager; }
+        set { augmentManager = value; } }
+
+    public static LootManager _lootManager
+    { get { return lootManager; }
+        set { lootManager = value; } }
+    public static Cursor _cursor
+    { get { return cursor; }
+        set { cursor = value; } }
 }
