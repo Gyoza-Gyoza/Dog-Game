@@ -6,17 +6,13 @@ using static UnityEngine.GraphicsBuffer;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    private string
-        entityName;
-
     private int
         hp,
         attack,
-        attackSpeed,
-        movementSpeed; 
-    
-    private EnemyTypes
-        enemyType;
+        magicAttack,
+        movementSpeed,
+        armor,
+        magicResist;
 
     private NavMeshAgent
         nav;
@@ -40,14 +36,15 @@ public class EnemyBehaviour : MonoBehaviour
     {
         nav.SetDestination(target.transform.position);
     }
-    public void SetStats(string enemyName, int hp, int attack, int attackSpeed, int movementSpeed, EnemyTypes enemyType, string enemySprite)
+    public void SetStats(string enemyName, int hp, int attack, int magicAttack, int movementSpeed, int armor, int magicResist, string enemySprite)
     {
-        this.entityName = enemyName;
+        this.name = enemyName;
         this.hp = hp;
         this.attack = attack;
-        this.attackSpeed = attackSpeed;
+        this.magicAttack = magicAttack;
         this.movementSpeed = movementSpeed;
-        this.enemyType = enemyType;
+        this.armor = armor;
+        this.magicResist = magicResist;
         AssetManager.SetSprite(enemySprite, this.gameObject);
     }
 

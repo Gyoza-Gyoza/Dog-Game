@@ -26,26 +26,18 @@ public class Equipment : Item
 
     public EquipmentEffect 
         _equipmentEffect
-    {
-        get { return equipmentEffect; }
-    }
+    { get { return equipmentEffect; } }
 
     public int
         _armour
-    {
-        get { return armour; }
-    }
+    { get { return armour; } }
 
-    public int 
-        _magicResist
-    {
-        get { return magicResist; }
-    }
+    public int _magicResist
+    { get { return magicResist; } }
 
     public int _effectValue
-    {
-        get { return effectValue; }
-    }
+    { get { return effectValue; } }
+
     public Equipment(string itemName, string itemId, string itemDescription, int costPrice, int sellPrice, EquipmentSlot slotType, EquipmentEffect equipmentEffect, int armour, int magicResist, int effectValue) : base (itemName, itemId, itemDescription, costPrice, sellPrice, slotType)
     {
         this.equipmentEffect = equipmentEffect;
