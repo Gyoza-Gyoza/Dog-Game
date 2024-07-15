@@ -112,8 +112,10 @@ public class Database : MonoBehaviour
         augmentList.Add(new Augment("Strong augment", "This is a strong augment", 1));
         augmentList.Add(new Augment("Legendary augment", "This is a legendary augment", 2));
 
-        itemList.Add(new Item("Sword", "1", "A short sword, not used for much", 1, 1, EquipmentSlot.Weapon));
-        itemList.Add(new Equipment("Helmet", "2", "A basic helmet, offers little protection", 1, 1, EquipmentSlot.Helmet, EquipmentEffect.HealthRegen, 10, 10, 30));
+        itemList.Add(new Item("Sword1", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword1.png", 1, 1, EquipmentSlot.Weapon));
+        itemList.Add(new Item("Sword2", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword2.png", 1, 1, EquipmentSlot.Weapon));
+        itemList.Add(new Item("Sword3", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword3.png", 1, 1, EquipmentSlot.Weapon));
+        itemList.Add(new Item("Sword4", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword4.png", 1, 1, EquipmentSlot.Weapon));
     }
     private List<string> ParseCSV(string filePath)
     {
