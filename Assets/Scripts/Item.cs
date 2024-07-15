@@ -5,16 +5,19 @@ using UnityEngine;
 [System.Serializable]
 public class Item 
 {
+    [SerializeField]
     protected string
         itemName,
         itemId, 
         itemDescription,
         itemSprite;
 
+    [SerializeField]
     protected int
         costPrice,
         sellPrice;
 
+    [SerializeField]
     protected EquipmentSlot
         slotType;
 

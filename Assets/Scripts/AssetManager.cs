@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.UI;
 public static class AssetManager 
 {
     private static void LoadSprites(string spriteURL, Action<Sprite> onLoaded)
@@ -18,6 +19,13 @@ public static class AssetManager
         LoadSprites(spriteURL, (Sprite sp) =>
         {
             go.GetComponent<SpriteRenderer>().sprite = sp;
+        });
+    }
+    public static void SetImage(string spriteURL, GameObject go)
+    {
+        LoadSprites(spriteURL, (Sprite sp) =>
+        {
+            go.GetComponent<Image>().sprite = sp;
         });
     }
 }

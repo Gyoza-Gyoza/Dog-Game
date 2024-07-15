@@ -35,6 +35,9 @@ public static class Game
     private static PlayerManager
         playerManager;
 
+    private static InventoryManager
+        inventoryManager;
+
     public static PlayerBehaviour _player
     { get { return player; }
         set { player = value; } }
@@ -70,6 +73,10 @@ public static class Game
     public static PlayerManager _playerManager
     { get { return playerManager; }
         set { playerManager = value; } }
+
+    public static InventoryManager _inventoryManager
+    { get { return inventoryManager; }
+        set { inventoryManager = value; } }
     #endregion
 
     private static Player
