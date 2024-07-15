@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerBehaviour : MonoBehaviour, IInputReceiver
+public class PlayerBehaviour : MonoBehaviour
 {
     [SerializeField]
     protected string
@@ -29,23 +29,25 @@ public class PlayerBehaviour : MonoBehaviour, IInputReceiver
         moveDir;
 
     private NavMeshAgent
-        nav; 
+        nav;
+
+    private static PlayerBehaviour
+        instance;
 
     private void Awake()
     {
-        if (Game._player == null)
+        //Singleton to ensure there is only one player in the game at all times 
+        if(instance != null && instance != this)
         {
-            Game._player = this;
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+            Game._player = this; //Giving a reference to the static Game class
         }
     }
 
-    void Start()
-    {
-        Player chosenEntity = Game._database._playerClassList[0] as Player;
-        SetStats(chosenEntity._entityId, chosenEntity._name, chosenEntity._hp, chosenEntity._attack, chosenEntity._magicAttack, chosenEntity._movementSpeed, chosenEntity._armor, chosenEntity._magicResist, chosenEntity._entitySprite, chosenEntity._attackSpeed, chosenEntity._weaponType);
-        Game._inputHandler.SetInputReceiver(this);
-        nav = GetComponent<NavMeshAgent>();
-    }
     public void LeagueMovement(Vector3 pos)
     {
         nav.SetDestination(pos);
@@ -70,34 +72,19 @@ public class PlayerBehaviour : MonoBehaviour, IInputReceiver
             this.transform.up = moveDir;
         }
     }
-    public virtual void SetStats(string entityId, string entityName, int hp, int attack, int magicAttack, int movementSpeed, int armor, int magicResist, string entitySprite, int attackSpeed, string weaponType)
+    public void SetStats(string entityId, string entityName, int hp, int attack, int magicAttack, int movementSpeed, int armor, int magicResist, string entitySprite, int attackSpeed, string weaponType)
     {
+        nav = GetComponent<NavMeshAgent>();
         this.entityId = entityId;
         this.entityName = entityName;
         this.hp = hp;
         this.attack = attack;
         this.magicAttack = magicAttack;
-        this.movementSpeed = movementSpeed;
+        nav.speed = movementSpeed;
         this.armor = armor;
         this.magicResist = magicResist;
         this.entitySprite = entitySprite;
         this.attackSpeed = attackSpeed;
         this.weaponType = weaponType;
-    }
-    public void DoLeftAction()
-    {
-
-    }
-    public void DoRightAction()
-    {
-
-    }
-    public void DoSubmitAction()
-    {
-
-    }
-    public void DoCancelAction()
-    {
-
     }
 }

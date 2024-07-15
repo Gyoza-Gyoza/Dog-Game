@@ -89,6 +89,7 @@ public class Database : MonoBehaviour
                 int.Parse(playerEntry[9]),
                 playerEntry[10]));
         }
+        Game._chosenPlayer = playerClassList[0] as Player;
 
         foreach (Entity ent in playerClassList)
         {
