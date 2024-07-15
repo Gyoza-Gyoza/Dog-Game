@@ -8,14 +8,17 @@ using UnityEngine.SceneManagement;
 
 public class InputHandler : MonoBehaviour
 {
-    private IInputReceiver activeReceiver;
-    private bool
-        menuOpen = false;
+    private IInputReceiver activeReceiver; //GET RID OF THIS
     private enum Menus
     {
+        None, 
         Augments, 
         Equipment
     }
+
+    private Menus
+        activeScene = Menus.None; 
+
     private void Awake()
     {
         if(Game._inputHandler == null)
@@ -44,8 +47,11 @@ public class InputHandler : MonoBehaviour
     }
     private void SetClickDestination()
     {
-        Game._player.LeagueMovement(Game._cursor._mousePos);
-        Game._cursor.SpawnArrowIndicator(Game._cursor._mousePos);
+        if(Time.timeScale > 0f)
+        {
+            Game._player.LeagueMovement(Game._cursor._mousePos);
+            Game._cursor.SpawnArrowIndicator(Game._cursor._mousePos);
+        }
     }
     private void GetKeyInput()
     {
@@ -76,6 +82,15 @@ public class InputHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             Game._lootManager.DropLoot(Game._player.transform, Game._database._itemList[1]);
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Game._playerManager.SpawnPlayer(gameObject.transform);
+            Debug.Log("Trying to spawn player");
+        }
+        if(Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            Debug.Log($"{SceneManager.GetActiveScene().name}");
         }
     }
     private void Movement()
@@ -125,41 +140,37 @@ public class InputHandler : MonoBehaviour
             activeReceiver.DoCancelAction();
         }
     }
-    private void ToggleMenus(Menus menuToOpen)
+    private void ToggleMenus(Menus menuToToggle)
     {
-        switch (menuToOpen)
+        switch (menuToToggle)
         {
             case Menus.Augments:
-                if(!menuOpen)
+                if (activeScene == Menus.None)
                 {
-                    Time.timeScale = 0f;
+                    activeScene = Menus.Augments;
                     Game._gameSceneManager.OpenScene("AugmentsMenu", true, () =>
                     {
                         Game._augmentManager.InitializeList();
                         Game._augmentManager.SetAugment();
                     });
-                    menuOpen = true;
                 }
-                else
+                else if (activeScene == Menus.Augments)
                 {
-                    Time.timeScale = 1f;
                     Game._gameSceneManager.CloseScene("AugmentsMenu");
-                    menuOpen = false;
+                    activeScene = Menus.None;
                 }
                 break;
 
             case Menus.Equipment:
-                if (!menuOpen)
+                if (activeScene == Menus.None)
                 {
-                    Time.timeScale = 0f;
+                    activeScene = Menus.Equipment;
                     Game._gameSceneManager.OpenScene("PlayerEquipmentMenu", true, null);
-                    menuOpen = true;
                 }
-                else
+                else if(activeScene == Menus.Equipment)
                 {
-                    Time.timeScale = 1f;
-                    Game._gameSceneManager.CloseScene("PlayerEquipmentMenu");
-                    menuOpen = false;
+                    Game._gameSceneManager.CloseScene("PlayerEquipmentMenu"); 
+                    activeScene = Menus.None;
                 }
                 break;
         }

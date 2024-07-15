@@ -5,6 +5,7 @@ using UnityEngine;
 
 public static class Game
 {
+    #region References
     //This script connects non static scripts together, it returns references to scripts
     //when the right function is called
     private static PlayerBehaviour
@@ -29,7 +30,10 @@ public static class Game
         lootManager;
 
     private static Cursor
-        cursor; 
+        cursor;
+
+    private static PlayerManager
+        playerManager;
 
     public static PlayerBehaviour _player
     { get { return player; }
@@ -58,7 +62,20 @@ public static class Game
     public static LootManager _lootManager
     { get { return lootManager; }
         set { lootManager = value; } }
+
     public static Cursor _cursor
     { get { return cursor; }
         set { cursor = value; } }
+
+    public static PlayerManager _playerManager
+    { get { return playerManager; }
+        set { playerManager = value; } }
+    #endregion
+
+    private static Player
+        chosenPlayer; 
+
+    public static Player _chosenPlayer
+    { get { return chosenPlayer; }
+        set { chosenPlayer = value; } }
 }

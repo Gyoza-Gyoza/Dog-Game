@@ -13,16 +13,23 @@ public enum EquipmentSlot
     Boot,
     Weapon
 }
-public class PlayerEquipment : MonoBehaviour
+public class PlayerEquipmentManager : MonoBehaviour
 {
     private EquipmentSlot 
         selectedSlot;
 
+    private ItemSlotScript[]
+        uiBoxList;
+
     private Dictionary<EquipmentSlot, Item>
         equippedList = new Dictionary<EquipmentSlot, Item>();
 
+    private List<Item>
+        inventory = new List<Item>();
+
     private void Start()
     {
+        uiBoxList = GetComponentsInChildren<ItemSlotScript>(); 
         for (int i = 0; i < Enum.GetNames(typeof(EquipmentSlot)).Length; i++)
         {
             equippedList.Add((EquipmentSlot)i, null);
@@ -55,6 +62,11 @@ public class PlayerEquipment : MonoBehaviour
         }
         return null;
     }
+    public void PickupItem(Item itemToPickup)
+    {
+        inventory.Add(itemToPickup);
+        UpdateInventory();
+    }
     public void DropItem()
     {
         UnequipItem(selectedSlot);
@@ -73,6 +85,13 @@ public class PlayerEquipment : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.M))
         { 
             EquipItem(Game._database._itemList.ElementAt(0));
+        }
+    }
+    private void UpdateInventory()
+    {
+        foreach(ItemSlotScript iss in uiBoxList)
+        {
+            iss.UpdateItemSlot();
         }
     }
 }

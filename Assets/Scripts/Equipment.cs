@@ -38,7 +38,8 @@ public class Equipment : Item
     public int _effectValue
     { get { return effectValue; } }
 
-    public Equipment(string itemName, string itemId, string itemDescription, int costPrice, int sellPrice, EquipmentSlot slotType, EquipmentEffect equipmentEffect, int armour, int magicResist, int effectValue) : base (itemName, itemId, itemDescription, costPrice, sellPrice, slotType)
+    public Equipment(string itemName, string itemId, string itemDescription, string itemSprite, int costPrice, int sellPrice, EquipmentSlot slotType, EquipmentEffect equipmentEffect, int armour, int magicResist, int effectValue)
+        : base (itemName, itemId, itemDescription, itemSprite, costPrice, sellPrice, slotType)
     {
         this.equipmentEffect = equipmentEffect;
         this.armour = armour;

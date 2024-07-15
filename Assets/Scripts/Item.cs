@@ -8,10 +8,8 @@ public class Item
     protected string
         itemName,
         itemId, 
-        itemDescription;
-
-    //protected Sprite
-    //    itemSprite;
+        itemDescription,
+        itemSprite;
 
     protected int
         costPrice,
@@ -20,46 +18,33 @@ public class Item
     protected EquipmentSlot
         slotType;
 
-    public string
-        _itemName
-    {
-        get { return itemName; }
-    }
+    public string _itemName
+    { get { return itemName; } }
 
-    public string 
-        _itemId
-    {
-        get { return itemId; }
-    }
+    public string _itemId
+    { get { return itemId; } }
 
-    public string
-        _itemDescription
-    {
-        get { return itemDescription; }
-    }
+    public string _itemDescription
+    { get { return itemDescription; } }
 
-    public int
-        _costPrice
-    {
-        get { return costPrice; }
-    }
+    public string _itemSprite
+    { get { return itemSprite; } }
 
-    public int 
-        _sellPrice
-    {
-        get { return sellPrice; }
-    }
+    public int _costPrice
+    { get { return costPrice; } }
 
-    public EquipmentSlot
-        _slotType
-    {
-        get { return slotType; }
-    }
-    public Item(string itemName, string itemId, string itemDescription, int costPrice, int sellPrice, EquipmentSlot slotType)
+    public int _sellPrice
+    { get { return sellPrice; } }
+
+    public EquipmentSlot _slotType
+    { get { return slotType; } }
+
+    public Item(string itemName, string itemId, string itemDescription, string itemSprite, int costPrice, int sellPrice, EquipmentSlot slotType)
     {
         this.itemName = itemName;
         this.itemId = itemId;
         this.itemDescription = itemDescription;
+        this.itemSprite = itemSprite;
         this.costPrice = costPrice;
         this.sellPrice = sellPrice;
         this.slotType = slotType;
