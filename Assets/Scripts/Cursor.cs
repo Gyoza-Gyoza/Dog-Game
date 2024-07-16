@@ -57,4 +57,10 @@ public class Cursor : MonoBehaviour
         arrow.SetActive(false);
         arrowPool.Push(arrow);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Vector4(0, 1, 0, 0.5f);
+        Gizmos.DrawSphere(this.transform.position, 1f);
+    }
 }

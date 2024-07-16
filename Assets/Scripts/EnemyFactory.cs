@@ -35,10 +35,6 @@ public class EnemyFactory : MonoBehaviour
     }
     public void DestroyEnemy(GameObject objToDestroy)
     {
-        if (objToDestroy != null)
-        {
-            Debug.Log($"Found a gameobject named {objToDestroy.name}");
-        }
         enemyPool.TryGetValue(objToDestroy.GetComponent<EnemyBehaviour>().gameObject.name, out Stack<GameObject> result);
         objToDestroy.SetActive(false);
         result.Push(objToDestroy);
@@ -48,7 +44,6 @@ public class EnemyFactory : MonoBehaviour
         if(!enemyPool.ContainsKey(enemyName))
         {
             enemyPool.Add(enemyName, new Stack<GameObject>());
-            Debug.Log($"Created new {enemyName} stack");
             foreach(KeyValuePair<string, Stack<GameObject>> keyValuePairs in enemyPool)
             {
                 bool result = false;
@@ -56,7 +51,6 @@ public class EnemyFactory : MonoBehaviour
                 {
                     result = true; 
                 }
-                Debug.Log($"{keyValuePairs.Key} stack found, stack exists = {result}");
             }
         }
         //Write pool creation here and a debug to call when a pool is created
@@ -79,6 +73,5 @@ public class EnemyFactory : MonoBehaviour
         }
         return chosenEnemy;
     }
-
 }
 

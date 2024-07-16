@@ -3,33 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerBehaviour : MonoBehaviour
+public class PlayerBehaviour : EntityBehaviour
 {
-    [SerializeField]
     protected string
-        entityId,
-        entityName,
         weaponType;
 
-    [SerializeField]
     protected int
-        hp,
-        attack,
-        magicAttack,
-        movementSpeed,
-        armor,
-        magicResist,
         attackSpeed; 
-
-    [SerializeField]
-    protected string
-        entitySprite;
 
     private Vector2
         moveDir;
-
-    private NavMeshAgent
-        nav;
 
     private static PlayerBehaviour
         instance;
@@ -48,10 +31,10 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    public void LeagueMovement(Vector3 pos)
-    {
-        nav.SetDestination(pos);
-    }
+    //public void LeagueMovement(Vector3 pos)
+    //{
+    //    nav.SetDestination(pos);
+    //}
     public void DoMoveDir(Vector2 aDir)
     {
         //set movement direction
@@ -72,11 +55,10 @@ public class PlayerBehaviour : MonoBehaviour
             this.transform.up = moveDir;
         }
     }
-    public void SetStats(string entityId, string entityName, int hp, int attack, int magicAttack, int movementSpeed, int armor, int magicResist, string entitySprite, int attackSpeed, string weaponType)
+    public void SetStats(string entityName, int hp, int attack, int magicAttack, int movementSpeed, int armor, int magicResist, string entitySprite, int attackSpeed, string weaponType)
     {
         nav = GetComponent<NavMeshAgent>();
-        this.entityId = entityId;
-        this.entityName = entityName;
+        this.name = entityName;
         this.hp = hp;
         this.attack = attack;
         this.magicAttack = magicAttack;

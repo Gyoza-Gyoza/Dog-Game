@@ -27,6 +27,30 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 672cf20f62c40624ba7c3515f3947fc9
+    m_Address: Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy
+      Icons Pack v2/Glove1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c618bb91ddd5c144fbdf7d5c451b3d25
+    m_Address: Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy
+      Icons Pack v2/Overall1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9a26612d3b9c124ab616c63486433ed
+    m_Address: Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy
+      Icons Pack v2/Boot1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84b5053351763c94d85ec3307223bcc6
+    m_Address: Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy
+      Icons Pack v2/Helmet1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f8a0f01daa604214595569ccaa4853bb
     m_Address: Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy
       Icons Pack v2/Sword1.png
@@ -48,26 +72,6 @@ MonoBehaviour:
   - m_GUID: e963a7595cff8b940b51c0f436104f5d
     m_Address: Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy
       Icons Pack v2/Sword4.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: aa33e7ab92dbb4943932c10d77fe38b0
-    m_Address: Assets/Images/Monster/Dungeon1/dungbeetle.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7a720718b79b5f84ea23d46aefab0b83
-    m_Address: Assets/Images/Monster/Dungeon1/taintedcockroach.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7c4f77c435af1b04faa8a64b35f77706
-    m_Address: Assets/Images/Monster/Dungeon1/swoopingbat.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b56928689fe16b34d9504c5304a718db
-    m_Address: Assets/Images/Monster/Dungeon1/soldierant.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
