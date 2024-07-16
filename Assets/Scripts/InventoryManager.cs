@@ -77,42 +77,6 @@ public class InventoryManager : MonoBehaviour
         }
 
         UpdateInventory();
-
-
-        //Item selectedItemToSwap = selectedItem.GetComponent<ItemSlotScript>()._itemHeld; //Stores the selected item from the inventory
-        //Item itemToSwap = equippedList[selectedItemToSwap._slotType]; //Stores the current item from the equipment slot 
-        //if (itemToSwap != null)
-        //{
-        //    equippedList[selectedItemToSwap._slotType] = selectedItemToSwap;  //Adds in the new equipment into the equipment list
-        //    foreach(EquipmentSlotScript ess in equipmentBoxList)
-        //    {
-        //        if (ess._slot == selectedItemToSwap._slotType)
-        //        {
-        //            ess.RemoveItem();
-        //            ess.AddItem(selectedItemToSwap);
-        //        }
-        //    }
-
-        //    inventory.Add(itemToSwap); //Adds the swapped equipment to the inventory list 
-        //    selectedItem.GetComponent<ItemSlotScript>().RemoveItem(); //Remove the item in the item UI box
-        //    selectedItem.GetComponent<ItemSlotScript>().AddItem(itemToSwap); //Add the swapped item in the item UI box
-
-        //}
-        //else
-        //{
-        //    equippedList[selectedItemToSwap._slotType] = selectedItemToSwap; //Adds in the new equipment into the equipment list
-        //}
-
-        //selectedItem.GetComponent<ItemSlotScript>().itemHeld = 
-
-        //if (equippedList[itemToEquip._slotType] == null)
-        //{
-        //    equippedList[itemToEquip._slotType] = itemToEquip;
-        //}
-        //else
-        //{
-
-        //}
     }
     public Item UnequipItem(EquipmentSlot slot)
     {
@@ -141,30 +105,11 @@ public class InventoryManager : MonoBehaviour
                 break;
             }
         }
-        //if (inventoryList.Count < inventoryBoxList.Length)
-        //{
-        //    inventoryList.Add(itemToPickup); //Add item to inventory list 
-
-        //    foreach(ItemSlotScript iss in inventoryBoxList) //Looks through the item slots for an empty slot and adds the item in
-        //    {
-        //        if (iss._itemHeld == null)
-        //        {
-        //            iss.AddItem(itemToPickup);
-        //            UpdateInventory();
-        //            break;
-        //        }
-        //    }
-
-        //    Debug.Log($"Obtained a {itemToPickup._itemName}!");
-        //}
-        //else
-        //{
-        //    Debug.Log("Not enough space");
-        //}
     }
     public void DropItem()
     {
-        UnequipItem(selectedSlot);
+        inventoryList[selectedItem.GetComponent<ItemSlotScript>()._itemId] = null;
+        UpdateInventory();
     }
     private void Update()
     {

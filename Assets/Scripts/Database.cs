@@ -116,6 +116,10 @@ public class Database : MonoBehaviour
         itemList.Add(new Item("Sword2", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword2.png", 1, 1, EquipmentSlot.Weapon));
         itemList.Add(new Item("Sword3", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword3.png", 1, 1, EquipmentSlot.Weapon));
         itemList.Add(new Item("Sword4", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword4.png", 1, 1, EquipmentSlot.Weapon));
+        itemList.Add(new Item("Helmet1", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Helmet1.png", 1, 1, EquipmentSlot.Helmet));
+        itemList.Add(new Item("Overall1", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Overall1.png", 1, 1, EquipmentSlot.Overall));
+        itemList.Add(new Item("Boot1", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Boot1.png", 1, 1, EquipmentSlot.Boot));
+        itemList.Add(new Item("Glove1", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Glove1.png", 1, 1, EquipmentSlot.Glove));
     }
     private List<string> ParseCSV(string filePath)
     {

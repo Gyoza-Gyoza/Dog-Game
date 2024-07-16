@@ -49,7 +49,7 @@ public class InputHandler : MonoBehaviour
     {
         if(Time.timeScale > 0f)
         {
-            Game._player.LeagueMovement(Game._cursor._mousePos);
+            Game._player.ChangeDestination(Game._cursor._mousePos);
             Game._cursor.SpawnArrowIndicator(Game._cursor._mousePos);
         }
     }
