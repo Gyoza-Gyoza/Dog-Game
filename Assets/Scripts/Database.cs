@@ -21,6 +21,7 @@ public class Database : MonoBehaviour
         enemyList = new List<Entity>(), 
         playerClassList = new List<Entity>();
 
+    //For testing
     [SerializeField]
     private List<Player> playerList = new List<Player>();
 
@@ -32,6 +33,9 @@ public class Database : MonoBehaviour
 
     private List<Item> 
         itemList = new List<Item>();
+
+    private Dictionary<string, Skill>
+        skillDB = new Dictionary<string, Skill>();
 
     public List<Entity> _enemyList 
     { get { return enemyList; } }
@@ -47,6 +51,9 @@ public class Database : MonoBehaviour
 
     public List<Item> _itemList
     { get { return itemList; } }
+
+    public Dictionary<string, Skill> _skillDB
+    { get { return skillDB; } }
 
     private void Awake()
     {
@@ -89,8 +96,9 @@ public class Database : MonoBehaviour
                 int.Parse(playerEntry[9]),
                 playerEntry[10]));
         }
-        Game._chosenPlayer = playerClassList[0] as Player;
+        Game._chosenPlayer = playerClassList[3] as Player;
 
+        //For testing 
         foreach (Entity ent in playerClassList)
         {
             playerList.Add(ent as Player);

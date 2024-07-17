@@ -20,7 +20,7 @@ public class EnemyFactory : MonoBehaviour
         }
     }
     
-    public GameObject GetEnemy(string enemyToSpawn)
+    public GameObject GetEnemy(string enemyToSpawn, Transform spawnLocation)
     {
         GetPoolStack(enemyToSpawn).TryPop(out GameObject result);
         if (result != null)
@@ -30,7 +30,7 @@ public class EnemyFactory : MonoBehaviour
         }
         else
         {
-            return CreateObject(enemyToSpawn);
+            return CreateObject(enemyToSpawn, spawnLocation);
         }
     }
     public void DestroyEnemy(GameObject objToDestroy)
@@ -44,14 +44,6 @@ public class EnemyFactory : MonoBehaviour
         if(!enemyPool.ContainsKey(enemyName))
         {
             enemyPool.Add(enemyName, new Stack<GameObject>());
-            foreach(KeyValuePair<string, Stack<GameObject>> keyValuePairs in enemyPool)
-            {
-                bool result = false;
-                if(keyValuePairs.Value !=null)
-                {
-                    result = true; 
-                }
-            }
         }
         //Write pool creation here and a debug to call when a pool is created
         if(enemyPool.TryGetValue(enemyName, out Stack<GameObject> stack))
@@ -60,9 +52,9 @@ public class EnemyFactory : MonoBehaviour
         }
         return null;
     }
-    private GameObject CreateObject(string enemyName)
+    private GameObject CreateObject(string enemyName, Transform spawnLocation)
     {
-        GameObject chosenEnemy = Instantiate(enemyBase);
+        GameObject chosenEnemy = Instantiate(enemyBase, spawnLocation.position, spawnLocation.rotation);
         foreach (Enemy enemy in Game._database._enemyList)
         {
             if (enemy._name == enemyName)
