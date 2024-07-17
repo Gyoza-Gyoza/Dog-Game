@@ -38,51 +38,46 @@ public static class Game
     private static InventoryManager
         inventoryManager;
 
+    private static SkillManager
+        skillManager;
+
     public static PlayerBehaviour _player
-    { get { return player; }
-        set { player = value; } }
+    { get { return player; } set { player = value; } }
 
     public static Database _database
-    { get { return database; } 
-        set { database = value; } }
+    { get { return database; } set { database = value; } }
 
     public static EnemyFactory _enemyFactory
-    { get { return enemyFactory; } 
-        set { enemyFactory = value; } }
+    { get { return enemyFactory; } set { enemyFactory = value; } }
 
     public static InputHandler _inputHandler
-    { get { return inputHandler; } 
-        set { inputHandler = value; } }
+    { get { return inputHandler; } set { inputHandler = value; } }
 
     public static GameSceneManager _gameSceneManager
-    { get { return gameSceneManager; } 
-        set { gameSceneManager = value; } }
+    { get { return gameSceneManager; } set { gameSceneManager = value; } }
 
     public static AugmentManager _augmentManager
-    { get { return augmentManager; }
-        set { augmentManager = value; } }
+    { get { return augmentManager; } set { augmentManager = value; } }
 
     public static LootManager _lootManager
-    { get { return lootManager; }
-        set { lootManager = value; } }
+    { get { return lootManager; } set { lootManager = value; } }
 
     public static Cursor _cursor
-    { get { return cursor; }
-        set { cursor = value; } }
+    { get { return cursor; } set { cursor = value; } }
 
     public static PlayerManager _playerManager
-    { get { return playerManager; }
-        set { playerManager = value; } }
+    { get { return playerManager; } set { playerManager = value; } }
 
     public static InventoryManager _inventoryManager
-    { get { return inventoryManager; }
-        set { inventoryManager = value; } }
+    { get { return inventoryManager; } set { inventoryManager = value; } }
+
+    public static SkillManager _skillManager
+    { get { return skillManager; } set { skillManager = value; } }
     #endregion
 
     private static Player
         chosenPlayer; 
 
     public static Player _chosenPlayer
-    { get { return chosenPlayer; }
-        set { chosenPlayer = value; } }
+    { get { return chosenPlayer; } set { chosenPlayer = value; } }
 }

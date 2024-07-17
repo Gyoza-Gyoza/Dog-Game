@@ -17,6 +17,9 @@ public class PlayerBehaviour : EntityBehaviour
     private static PlayerBehaviour
         instance;
 
+    public int _attackSpeed
+    { get { return instance._attackSpeed; } }
+
     private void Awake()
     {
         //Singleton to ensure there is only one player in the game at all times 

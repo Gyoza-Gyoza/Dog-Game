@@ -52,7 +52,7 @@ public class EntityBehaviour : MonoBehaviour, IDamageable
         nav.SetDestination(target);
     }
 
-    public void DealDamage(int damage)
+    public void TakeDamage(int damage)
     {
         hp -= damage;
         if (hp < 0)

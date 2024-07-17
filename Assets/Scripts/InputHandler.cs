@@ -57,15 +57,15 @@ public class InputHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Game._enemyFactory.GetEnemy(Game._database._enemyList[0]._name);
+            Game._enemyFactory.GetEnemy(Game._database._enemyList[0]._name, transform);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Game._enemyFactory.GetEnemy(Game._database._enemyList[1]._name);
+            Game._enemyFactory.GetEnemy(Game._database._enemyList[1]._name, transform);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Game._enemyFactory.GetEnemy(Game._database._enemyList[2]._name);
+            Game._enemyFactory.GetEnemy(Game._database._enemyList[2]._name, transform);
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -86,11 +86,10 @@ public class InputHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             Game._playerManager.SpawnPlayer(gameObject.transform);
-            Debug.Log("Trying to spawn player");
         }
-        if(Input.GetKeyDown(KeyCode.KeypadEnter))
+        if(Input.GetKeyDown(KeyCode.S))
         {
-            Debug.Log($"{SceneManager.GetActiveScene().name}");
+            Game._player.ChangeDestination(Game._player.transform.position);
         }
     }
     private void Movement()
