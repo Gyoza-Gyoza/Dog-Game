@@ -99,6 +99,46 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b806253766ca774ca4f11d2181ee298
+    m_Address: Assets/Prefabs/Projectile/PROJ0001.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f519081a680b5744b3ddf6d6d4851e4
+    m_Address: Assets/Prefabs/Projectile/PROJ0002.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e1cb0e7fea7b3ec4cb6229b21677eab8
+    m_Address: Assets/Prefabs/Projectile/PROJ0004.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c0750240176e5c4694f6e72c074aacf
+    m_Address: Assets/Prefabs/Projectile/PROJ0003.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: beba5f47d649d6b4d8979084642a4143
+    m_Address: Assets/Prefabs/Projectile/PROJ0005.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b17a5e72c46db4d479bb4473df92b0b3
+    m_Address: Assets/Prefabs/Projectile/PROJ0006.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 968d3b803174ab44ea13f7f1b32caff3
+    m_Address: Assets/Prefabs/Projectile/PROJ0008.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a09f5b752d8fa1e4da2457a99f409e88
+    m_Address: Assets/Prefabs/Projectile/PROJ0007.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 46d56fb719fb9664787fe081d359ddb8, type: 2}
   m_SchemaSet:
