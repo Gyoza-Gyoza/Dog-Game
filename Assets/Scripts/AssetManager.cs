@@ -6,7 +6,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 public static class AssetManager 
 {
-    private static void LoadSprites(string spriteURL, Action<Sprite> onLoaded)
+    public static void LoadSprites(string spriteURL, Action<Sprite> onLoaded)
     {
         Addressables.LoadAssetAsync<Sprite>(spriteURL).Completed += (loadedSprite) =>
         {

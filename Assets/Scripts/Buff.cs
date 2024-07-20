@@ -10,8 +10,8 @@ public class Buff : Skill
     public BuffType
         buffType; 
 
-    public Buff(string skillName, string skillDescription, float buffDuration, BuffType buffType)
-        : base(skillName, skillDescription)
+    public Buff(string skillName, string skillDescription, string skillIcon, string skillSprite, int skillCooldown, float buffDuration, BuffType buffType)
+        : base(skillName, skillDescription, skillIcon, skillSprite, skillCooldown)
     {
         this.buffDuration = buffDuration;
         this.buffType = buffType;

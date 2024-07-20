@@ -29,16 +29,6 @@ public class ItemBehaviour : MonoBehaviour
                         tmp.text = equipment._itemDescription;
                         Debug.Log("Setting description");
                         break;
-
-                    case "Value1":
-                        tmp.text = equipment._armour.ToString();
-                        Debug.Log("Setting value1");
-                        break;
-
-                    case "Value2":
-                        tmp.text = equipment._magicResist.ToString();
-                        Debug.Log("Setting value2");
-                        break;
                 }
             }
         }

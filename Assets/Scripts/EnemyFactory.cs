@@ -26,6 +26,8 @@ public class EnemyFactory : MonoBehaviour
         if (result != null)
         {
             result.SetActive(true);
+            result.transform.position = spawnLocation.position;
+            result.GetComponent<EnemyBehaviour>().ResetHealth();
             return result;
         }
         else

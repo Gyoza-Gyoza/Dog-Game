@@ -4,6 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEditor.PackageManager.UI;
 
 public enum DatabaseTypes
 {
@@ -84,7 +85,6 @@ public class Database : MonoBehaviour
                 int.Parse(enemyEntry[6]),
                 int.Parse(enemyEntry[7]),
                 enemyEntry[8]));
-            Debug.Log($"{enemyEntry[1]} created and added into database");
         }
 
         List<string> players = ParseCSV("Assets/Databases/ClassList.csv"); 
@@ -128,37 +128,20 @@ public class Database : MonoBehaviour
         augmentList.Add(new Augment("Strong augment", "This is a strong augment", 1));
         augmentList.Add(new Augment("Legendary augment", "This is a legendary augment", 2));
 
-        itemList.Add(new Item("Sword1", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword1.png", 1, 1, EquipmentSlot.Weapon));
-        itemList.Add(new Item("Sword2", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword2.png", 1, 1, EquipmentSlot.Weapon));
-        itemList.Add(new Item("Sword3", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword3.png", 1, 1, EquipmentSlot.Weapon));
-        itemList.Add(new Item("Sword4", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword4.png", 1, 1, EquipmentSlot.Weapon));
-        itemList.Add(new Item("Helmet1", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Helmet1.png", 1, 1, EquipmentSlot.Helmet));
-        itemList.Add(new Item("Overall1", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Overall1.png", 1, 1, EquipmentSlot.Overall));
-        itemList.Add(new Item("Boot1", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Boot1.png", 1, 1, EquipmentSlot.Boot));
-        itemList.Add(new Item("Glove1", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Glove1.png", 1, 1, EquipmentSlot.Glove));
+        itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword1.png", 1, EquipmentSlot.Weapon, 1, 1, 1, 1, 1));
+        itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword2.png", 1, EquipmentSlot.Weapon, 1, 1, 1, 1, 1));
+        itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword3.png", 1, EquipmentSlot.Weapon, 1, 1, 1, 1, 1));
+        itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword4.png", 1, EquipmentSlot.Weapon, 1, 1, 1, 1, 1));
+        itemList.Add(new Equipment("Helmet1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Helmet1.png", 1, EquipmentSlot.Helmet, 1, 1 ,1, 1, 1));
+        itemList.Add(new Equipment("Overall1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Overall1.png", 1, EquipmentSlot.Overall, 1 ,1, 1, 1, 1));
+        itemList.Add(new Equipment("Boot1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Boot1.png", 1, EquipmentSlot.Boot, 1, 1, 1, 1 ,1));
+        itemList.Add(new Equipment("Glove1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Glove1.png", 1, EquipmentSlot.Glove, 1, 1, 1 ,1, 1));
 
-        //Dylan try
-        /*
-                List<string> equipments = ParseCSV("Assets/Databases/EquipmentList.csv");
-        foreach (string equipment in equipments)
-        {
-            string[] equipmentEntry = equipment.Split(',');
-            equipmentList.Add(new Equipment(
-                equipmentEntry[0],
-                equipmentEntry[1],
-                equipmentEntry[2],
-                equipmentEntry[3],
-                equipmentEntry[4],
-                int.Parse(equipmentEntry[5]),
-                int.Parse(equipmentEntry[6]),
-                int.Parse(equipmentEntry[7]),
-                int.Parse(equipmentEntry[8]),
-                int.Parse(equipmentEntry[9]),
-                int.Parse(equipmentEntry[10]),
-                int.Parse(equipmentEntry[11])));
-            Debug.Log($"{equipmentEntry[1]} created and added into database");
-
-        } */
+        skillDB.Add("SKILLPROJ0001", new Projectile("Basic Projectile", "EXAMPLE DESCRIPTION", "URL", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.png", 5, 2, 1, 30));
+        skillDB.Add("SKILLAOE0001", new AOE("HEAVENLY STRIKE", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "URL", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicAOE.png", 1, 7, 3));
+        skillDB.Add("SKILLAOE0002", new AOE("HEAVENLY STRIKE2", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "URL", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicAOE.png", 1, 7, 3));
+        skillDB.Add("SKILLAOE0003", new AOE("HEAVENLY STRIKE3", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "URL", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicAOE.png", 1, 7, 3));
+        skillDB.Add("SKILLAOE0004", new AOE("HEAVENLY STRIKE4", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "URL", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicAOE.png", 1, 7, 3));
     }
     private List<string> ParseCSV(string filePath)
     {

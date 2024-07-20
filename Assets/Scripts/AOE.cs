@@ -5,15 +5,21 @@ using UnityEngine;
 public class AOE : Skill
 {
     private float
-        size;
+        aOEsize;
 
     private int
-        damage; 
+        aOEDamage; 
 
-    public AOE(string skillName, string skillDescription, float size, int damage)
-        : base (skillName, skillDescription)
+    public float _aOESize
+    { get {  return aOEsize; } }
+
+    public int _aOEDamage
+    { get { return aOEDamage; } }
+
+    public AOE(string skillName, string skillDescription, string skillIcon, string skillSprite, int skillCooldown, float size, int damage)
+        : base (skillName, skillDescription, skillIcon, skillSprite, skillCooldown)
     {
-        this.size = size;
-        this.damage = damage;
+        this.aOEsize = size;
+        this.aOEDamage = damage;
     }
 }

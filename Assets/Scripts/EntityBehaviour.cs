@@ -8,6 +8,7 @@ public class EntityBehaviour : MonoBehaviour, IDamageable
 {
     protected int
         hp,
+        currentHp,
         attack,
         magicAttack,
         movementSpeed,
@@ -23,6 +24,9 @@ public class EntityBehaviour : MonoBehaviour, IDamageable
     public int _hp
     { get { return hp; } }
 
+    public int _currentHp
+    { get { return currentHp; } }
+
     public int _attack
     { get { return attack; } }
 
@@ -36,7 +40,10 @@ public class EntityBehaviour : MonoBehaviour, IDamageable
     { get { return armor; } }
 
     public int _magicResist
-    { get { return magicResist; } }
+    { get { return magicResist; } } 
+
+    public NavMeshAgent _nav
+    { get { return nav; } }
 
     private void Awake()
     {
@@ -47,22 +54,25 @@ public class EntityBehaviour : MonoBehaviour, IDamageable
         //nav.updateRotation = false;
         //nav.updateUpAxis = false;
     }
-    public void ChangeDestination(Vector3 target)
+    public virtual void ChangeDestination(Vector3 target)
     {
         nav.SetDestination(target);
     }
 
     public void TakeDamage(int damage)
     {
-        hp -= damage;
-        if (hp < 0)
+        currentHp -= damage;
+        if (currentHp < 0)
         {
             Death();
         }
-        Debug.Log($"Dealt {damage}, {hp} hp left");
     }
     private void Death()
     {
         Game._enemyFactory.DestroyEnemy(this.gameObject);
+    }
+    public void ResetHealth()
+    {
+        currentHp = hp;
     }
 }
