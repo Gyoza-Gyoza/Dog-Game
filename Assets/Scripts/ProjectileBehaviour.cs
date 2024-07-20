@@ -29,19 +29,17 @@ public class ProjectileBehaviour : MonoBehaviour
 
             if (timer >= 1f)
             {
-                Game._skillManager.DestroyProjectile(this.gameObject);
+                Game._skillManager.DestroySpell(this.gameObject);
                 timer = 0f;
             }
         }
     }
-    public void SetStats(string name, int damage, int projectilePierce, int projectileSpeed, float projectileSize, Sprite skillSprite)
+    public void SetStats(int damage, int projectilePierce, int projectileSpeed, float projectileSize)
     {
-        this.name = name;
         this.damage = damage;
         this.projectilePierce = projectilePierce;
         this.projectileSpeed = projectileSpeed;
         this.gameObject.transform.localScale = new Vector3(projectileSize, projectileSize, 1f);
-        this.GetComponent<SpriteRenderer>().sprite = skillSprite;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -54,13 +52,17 @@ public class ProjectileBehaviour : MonoBehaviour
             currentPierce++;
             if(currentPierce > projectilePierce)
             {
-                Game._skillManager.DestroyProjectile(this.gameObject);
+                Game._skillManager.DestroySpell(this.gameObject);
             }
         }
-        //Debug.Log($"Pierce is {projectilePierce}, number of targets pierced is {pierced}");
+        //Debug.Log($"Pierce is {projectilePierce}, number of targets pierced is {currentPierce}");
     }
     private void OnEnable()
     {
         currentPierce = 0;
+    }
+    private void OnDisable()
+    {
+        Game._skillManager.DestroySpell(this.gameObject);
     }
 }

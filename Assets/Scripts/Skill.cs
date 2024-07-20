@@ -7,8 +7,8 @@ public class Skill
     private string
         skillName,
         skillDescription, 
-        skillIcon, 
-        skillSprite;
+        skillIcon,
+        skillPrefab;
 
     private int
         skillCooldown; 
@@ -22,18 +22,18 @@ public class Skill
     public string _skillIcon
     { get { return skillIcon; } }
 
-    public string _skillSprite
-    { get { return skillSprite; } }
+    public string _skillPrefab
+    { get { return skillPrefab; } }
 
     public int _skillCooldown
     { get { return skillCooldown; } }
 
-    public Skill(string skillName, string skillDescription, string skillIcon, string skillSprite, int skillCooldown)
+    public Skill(string skillName, string skillDescription, string skillIcon, string skillPrefab, int skillCooldown)
     {
         this.skillName = skillName;
         this.skillDescription = skillDescription;
         this.skillIcon = skillIcon;
-        this.skillSprite = skillSprite;
+        this.skillPrefab = skillPrefab;
         this.skillCooldown = skillCooldown;
     }
 }
