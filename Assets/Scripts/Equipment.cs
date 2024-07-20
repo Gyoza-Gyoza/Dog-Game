@@ -1,50 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[System.Serializable]
-public enum EquipmentEffect
+public enum EquipmentSlot
 {
-    HealthRegen, 
-    Luck, 
-    MovementSpeed, 
-    CritChance
+    Helmet,
+    Overall,
+    Glove,
+    Boot,
+    Weapon
 }
-
-[System.Serializable]
 public class Equipment : Item
 {
-    [SerializeField]
-    private EquipmentEffect
-        equipmentEffect;
+    protected EquipmentSlot 
+        slotType;
 
-    [SerializeField]
-    private int
-        armour,
-        magicResist, 
-        effectValue; 
+    protected int
+        itemDamage,
+        itemDefence,
+        projectileSize,
+        criticalChance,
+        attackSpeed;
 
-    public EquipmentEffect 
-        _equipmentEffect
-    { get { return equipmentEffect; } }
+    public EquipmentSlot _slotType
+    { get { return slotType; } }
 
-    public int
-        _armour
-    { get { return armour; } }
+    public int _itemDamage
+    { get { return itemDamage; } }
 
-    public int _magicResist
-    { get { return magicResist; } }
+    public int _itemDefence
+    { get { return itemDefence; } }
 
-    public int _effectValue
-    { get { return effectValue; } }
+    public int _projectileSize
+    { get { return projectileSize; } }
 
-    public Equipment(string itemName, string itemId, string itemDescription, string itemSprite, int costPrice, int sellPrice, EquipmentSlot slotType, EquipmentEffect equipmentEffect, int armour, int magicResist, int effectValue)
-        : base (itemName, itemId, itemDescription, itemSprite, costPrice, sellPrice, slotType)
+    public int _criticalChance
+    { get { return criticalChance; } }
+
+    public int _attackSpeed
+    { get { return attackSpeed; } }
+
+    public Equipment(string itemName, string itemDescription, string itemSprite, int costPrice, EquipmentSlot slotType, int itemDamage, int itemDefence, int projectileSize, int criticalChance, int attackSpeed)
+        : base(itemName, itemDescription, itemSprite, costPrice)
     {
-        this.equipmentEffect = equipmentEffect;
-        this.armour = armour;
-        this.magicResist = magicResist;
-        this.effectValue = effectValue;
-        Debug.Log("Equipment Created!");
+        this.slotType = slotType;
+        this.itemDamage = itemDamage;
+        this.itemDefence = itemDefence;
+        this.projectileSize = projectileSize;
+        this.criticalChance = criticalChance;
+        this.attackSpeed = attackSpeed;
     }
 }

@@ -2,14 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public enum EquipmentSlot
-{
-    Helmet,
-    Overall,
-    Glove,
-    Boot,
-    Weapon
-}
+
 public class EquipmentSlotScript : SlotScript
 {
     [SerializeField]

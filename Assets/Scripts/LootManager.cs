@@ -24,14 +24,14 @@ public class LootManager : MonoBehaviour
         {
             result.transform.position = transform.position;
             result.SetActive(true);
-            result.name = itemToDrop._itemId;
+            result.name = itemToDrop._itemName;
             //result.GetComponent<SpriteRenderer>().sprite = itemToDrop._itemSprite;
             result.GetComponent<ItemBehaviour>().SetStats(itemToDrop);
         }
         else
         {
             GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity); 
-            item.name = itemToDrop._itemId;
+            item.name = itemToDrop._itemName;
             //item.GetComponent<SpriteRenderer>().sprite = itemToDrop._itemSprite; 
             item.GetComponent<ItemBehaviour>().SetStats(itemToDrop);
         }

@@ -5,13 +5,35 @@ using UnityEngine;
 public class Skill
 {
     private string
-        skillId,
         skillName,
-        skillDescription; 
+        skillDescription, 
+        skillIcon, 
+        skillSprite;
 
-    public Skill(string skillName, string skillDescription)
+    private int
+        skillCooldown; 
+
+    public string _skillName
+    { get { return skillName; } }
+
+    public string _skillDescription
+    { get { return skillDescription; } }
+
+    public string _skillIcon
+    { get { return skillIcon; } }
+
+    public string _skillSprite
+    { get { return skillSprite; } }
+
+    public int _skillCooldown
+    { get { return skillCooldown; } }
+
+    public Skill(string skillName, string skillDescription, string skillIcon, string skillSprite, int skillCooldown)
     {
         this.skillName = skillName;
         this.skillDescription = skillDescription;
+        this.skillIcon = skillIcon;
+        this.skillSprite = skillSprite;
+        this.skillCooldown = skillCooldown;
     }
 }
