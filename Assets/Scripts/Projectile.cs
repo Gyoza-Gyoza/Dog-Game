@@ -2,41 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : Skill
 {
     private int
-        damage;
+        projectilePierce,
+        projectileSpeed;
 
     private float
-        projectileSpeed = 30f, 
-        timer = 0f;
+        projectileDamage,
+        projectileSize; 
 
-    public int _damage
-    { get { return damage; } set { damage = value; } }
+    public float _projectileDamage
+    { get { return projectileDamage; } }
 
-    private void Update()
+    public int _projectilePierce
+    { get { return projectilePierce; } }
+
+    public int _projectileSpeed
+    { get { return projectileSpeed; } }
+
+    public float _projectileSize
+    { get { return projectileSize; } }
+
+    public Projectile(string skillName, string skillDescription, string skillIcon, int skillCooldown, string skillSprite, float projectileDamage, int projectilePierce, float projectileSize, int projectileSpeed) 
+        : base (skillName, skillDescription, skillIcon, skillSprite, skillCooldown)
     {
-        transform.localPosition += transform.TransformDirection(0f, projectileSpeed * Time.deltaTime, 0f);
-        
-        if(timer < 2f)
-        {
-            timer += Time.deltaTime; 
-
-            if (timer >= 2f)
-            {
-                Game._skillManager.DestroyProjectile(this.gameObject);
-                timer = 0f;
-            }
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        IDamageable dmg = collision.GetComponent<IDamageable>();
-
-        if (dmg != null)
-        {
-            dmg.TakeDamage(damage);
-            Game._skillManager.DestroyProjectile(this.gameObject);
-        }
+        this.projectileDamage = projectileDamage;
+        this.projectilePierce = projectilePierce;
+        this.projectileSpeed = projectileSpeed;
+        this.projectileSize = projectileSize;
     }
 }

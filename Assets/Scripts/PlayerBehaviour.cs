@@ -9,58 +9,54 @@ public class PlayerBehaviour : EntityBehaviour
         weaponType;
 
     protected int
-        attackSpeed; 
+        attackSpeed;
 
     private Vector2
         moveDir;
 
-    private static PlayerBehaviour
-        instance;
+    public static PlayerBehaviour
+        player;
+
+    private bool
+        disableMovement = false;
+
+    private Dictionary<EquipmentSlot, Equipment>
+        equipmentList = new Dictionary<EquipmentSlot, Equipment>();
 
     public int _attackSpeed
-    { get { return instance._attackSpeed; } }
+    { get { return player._attackSpeed; } }
+
+    public bool _disableMovement
+    { get { return player.disableMovement; } set { player.disableMovement = value; } }
+
+    public Dictionary<EquipmentSlot, Equipment> _equipmentList
+    { get { return equipmentList; } }
 
     private void Awake()
     {
         //Singleton to ensure there is only one player in the game at all times 
-        if(instance != null && instance != this)
+        if(player != null && player != this)
         {
             Destroy(this.gameObject);
         }
         else
         {
-            instance = this;
+            player = this;
             Game._player = this; //Giving a reference to the static Game class
         }
     }
-
-    //public void LeagueMovement(Vector3 pos)
-    //{
-    //    nav.SetDestination(pos);
-    //}
-    public void DoMoveDir(Vector2 aDir)
+    public override void ChangeDestination(Vector3 target)
     {
-        //set movement direction
-        moveDir = aDir;
-
-        //Getting a reference to the rigidbody
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-
-        //Normalizing the vector to make the diagonal movement consistent with the horizontal and vertical movement
-        moveDir.Normalize();
-
-        Vector2 nextPos = rb.position + moveDir * movementSpeed * Time.fixedDeltaTime;
-        rb.MovePosition(nextPos);
-
-        //Rotating the player towards the direction they're moving towards 
-        if (aDir != Vector2.zero)
+        if(!disableMovement)
         {
-            this.transform.up = moveDir;
+            nav.SetDestination(target);
         }
     }
     public void SetStats(string entityName, int hp, int attack, int magicAttack, int movementSpeed, int armor, int magicResist, string entitySprite, int attackSpeed, string weaponType)
     {
         nav = GetComponent<NavMeshAgent>();
+        //Add attack range
+        //GetComponentInChildren<CircleCollider2D>().radius = attackRange;
         this.name = entityName;
         this.hp = hp;
         this.attack = attack;

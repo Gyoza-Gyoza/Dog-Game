@@ -24,6 +24,7 @@ public class EnemyBehaviour : EntityBehaviour
     {
         this.name = enemyName;
         this.hp = hp;
+        this.currentHp = hp;
         this.attack = attack;
         this.magicAttack = magicAttack;
         this.movementSpeed = movementSpeed;

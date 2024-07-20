@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 [System.Serializable]
@@ -22,12 +23,12 @@ public class InventoryManager : MonoBehaviour
     private EquipmentSlotScript[]
         equipmentBoxList;
 
-    private Dictionary<EquipmentSlot, Item>
-        equipmentList = new Dictionary<EquipmentSlot, Item>();
-
     [SerializeField]
     private Dictionary<int, Item>
         inventoryList = new Dictionary<int, Item>();
+
+    public int _damageBoost
+    {  get { return _damageBoost; } }
 
     private void Awake()
     {
@@ -43,7 +44,7 @@ public class InventoryManager : MonoBehaviour
 
         for (int i = 0; i < Enum.GetNames(typeof(EquipmentSlot)).Length; i++)
         {
-            equipmentList.Add((EquipmentSlot)i, null);
+            Game._player._equipmentList.Add((EquipmentSlot)i, null);
         }
         for(int i = 0; i < 15; i++)
         {
@@ -61,17 +62,23 @@ public class InventoryManager : MonoBehaviour
     }
     public void EquipItem()
     {
-        EquipmentSlot slotToBePlacedIn = selectedItem.GetComponent<ItemSlotScript>()._itemHeld._slotType;
+        Equipment equip = null;
 
-        if (equipmentList[slotToBePlacedIn] == null)
+        if (selectedItem.GetComponent<ItemSlotScript>()._itemHeld is Equipment)
         {
-            equipmentList[slotToBePlacedIn] = selectedItem.GetComponent<ItemSlotScript>()._itemHeld;
+            equip = selectedItem.GetComponent<ItemSlotScript>()._itemHeld as Equipment;
+        }
+        EquipmentSlot slotToBePlacedIn = equip._slotType;
+
+        if (Game._player._equipmentList[slotToBePlacedIn] == null)
+        {
+            Game._player._equipmentList[slotToBePlacedIn] = selectedItem.GetComponent<ItemSlotScript>()._itemHeld as Equipment;
             inventoryList[selectedItem.GetComponent<ItemSlotScript>()._itemId] = null; //Remove item at the selected position 
         }
         else
         {
-            Item equippedItem = equipmentList[slotToBePlacedIn]; //Store equipped item 
-            equipmentList[slotToBePlacedIn] = selectedItem.GetComponent<ItemSlotScript>()._itemHeld; //Replace equipped item with selected item 
+            Item equippedItem = Game._player._equipmentList[slotToBePlacedIn]; //Store equipped item 
+            Game._player._equipmentList[slotToBePlacedIn] = selectedItem.GetComponent<ItemSlotScript>()._itemHeld as Equipment; //Replace equipped item with selected item 
             inventoryList[selectedItem.GetComponent<ItemSlotScript>()._itemId] = null; //Remove item at the selected position 
             PickupItem(equippedItem); //Adds unequipped item to inventory 
         }
@@ -80,14 +87,14 @@ public class InventoryManager : MonoBehaviour
     }
     public Item UnequipItem(EquipmentSlot slot)
     {
-        if (equipmentList[slot] == null)
+        if (Game._player._equipmentList[slot] == null)
         {
             Debug.Log("No equipment to unequip");
         }
         else
         {
-            Item item = equipmentList[slot];
-            equipmentList[slot] = null;
+            Item item = Game._player._equipmentList[slot];
+            Game._player._equipmentList[slot] = null;
             Debug.Log($"Unequipped {item._itemName}");
             return item;
         }
@@ -116,7 +123,7 @@ public class InventoryManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.M))
         {
             Debug.Log("Checking Equipment"); 
-            foreach(KeyValuePair<EquipmentSlot, Item> keyValuePair in equipmentList)
+            foreach(KeyValuePair<EquipmentSlot, Equipment> keyValuePair in Game._player._equipmentList)
             {
                 string result = ""; 
 
@@ -175,9 +182,9 @@ public class InventoryManager : MonoBehaviour
         for (int i = 0; i < equipmentBoxList.Length; i++) //Loops through the equipment UI 
         {
             //Copies the items in the equipment list into the UI list as it iterates through both lists 
-            if (i < equipmentList.Count)
+            if (i < Game._player._equipmentList.Count)
             {
-                equipmentBoxList[i].AddItem(equipmentList[(EquipmentSlot)i]);
+                equipmentBoxList[i].AddItem(Game._player._equipmentList[(EquipmentSlot)i]);
                 equipmentBoxList[i].UpdateItemSlot();
             }
             else
@@ -187,13 +194,14 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        //foreach (ItemSlotScript iss in inventoryBoxList)
+        //Game._player._damageBoost = 0;
+        //for(int i = 0; i < Game._player._equipmentList.Count; i++)
         //{
-        //    iss.UpdateItemSlot();
-        //}
-        //foreach (EquipmentSlotScript ess in equipmentBoxList)
-        //{
-        //    ess.UpdateItemSlot();
+        //    Equipment equipment = Game._player._equipmentList.ElementAt(i).Value;
+        //    if (equipment != null)
+        //    {
+        //        Game._player._damageBoost += equipment._itemDamage;
+        //    }
         //}
     }
 }

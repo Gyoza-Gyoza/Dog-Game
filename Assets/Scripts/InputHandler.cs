@@ -67,10 +67,6 @@ public class InputHandler : MonoBehaviour
         {
             Game._enemyFactory.GetEnemy(Game._database._enemyList[2]._name, transform);
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            Game._enemyFactory.DestroyEnemy(GameObject.FindGameObjectWithTag("Enemy")); 
-        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleMenus(Menus.Augments);
@@ -172,6 +168,13 @@ public class InputHandler : MonoBehaviour
                     activeScene = Menus.None;
                 }
                 break;
+        }
+    }
+    private void UseSkills()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+
         }
     }
 }

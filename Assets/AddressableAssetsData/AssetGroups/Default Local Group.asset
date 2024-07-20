@@ -75,6 +75,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 20b14b0447d91ae4980dc2258ee2480b
+    m_Address: Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy
+      Icons Pack v2/BasicProjectile.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e47285671e7a2f14e9dc87d351b75a58
+    m_Address: Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy
+      Icons Pack v2/BasicAOE.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 46d56fb719fb9664787fe081d359ddb8, type: 2}
   m_SchemaSet:
