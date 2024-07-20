@@ -28,4 +28,11 @@ public static class AssetManager
             go.GetComponent<Image>().sprite = sp;
         });
     }
+    public static void LoadPrefabs(string prefabURL, Action<GameObject> onLoaded)
+    {
+        Addressables.LoadAssetAsync<GameObject>(prefabURL).Completed += (loadedPrefab) =>
+        {
+            onLoaded?.Invoke(loadedPrefab.Result);
+        };
+    }
 }
