@@ -20,6 +20,14 @@ public class Database : MonoBehaviour
     private List<Entity> 
         enemyList = new List<Entity>(), 
         playerClassList = new List<Entity>();
+    
+    //Dylan
+    [SerializeField]
+    private List<Equipment>
+    equipmentList = new List<Equipment>();
+
+    public List<Equipment> _equipmentList
+    { get { return _equipmentList; } }
 
     //For testing
     [SerializeField]
@@ -128,6 +136,29 @@ public class Database : MonoBehaviour
         itemList.Add(new Item("Overall1", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Overall1.png", 1, 1, EquipmentSlot.Overall));
         itemList.Add(new Item("Boot1", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Boot1.png", 1, 1, EquipmentSlot.Boot));
         itemList.Add(new Item("Glove1", "1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Glove1.png", 1, 1, EquipmentSlot.Glove));
+
+        //Dylan try
+        /*
+                List<string> equipments = ParseCSV("Assets/Databases/EquipmentList.csv");
+        foreach (string equipment in equipments)
+        {
+            string[] equipmentEntry = equipment.Split(',');
+            equipmentList.Add(new Equipment(
+                equipmentEntry[0],
+                equipmentEntry[1],
+                equipmentEntry[2],
+                equipmentEntry[3],
+                equipmentEntry[4],
+                int.Parse(equipmentEntry[5]),
+                int.Parse(equipmentEntry[6]),
+                int.Parse(equipmentEntry[7]),
+                int.Parse(equipmentEntry[8]),
+                int.Parse(equipmentEntry[9]),
+                int.Parse(equipmentEntry[10]),
+                int.Parse(equipmentEntry[11])));
+            Debug.Log($"{equipmentEntry[1]} created and added into database");
+
+        } */
     }
     private List<string> ParseCSV(string filePath)
     {

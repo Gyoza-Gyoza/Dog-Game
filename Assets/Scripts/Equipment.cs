@@ -3,48 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public enum EquipmentEffect
-{
-    HealthRegen, 
-    Luck, 
-    MovementSpeed, 
-    CritChance
-}
-
-[System.Serializable]
 public class Equipment : Item
 {
-    [SerializeField]
-    private EquipmentEffect
-        equipmentEffect;
 
     [SerializeField]
     private int
-        armour,
-        magicResist, 
-        effectValue; 
-
-    public EquipmentEffect 
-        _equipmentEffect
-    { get { return equipmentEffect; } }
+        defence,
+        damage,
+        projectileSize,
+        criticalChance,
+        attackSpeed; 
 
     public int
-        _armour
-    { get { return armour; } }
+        _defence
+    { get { return defence; } }
 
-    public int _magicResist
-    { get { return magicResist; } }
+    public int _damage
+    { get { return damage; } }
 
-    public int _effectValue
-    { get { return effectValue; } }
+    public int _projectileSize
+    { get { return projectileSize; } }
 
-    public Equipment(string itemName, string itemId, string itemDescription, string itemSprite, int costPrice, int sellPrice, EquipmentSlot slotType, EquipmentEffect equipmentEffect, int armour, int magicResist, int effectValue)
+    public int _criticalChance
+    { get { return criticalChance; } }
+
+    public int _attackSpeed
+    { get { return attackSpeed; } }
+
+    public Equipment(string itemId, string itemName, string itemDescription, string itemSprite, EquipmentSlot slotType, int costPrice, int sellPrice, int defence, int damage, int projectileSize, int criticalChance, int attackSpeed)
         : base (itemName, itemId, itemDescription, itemSprite, costPrice, sellPrice, slotType)
     {
-        this.equipmentEffect = equipmentEffect;
-        this.armour = armour;
-        this.magicResist = magicResist;
-        this.effectValue = effectValue;
+        this.defence = defence;
+        this.damage = damage;
+        this.projectileSize = projectileSize;
+        this.criticalChance = criticalChance;
+        this.attackSpeed = attackSpeed;
+
         Debug.Log("Equipment Created!");
     }
 }
