@@ -8,6 +8,7 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEditor.PlayerSettings;
 using static UnityEngine.GraphicsBuffer;
 
@@ -17,9 +18,6 @@ public class SkillManager : MonoBehaviour
     private GameObject
         projectilePrefab, 
         aOEPrefab;
-
-    private Vector3 //Delete after testing 
-        cursorPos;
 
     private Stack<GameObject>
         projectilePool = new Stack<GameObject>(), 
@@ -31,12 +29,6 @@ public class SkillManager : MonoBehaviour
 
     private List<CastSkill>
         skillLoadout = new List<CastSkill>();
-
-    //private List<Skill>
-    //    skillList = new List<Skill>();
-
-    //private Dictionary<Skill, CastSkill>
-    //    skillLoadout = new Dictionary<Skill, CastSkill>();
 
     private Projectile
         basicSkill;
@@ -69,31 +61,21 @@ public class SkillManager : MonoBehaviour
     public List<CastSkill> _skillLoadout
     { get { return skillLoadout; } }
 
-    //public Dictionary<Skill, CastSkill> _skillLoadout
-    //{ get {  return skillLoadout; } }
-
     private void Awake()
     {
-        Game._skillManager = this;
-        player = Game._player.GetComponent<PlayerBehaviour>();
-        playerDamage = Game._chosenPlayer._attack;
-        playerAttackSpeed = 10;
+        Game._skillManager = this; //Gives a reference to the static Game class 
+        player = Game._player.GetComponent<PlayerBehaviour>(); //Gets a reference to the player 
+        playerDamage = Game._chosenPlayer._attack; //Gets the damage of the player 
+        playerAttackSpeed = 10; //Gets the attack speed of the player 
     }
     private void Start()
     {
-        //for(int i = 0; i < skillSlots; i++)
-        //{
-        //    skillLoadout.Add(null, null);
-        //}
-        //basicSkill = InitializeSkill("SKILLPROJ0001") as Projectile;
-        //AddToLoadout("SKILLAOE0001");
         InitializePrefabSkills("PROJ0001");
         InitializePrefabSkills("AREA0001");
     }
     void Update()
     {
-        cursorPos = Game._cursor.transform.position; //Delete after testing 
-
+        //Handles the auto shooting of projectiles
         if(target != null)
         {
             float recoil = UnityEngine.Random.Range(-playerRecoil, playerRecoil);
@@ -107,11 +89,15 @@ public class SkillManager : MonoBehaviour
                 if (timer >= 1f)
                 {
                     skillLoadout[0].Invoke();
-                    //ShootProjectile();
                     timer = 0f;
                 }
             }
         }
+        GetInput();
+    }
+    //Gets the key input 
+    private void GetInput()
+    {
         if (Input.GetKeyDown(KeyCode.Q))
         {
             skillLoadout[1].Invoke();
@@ -133,17 +119,17 @@ public class SkillManager : MonoBehaviour
             //AddToLoadout();
             StartCoroutine(Dash(Game._cursor.transform.position));
         }
-        if(Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            
+
         }
     }
-    
+    //Checks if there are enemies in range
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.GetComponent<IDamageable>() != null && target == null)
         {
-            target = collision.gameObject;
+            target = collision.gameObject; 
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -153,64 +139,10 @@ public class SkillManager : MonoBehaviour
             target = null;
         }
     }
-    #region Skills
     private int CalculateDamage(float skillMultiplier)
     {
         return (int)((Game._player._attack /* + modifiers from equipment*/) * skillMultiplier);
     }
-    //private void ShootProjectile()
-    //{
-    //    int damage = CalculateDamage(basicSkill._projectileDamage);
-
-    //    Vector3 pos = transform.position;
-    //    Quaternion rot = transform.rotation;
-
-    //    if (projectilePool.TryPop(out GameObject result))
-    //    {
-    //        result.SetActive(true); 
-    //        result.transform.position = pos;
-    //        result.transform.rotation = rot;
-
-    //        result.GetComponent<ProjectileBehaviour>()._damage = damage;
-    //    }
-    //    else
-    //    {
-    //        GameObject projectile = Instantiate(projectilePrefab, pos, rot);
-
-    //        projectile.GetComponent<ProjectileBehaviour>().SetStats(
-    //            basicSkill._skillName, 
-    //            damage, 
-    //            basicSkill._projectilePierce, 
-    //            basicSkill._projectileSpeed, 
-    //            basicSkill._projectileSize, 
-    //            skillSprites[basicSkill._skillName]);
-    //    }
-    //}
-    //public void DestroyProjectile(GameObject objToDestroy)
-    //{
-    //    objToDestroy.SetActive(false);
-    //    projectilePool.Push(objToDestroy);
-    //}
-
-    //private void CastAOE(AOE aoeSkill)
-    //{;
-    //    int damage = CalculateDamage(aoeSkill._aOEDamage);
-    //    //finish aoe
-    //    Vector3 pos = cursorPos; 
-
-    //    if (aOEPool.TryPop(out GameObject result))
-    //    {
-    //        result.SetActive(true);
-    //        result.transform.position = pos;
-
-    //        result.GetComponent<AOEBehaviour>()._damage = damage;
-    //    }
-    //    else
-    //    {
-    //        GameObject aoeObj = Instantiate(aOEPrefab, pos, Quaternion.identity);
-    //        //aoeObj.GetComponent<AOEBehaviour>().SetStats(aoeSkill._skillName, damage, aoeSkill._aOESize, skillSprites[aoeSkill._skillName]);
-    //    }
-    //}
     
     private IEnumerator Dash(Vector3 dashPos)
     {
@@ -227,74 +159,44 @@ public class SkillManager : MonoBehaviour
         player._nav.SetDestination(player.transform.position);
         player._disableMovement = false;
     }
-    #endregion
-
     #region Loading
-    //This function is to initialize skills that the player has as well as preload all
-    //the sprites to prevent spawning skills without sprites
-    //private Skill InitializeSkill(string skillId)
-    //{
-    //    Skill skill = Game._database._skillDB[skillId];
-
-    //    AssetManager.LoadSprites(skill._skillSprite, (Sprite sp) =>
-    //    {
-    //        skillSprites.Add(skill._skillName, sp);
-    //    });
-
-    //    return skill;
-    //}
-    //private void AddToLoadout(string skillId)
-    //{
-    //    if (skillLoadout.Count < skillSlots)
-    //    {
-    //        //skillLoadout.Add(InitializeSkill(skillId) as AOE, AddSkill(skillId)); 
-    //    }
-    //}
-    
-    #endregion
-
-    private void TestSkill() //Delete after testing 
-    {
-        Debug.Log("Using Skill");
-    }
-    private void OnDrawGizmos() //Delete after testing 
-    {
-        if(cursorPos != null)
-        {
-            Gizmos.color = new Vector4(1, 0, 0, 0.5f);
-            Gizmos.DrawLine(this.transform.position, cursorPos);
-        }
-    }
     public void InitializePrefabSkills(string skillId)
     {
-        Skill skill = Game._database._skillDB[skillId]; //Gets skill information from the database
-
-        AssetManager.LoadPrefabs(skill._skillPrefab, (GameObject go) => 
+        if(skillLoadout.Count < skillSlots) //Checks if there are enough available skill slots
         {
-            skillPrefabs.Add(skill._skillName, go); //Preloads the prefab and stores it into dictionary with its name as the key
-        });
+            Skill skill = Game._database._skillDB[skillId]; //Gets skill information from the database
 
-        skillLoadout.Add(AddSkillEffects(skillId)); //Adds the skill's functionalities into the loadout 
+            AssetManager.LoadPrefabs(skill._skillPrefab, (GameObject go) =>
+            {
+                skillPrefabs.Add(skill._skillName, go); //Preloads the prefab and stores it into dictionary with its name as the key
+            });
 
-        InitializePool(skill._skillName); //Creates a pool to store the prefabs 
+            skillLoadout.Add(AddSkillEffects(skillId)); //Adds the skill's functionalities into the loadout 
+
+            InitializePool(skill._skillName); //Creates a pool to store the prefabs 
+        }
+        else
+        {
+            Debug.Log("Not enough slots");
+        }
     }
-    private CastSkill AddSkillEffects(string skillId)
+    private CastSkill AddSkillEffects(string skillId) //Adds behaviours to each skill based on its ID
     {
-        Skill skillChosen = Game._database._skillDB[skillId];
-        CastSkill result = null;
+        Skill skillChosen = Game._database._skillDB[skillId]; //Stores the skill to be referenced later on 
+        CastSkill result = null; //Initializes a delegate to contain the skill effects 
         switch (skillId)
         {
             case "PROJ0001":
                 result = () =>
                 {
-                    AddProjectileEffects(GetPool(skillChosen._skillName), skillChosen as Projectile);
+                    AddProjectileEffects(GetObject(skillChosen._skillName), skillChosen as Projectile, null);
                 };
                 break;
 
             case "AREA0001":
                 result = () =>
                 {
-                    AddAOEEffects(GetPool(skillChosen._skillName), skillChosen as AOE);
+                    AddAOEEffects(GetObject(skillChosen._skillName), skillChosen as AOE, null);
                 };
                 break;
             case "Test":
@@ -307,14 +209,46 @@ public class SkillManager : MonoBehaviour
 
         return result;
     }
-    private void InitializePool(string skillName) //Creates a pool to contain the skill prefabs if it doesn't exist
+    //Creates a pool to contain the skill prefabs if it doesn't exist
+    private void InitializePool(string skillName) 
     {
-        if(skillPools.ContainsKey(skillName) == false)
+        if (skillPools.ContainsKey(skillName) == false)
         {
             skillPools.Add(skillName, new Stack<GameObject>());
         }
     }
-    private GameObject GetPool(string skillName)
+    //Used to initialize projectile skills 
+    private void AddProjectileEffects(GameObject skillToAdd, Projectile refSkill, UnityAction extras)
+    {
+        //Initializes the transform of the projectile to the player's location 
+        skillToAdd.transform.position = transform.position;
+        skillToAdd.transform.rotation = transform.rotation;
+
+        //Sets the stats of the projectile as well as the added effects
+        ProjectileBehaviour behaviour = skillToAdd.GetComponent<ProjectileBehaviour>();
+        behaviour.SetStats(CalculateDamage(refSkill._projectileDamage), refSkill._projectilePierce, refSkill._projectileSpeed, refSkill._projectileSize);
+        if (extras != null)
+        {
+            behaviour.SetSpellEffects(extras);
+        }
+    }
+    //Used to initialize aoe skills 
+    private void AddAOEEffects(GameObject skillToAdd, AOE refSkill, UnityAction extras)
+    {
+        //Initializes the location of the skill
+        skillToAdd.transform.position = GetCursorPos();
+
+        //Sets the stats of the skill as well as the added effects
+        AOEBehaviour behaviour = skillToAdd.GetComponent<AOEBehaviour>();
+        behaviour.GetComponent<AOEBehaviour>().SetStats(CalculateDamage(refSkill._aOEDamage), refSkill._aOESize);
+        if (extras != null)
+        {
+            behaviour.SetSpellEffects(extras);
+        }
+    }
+    #endregion
+
+    private GameObject GetObject(string skillName) //Gets the object from the pool
     {
         if (skillPools[skillName].TryPop(out GameObject result))
         {
@@ -328,24 +262,22 @@ public class SkillManager : MonoBehaviour
             return obj;
         }
     }
-    public void DestroySpell(GameObject spellToDelete)
+    public void DestroySpell(GameObject spellToDelete) //Function to add objects into the pool
     {
         spellToDelete.SetActive(false);
         skillPools[spellToDelete.name].Push(spellToDelete);
     }
-    private void AddProjectileEffects(GameObject skillToAdd, Projectile refSkill)
-    {
-        skillToAdd.transform.position = transform.position;
-        skillToAdd.transform.rotation = transform.rotation;
-        skillToAdd.GetComponent<ProjectileBehaviour>().SetStats(CalculateDamage(refSkill._projectileDamage), refSkill._projectilePierce, refSkill._projectileSpeed, refSkill._projectileSize);
-    }
-    private void AddAOEEffects(GameObject skillToAdd, AOE refSkill)
-    {
-        skillToAdd.transform.position = GetCursorPos();
-        skillToAdd.GetComponent<AOEBehaviour>().SetStats(CalculateDamage(refSkill._aOEDamage), refSkill._aOESize);
-    }
+    
     private Vector3 GetCursorPos()
     {
         return Game._cursor.transform.position;
+    }
+    private void OnDrawGizmos() //Delete after testing 
+    {
+        if (GetCursorPos() != null)
+        {
+            Gizmos.color = new Vector4(1, 0, 0, 0.5f);
+            Gizmos.DrawLine(this.transform.position, GetCursorPos());
+        }
     }
 }
