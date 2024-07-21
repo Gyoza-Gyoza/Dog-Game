@@ -1,51 +1,49 @@
-using JetBrains.Annotations;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.GraphicsBuffer;
 
 public class SkillManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject
-        projectilePrefab, 
-        aOEPrefab;
+    public class SkillLoadoutObject
+    {
+        private bool canCast;
+        private Skill skill;
+        private CastSkill castSkill;
 
-    private Stack<GameObject>
-        projectilePool = new Stack<GameObject>(), 
-        aOEPool = new Stack<GameObject>(), 
-        buffPool = new Stack<GameObject>();
+        public bool _canCast
+        {  get { return canCast; } set { canCast = value; } }
+        public Skill _skill
+        {  get { return skill; } set { skill = value; } }
+
+        public CastSkill _castSkill
+        { get { return castSkill; } set { castSkill = value; } }
+
+        public SkillLoadoutObject(Skill skill, CastSkill castSkill)
+        {
+            canCast = true;
+            this.skill = skill;
+            this.castSkill = castSkill;
+        }
+    }
 
     private Dictionary<string, Stack<GameObject>>
-        skillPools = new Dictionary<string, Stack<GameObject>>();
+        skillPools = new Dictionary<string, Stack<GameObject>>(); //Contains the pools for each skill 
 
-    private List<CastSkill>
-        skillLoadout = new List<CastSkill>();
-
-    private Projectile
-        basicSkill;
-
-    private Dictionary<string, Sprite>
-        skillSprites = new Dictionary<string, Sprite>();
+    private List<SkillLoadoutObject>
+        skillLoadout = new List<SkillLoadoutObject>(); //Contains the skills that the player currently has 
 
     private Dictionary<string, GameObject>
-        skillPrefabs = new Dictionary<string, GameObject>();
+        skillPrefabs = new Dictionary<string, GameObject>(); //Contains the prefabs that the skills will clone from upon instantiating 
 
     private PlayerBehaviour
         player;
 
     private int
-        playerDamage,
-        playerAttackSpeed, 
         skillSlots = 4;
+
+    private List<float>
+        skillCooldowns = new List<float>();
 
     private float
         timer, 
@@ -58,15 +56,13 @@ public class SkillManager : MonoBehaviour
 
     public delegate void CastSkill();
 
-    public List<CastSkill> _skillLoadout
+    public List<SkillLoadoutObject> _skillLoadout
     { get { return skillLoadout; } }
 
     private void Awake()
     {
         Game._skillManager = this; //Gives a reference to the static Game class 
         player = Game._player.GetComponent<PlayerBehaviour>(); //Gets a reference to the player 
-        playerDamage = Game._chosenPlayer._attack; //Gets the damage of the player 
-        playerAttackSpeed = 10; //Gets the attack speed of the player 
     }
     private void Start()
     {
@@ -78,17 +74,18 @@ public class SkillManager : MonoBehaviour
         //Handles the auto shooting of projectiles
         if(target != null)
         {
-            float recoil = UnityEngine.Random.Range(-playerRecoil, playerRecoil);
+            float recoil = Random.Range(-playerRecoil, playerRecoil); //Creates a random float based on the player's recoil variable and adds it to the target's location to create a recoil effect
             Vector2 dir = new Vector2(target.transform.position.x + recoil - transform.position.x, target.transform.position.y + recoil - transform.position.y);
             transform.up = dir;
 
             if (timer < 1f)
             {
-                timer += Time.deltaTime * playerAttackSpeed;
+                timer += Time.deltaTime * Game._player._attackSpeed;
 
                 if (timer >= 1f)
                 {
-                    skillLoadout[0].Invoke();
+                    Debug.Log(skillLoadout[0]._skill._skillCooldown);
+                    skillLoadout[0]._castSkill.Invoke();
                     timer = 0f;
                 }
             }
@@ -100,19 +97,51 @@ public class SkillManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            skillLoadout[1].Invoke();
+            if (skillLoadout[1]._canCast)
+            {
+                skillLoadout[1]._castSkill.Invoke();
+                StartCoroutine(CooldownTimer(skillLoadout[1]));
+            }
+            else
+            {
+                Debug.Log("Cannot cast skill");
+            }
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            skillLoadout[2].Invoke();
+            if (skillLoadout[2]._canCast)
+            {
+                skillLoadout[2]._castSkill.Invoke();
+                StartCoroutine(CooldownTimer(skillLoadout[1]));
+            }
+            else
+            {
+                Debug.Log("Cannot cast skill");
+            }
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            skillLoadout[3].Invoke();
+            if (skillLoadout[3]._canCast)
+            {
+                skillLoadout[3]._castSkill.Invoke();
+                StartCoroutine(CooldownTimer(skillLoadout[1]));
+            }
+            else
+            {
+                Debug.Log("Cannot cast skill");
+            }
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            skillLoadout[4].Invoke();
+            if (skillLoadout[4]._canCast)
+            {
+                skillLoadout[4]._castSkill.Invoke();
+                StartCoroutine(CooldownTimer(skillLoadout[1]));
+            }
+            else
+            {
+                Debug.Log("Cannot cast skill");
+            }
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -138,10 +167,6 @@ public class SkillManager : MonoBehaviour
         {
             target = null;
         }
-    }
-    private int CalculateDamage(float skillMultiplier)
-    {
-        return (int)((Game._player._attack /* + modifiers from equipment*/) * skillMultiplier);
     }
     
     private IEnumerator Dash(Vector3 dashPos)
@@ -180,27 +205,26 @@ public class SkillManager : MonoBehaviour
             Debug.Log("Not enough slots");
         }
     }
-    private CastSkill AddSkillEffects(string skillId) //Adds behaviours to each skill based on its ID
+    private SkillLoadoutObject AddSkillEffects(string skillId) //Adds behaviours to each skill based on its ID
     {
-        Skill skillChosen = Game._database._skillDB[skillId]; //Stores the skill to be referenced later on 
-        CastSkill result = null; //Initializes a delegate to contain the skill effects 
+        SkillLoadoutObject result = new SkillLoadoutObject(Game._database._skillDB[skillId], null); //Adds a new object to store the skill as well as the skill's effects
         switch (skillId)
         {
             case "PROJ0001":
-                result = () =>
+                result._castSkill = () =>
                 {
-                    AddProjectileEffects(GetObject(skillChosen._skillName), skillChosen as Projectile, null);
+                    AddProjectileEffects(GetObject(result._skill._skillName), result._skill as Projectile, null);
                 };
                 break;
 
             case "AREA0001":
-                result = () =>
+                result._castSkill = () =>
                 {
-                    AddAOEEffects(GetObject(skillChosen._skillName), skillChosen as AOE, null);
+                    AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
                 };
                 break;
             case "Test":
-                result = () =>
+                result._castSkill = () =>
                 {
 
                 };
@@ -279,5 +303,23 @@ public class SkillManager : MonoBehaviour
             Gizmos.color = new Vector4(1, 0, 0, 0.5f);
             Gizmos.DrawLine(this.transform.position, GetCursorPos());
         }
+    }
+    private int CalculateDamage(float skillMultiplier)
+    {
+        return (int)((Game._player._attack /* + modifiers from equipment*/) * skillMultiplier);
+    }
+    private IEnumerator CooldownTimer(SkillLoadoutObject obj)
+    {
+        obj._canCast = false;
+
+        float timer = obj._skill._skillCooldown; 
+        
+        while (timer >= 0f)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+            Debug.Log(timer);
+        }
+        obj._canCast = true;
     }
 }

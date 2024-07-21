@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Contains the values of the AOE skills
 public class AOE : Skill
 {
     private float
