@@ -139,6 +139,31 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b723093a4bbef9141ba9ae7dbaec82ba
+    m_Address: Assets/Prefabs/AOE/AREA0004.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7fca5f5c77311a24db88049041b5c605
+    m_Address: Assets/Prefabs/AOE/AREA0003.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1a1bcd9b46617c5468179fc999cab42d
+    m_Address: Assets/Prefabs/AOE/AREA0002.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 574fc787aeb3ffb4c9f36916d8e5fada
+    m_Address: Assets/Prefabs/AOE/AREA0001.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1adb0bede0b04c4c944a1721468b6dd
+    m_Address: Assets/Prefabs/AOE/TestExplosion.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 46d56fb719fb9664787fe081d359ddb8, type: 2}
   m_SchemaSet:
