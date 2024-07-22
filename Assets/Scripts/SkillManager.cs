@@ -10,6 +10,7 @@ public class SkillManager : MonoBehaviour
         private bool canCast;
         private Skill skill;
         private CastSkill castSkill;
+        private GameObject uILoadoutBox; 
 
         public bool _canCast
         {  get { return canCast; } set { canCast = value; } }
@@ -19,11 +20,15 @@ public class SkillManager : MonoBehaviour
         public CastSkill _castSkill
         { get { return castSkill; } set { castSkill = value; } }
 
-        public SkillLoadoutObject(Skill skill, CastSkill castSkill)
+        public GameObject _uIBoxLocation
+        { get { return uILoadoutBox; } set { uILoadoutBox = value; } }
+
+        public SkillLoadoutObject(Skill skill, CastSkill castSkill, GameObject uILoadoutBox)
         {
             canCast = true;
             this.skill = skill;
             this.castSkill = castSkill;
+            this.uILoadoutBox = uILoadoutBox;
         }
     }
 
@@ -40,10 +45,8 @@ public class SkillManager : MonoBehaviour
         player;
 
     private int
-        skillSlots = 4;
-
-    private List<float>
-        skillCooldowns = new List<float>();
+        skillSlots = 5, 
+        skillCount = 0;
 
     private float
         timer, 
@@ -53,6 +56,10 @@ public class SkillManager : MonoBehaviour
 
     private GameObject
         target = null;
+
+    [SerializeField]
+    private List<GameObject>
+        uILoadoutBox = new List<GameObject>();
 
     public delegate void CastSkill();
 
@@ -66,8 +73,8 @@ public class SkillManager : MonoBehaviour
     }
     private void Start()
     {
+        uILoadoutBox = GameObject.FindGameObjectWithTag("Loadout").GetComponent<SkillLoadoutBoxes>().skillLoadoutBoxes;
         InitializePrefabSkills("PROJ0001");
-        InitializePrefabSkills("AREA0001");
     }
     void Update()
     {
@@ -145,12 +152,23 @@ public class SkillManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //AddToLoadout();
             StartCoroutine(Dash(Game._cursor.transform.position));
         }
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if(Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            InitializePrefabSkills("AREA0001");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
         {
             InitializePrefabSkills("AREA0002");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            InitializePrefabSkills("AREA0003");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            InitializePrefabSkills("AREA0004");
         }
     }
     //Checks if there are enemies in range
@@ -187,7 +205,7 @@ public class SkillManager : MonoBehaviour
     #region Loading
     public void InitializePrefabSkills(string skillId)
     {
-        if(skillLoadout.Count < skillSlots) //Checks if there are enough available skill slots
+        if(skillCount < skillSlots) //Checks if there are enough available skill slots
         {
             Skill skill = Game._database._skillDB[skillId]; //Gets skill information from the database
 
@@ -207,7 +225,7 @@ public class SkillManager : MonoBehaviour
     }
     private SkillLoadoutObject AddSkillEffects(string skillId) //Adds behaviours to each skill based on its ID
     {
-        SkillLoadoutObject result = new SkillLoadoutObject(Game._database._skillDB[skillId], null); //Adds a new object to store the skill as well as the skill's effects
+        SkillLoadoutObject result = new SkillLoadoutObject(Game._database._skillDB[skillId], null, uILoadoutBox[skillCount]); //Adds a new object to store the skill, its effects as well as the UI element that it belongs to
         switch (skillId)
         {
             case "PROJ0001":
@@ -229,6 +247,18 @@ public class SkillManager : MonoBehaviour
                     AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
                 };
                 break;
+            case "AREA0003":
+                result._castSkill = () =>
+                {
+                    AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
+                };
+                break;
+            case "AREA0004":
+                result._castSkill = () =>
+                {
+                    AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
+                };
+                break;
             case "Test":
                 result._castSkill = () =>
                 {
@@ -236,6 +266,7 @@ public class SkillManager : MonoBehaviour
                 };
                 break;
         }
+        uILoadoutBox[skillCount++].GetComponent<LoadoutCooldownBox>().SetImage(result._skill._skillIcon); //Loads the skill icon into the loadout
 
         return result;
     }
@@ -310,21 +341,21 @@ public class SkillManager : MonoBehaviour
             Gizmos.DrawLine(this.transform.position, GetCursorPos());
         }
     }
-    private int CalculateDamage(float skillMultiplier)
+    private int CalculateDamage(float skillMultiplier) // Calculate the damage dealt
     {
         return (int)((Game._player._attack /* + modifiers from equipment*/) * skillMultiplier);
     }
-    private IEnumerator CooldownTimer(SkillLoadoutObject obj)
+    private IEnumerator CooldownTimer(SkillLoadoutObject obj) //Handles the cooldown for each skill
     {
         obj._canCast = false;
 
-        float timer = obj._skill._skillCooldown; 
-        
+        float timer = obj._skill._skillCooldown; //Gets the cooldown from the skill database
+
+        obj._uIBoxLocation.GetComponent<LoadoutCooldownBox>().StartCooldown(obj._skill._skillCooldown); //Starts the cooldown overlay in the UI 
         while (timer >= 0f)
         {
             timer -= Time.deltaTime;
             yield return null;
-            Debug.Log(timer);
         }
         obj._canCast = true;
     }
