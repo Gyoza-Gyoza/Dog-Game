@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Contains the values of the projectile skills
 public class Projectile : Skill
 {
     private int

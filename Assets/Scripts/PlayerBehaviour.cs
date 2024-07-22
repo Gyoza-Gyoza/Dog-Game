@@ -24,7 +24,7 @@ public class PlayerBehaviour : EntityBehaviour
         equipmentList = new Dictionary<EquipmentSlot, Equipment>();
 
     public int _attackSpeed
-    { get { return player._attackSpeed; } }
+    { get { return player.attackSpeed; } }
 
     public bool _disableMovement
     { get { return player.disableMovement; } set { player.disableMovement = value; } }

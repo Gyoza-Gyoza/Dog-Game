@@ -1,59 +1,52 @@
-using JetBrains.Annotations;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.GraphicsBuffer;
+using UnityEngine.Events;
 
 public class SkillManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject
-        projectilePrefab, 
-        aOEPrefab;
+    public class SkillLoadoutObject
+    {
+        private bool canCast;
+        private Skill skill;
+        private CastSkill castSkill;
+        private GameObject uILoadoutBox; 
 
-    private Vector3 //Delete after testing 
-        cursorPos;
+        public bool _canCast
+        {  get { return canCast; } set { canCast = value; } }
+        public Skill _skill
+        {  get { return skill; } set { skill = value; } }
 
-    private Stack<GameObject>
-        projectilePool = new Stack<GameObject>(), 
-        aOEPool = new Stack<GameObject>(), 
-        buffPool = new Stack<GameObject>();
+        public CastSkill _castSkill
+        { get { return castSkill; } set { castSkill = value; } }
+
+        public GameObject _uIBoxLocation
+        { get { return uILoadoutBox; } set { uILoadoutBox = value; } }
+
+        public SkillLoadoutObject(Skill skill, CastSkill castSkill, GameObject uILoadoutBox)
+        {
+            canCast = true;
+            this.skill = skill;
+            this.castSkill = castSkill;
+            this.uILoadoutBox = uILoadoutBox;
+        }
+    }
 
     private Dictionary<string, Stack<GameObject>>
-        skillPools = new Dictionary<string, Stack<GameObject>>();
+        skillPools = new Dictionary<string, Stack<GameObject>>(); //Contains the pools for each skill 
 
-    private List<CastSkill>
-        skillLoadout = new List<CastSkill>();
-
-    //private List<Skill>
-    //    skillList = new List<Skill>();
-
-    //private Dictionary<Skill, CastSkill>
-    //    skillLoadout = new Dictionary<Skill, CastSkill>();
-
-    private Projectile
-        basicSkill;
-
-    private Dictionary<string, Sprite>
-        skillSprites = new Dictionary<string, Sprite>();
+    private List<SkillLoadoutObject>
+        skillLoadout = new List<SkillLoadoutObject>(); //Contains the skills that the player currently has 
 
     private Dictionary<string, GameObject>
-        skillPrefabs = new Dictionary<string, GameObject>();
+        skillPrefabs = new Dictionary<string, GameObject>(); //Contains the prefabs that the skills will clone from upon instantiating 
 
     private PlayerBehaviour
         player;
 
     private int
-        playerDamage,
-        playerAttackSpeed, 
-        skillSlots = 4;
+        skillSlots = 5, 
+        skillCount = 0;
 
     private float
         timer, 
@@ -64,86 +57,126 @@ public class SkillManager : MonoBehaviour
     private GameObject
         target = null;
 
+    [SerializeField]
+    private List<GameObject>
+        uILoadoutBox = new List<GameObject>();
+
     public delegate void CastSkill();
 
-    public List<CastSkill> _skillLoadout
+    public List<SkillLoadoutObject> _skillLoadout
     { get { return skillLoadout; } }
-
-    //public Dictionary<Skill, CastSkill> _skillLoadout
-    //{ get {  return skillLoadout; } }
 
     private void Awake()
     {
-        Game._skillManager = this;
-        player = Game._player.GetComponent<PlayerBehaviour>();
-        playerDamage = Game._chosenPlayer._attack;
-        playerAttackSpeed = 10;
+        Game._skillManager = this; //Gives a reference to the static Game class 
+        player = Game._player.GetComponent<PlayerBehaviour>(); //Gets a reference to the player 
     }
     private void Start()
     {
-        //for(int i = 0; i < skillSlots; i++)
-        //{
-        //    skillLoadout.Add(null, null);
-        //}
-        //basicSkill = InitializeSkill("SKILLPROJ0001") as Projectile;
-        //AddToLoadout("SKILLAOE0001");
+        uILoadoutBox = GameObject.FindGameObjectWithTag("Loadout").GetComponent<SkillLoadoutBoxes>().skillLoadoutBoxes;
         InitializePrefabSkills("PROJ0001");
-        InitializePrefabSkills("AREA0001");
     }
     void Update()
     {
-        cursorPos = Game._cursor.transform.position; //Delete after testing 
-
+        //Handles the auto shooting of projectiles
         if(target != null)
         {
-            float recoil = UnityEngine.Random.Range(-playerRecoil, playerRecoil);
+            float recoil = Random.Range(-playerRecoil, playerRecoil); //Creates a random float based on the player's recoil variable and adds it to the target's location to create a recoil effect
             Vector2 dir = new Vector2(target.transform.position.x + recoil - transform.position.x, target.transform.position.y + recoil - transform.position.y);
             transform.up = dir;
 
             if (timer < 1f)
             {
-                timer += Time.deltaTime * playerAttackSpeed;
+                timer += Time.deltaTime * Game._player._attackSpeed;
 
                 if (timer >= 1f)
                 {
-                    skillLoadout[0].Invoke();
-                    //ShootProjectile();
+                    Debug.Log(skillLoadout[0]._skill._skillCooldown);
+                    skillLoadout[0]._castSkill.Invoke();
                     timer = 0f;
                 }
             }
         }
+        GetInput();
+    }
+    //Gets the key input 
+    private void GetInput()
+    {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            skillLoadout[1].Invoke();
+            if (skillLoadout[1]._canCast)
+            {
+                skillLoadout[1]._castSkill.Invoke();
+                StartCoroutine(CooldownTimer(skillLoadout[1]));
+            }
+            else
+            {
+                Debug.Log("Cannot cast skill");
+            }
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            skillLoadout[2].Invoke();
+            if (skillLoadout[2]._canCast)
+            {
+                skillLoadout[2]._castSkill.Invoke();
+                StartCoroutine(CooldownTimer(skillLoadout[2]));
+            }
+            else
+            {
+                Debug.Log("Cannot cast skill");
+            }
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            skillLoadout[3].Invoke();
+            if (skillLoadout[3]._canCast)
+            {
+                skillLoadout[3]._castSkill.Invoke();
+                StartCoroutine(CooldownTimer(skillLoadout[3]));
+            }
+            else
+            {
+                Debug.Log("Cannot cast skill");
+            }
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            skillLoadout[4].Invoke();
+            if (skillLoadout[4]._canCast)
+            {
+                skillLoadout[4]._castSkill.Invoke();
+                StartCoroutine(CooldownTimer(skillLoadout[4]));
+            }
+            else
+            {
+                Debug.Log("Cannot cast skill");
+            }
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //AddToLoadout();
             StartCoroutine(Dash(Game._cursor.transform.position));
         }
-        if(Input.GetKeyDown(KeyCode.KeypadEnter))
+        if(Input.GetKeyDown(KeyCode.Keypad1))
         {
-            
+            InitializePrefabSkills("AREA0001");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            InitializePrefabSkills("AREA0002");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            InitializePrefabSkills("AREA0003");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            InitializePrefabSkills("AREA0004");
         }
     }
-    
+    //Checks if there are enemies in range
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.GetComponent<IDamageable>() != null && target == null)
         {
-            target = collision.gameObject;
+            target = collision.gameObject; 
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -153,64 +186,6 @@ public class SkillManager : MonoBehaviour
             target = null;
         }
     }
-    #region Skills
-    private int CalculateDamage(float skillMultiplier)
-    {
-        return (int)((Game._player._attack /* + modifiers from equipment*/) * skillMultiplier);
-    }
-    //private void ShootProjectile()
-    //{
-    //    int damage = CalculateDamage(basicSkill._projectileDamage);
-
-    //    Vector3 pos = transform.position;
-    //    Quaternion rot = transform.rotation;
-
-    //    if (projectilePool.TryPop(out GameObject result))
-    //    {
-    //        result.SetActive(true); 
-    //        result.transform.position = pos;
-    //        result.transform.rotation = rot;
-
-    //        result.GetComponent<ProjectileBehaviour>()._damage = damage;
-    //    }
-    //    else
-    //    {
-    //        GameObject projectile = Instantiate(projectilePrefab, pos, rot);
-
-    //        projectile.GetComponent<ProjectileBehaviour>().SetStats(
-    //            basicSkill._skillName, 
-    //            damage, 
-    //            basicSkill._projectilePierce, 
-    //            basicSkill._projectileSpeed, 
-    //            basicSkill._projectileSize, 
-    //            skillSprites[basicSkill._skillName]);
-    //    }
-    //}
-    //public void DestroyProjectile(GameObject objToDestroy)
-    //{
-    //    objToDestroy.SetActive(false);
-    //    projectilePool.Push(objToDestroy);
-    //}
-
-    //private void CastAOE(AOE aoeSkill)
-    //{;
-    //    int damage = CalculateDamage(aoeSkill._aOEDamage);
-    //    //finish aoe
-    //    Vector3 pos = cursorPos; 
-
-    //    if (aOEPool.TryPop(out GameObject result))
-    //    {
-    //        result.SetActive(true);
-    //        result.transform.position = pos;
-
-    //        result.GetComponent<AOEBehaviour>()._damage = damage;
-    //    }
-    //    else
-    //    {
-    //        GameObject aoeObj = Instantiate(aOEPrefab, pos, Quaternion.identity);
-    //        //aoeObj.GetComponent<AOEBehaviour>().SetStats(aoeSkill._skillName, damage, aoeSkill._aOESize, skillSprites[aoeSkill._skillName]);
-    //    }
-    //}
     
     private IEnumerator Dash(Vector3 dashPos)
     {
@@ -227,94 +202,114 @@ public class SkillManager : MonoBehaviour
         player._nav.SetDestination(player.transform.position);
         player._disableMovement = false;
     }
-    #endregion
-
     #region Loading
-    //This function is to initialize skills that the player has as well as preload all
-    //the sprites to prevent spawning skills without sprites
-    //private Skill InitializeSkill(string skillId)
-    //{
-    //    Skill skill = Game._database._skillDB[skillId];
-
-    //    AssetManager.LoadSprites(skill._skillSprite, (Sprite sp) =>
-    //    {
-    //        skillSprites.Add(skill._skillName, sp);
-    //    });
-
-    //    return skill;
-    //}
-    //private void AddToLoadout(string skillId)
-    //{
-    //    if (skillLoadout.Count < skillSlots)
-    //    {
-    //        //skillLoadout.Add(InitializeSkill(skillId) as AOE, AddSkill(skillId)); 
-    //    }
-    //}
-    
-    #endregion
-
-    private void TestSkill() //Delete after testing 
-    {
-        Debug.Log("Using Skill");
-    }
-    private void OnDrawGizmos() //Delete after testing 
-    {
-        if(cursorPos != null)
-        {
-            Gizmos.color = new Vector4(1, 0, 0, 0.5f);
-            Gizmos.DrawLine(this.transform.position, cursorPos);
-        }
-    }
     public void InitializePrefabSkills(string skillId)
     {
-        Skill skill = Game._database._skillDB[skillId]; //Gets skill information from the database
-
-        AssetManager.LoadPrefabs(skill._skillPrefab, (GameObject go) => 
+        if(skillCount < skillSlots) //Checks if there are enough available skill slots
         {
-            skillPrefabs.Add(skill._skillName, go); //Preloads the prefab and stores it into dictionary with its name as the key
-        });
+            Skill skill = Game._database._skillDB[skillId]; //Gets skill information from the database
 
-        skillLoadout.Add(AddSkillEffects(skillId)); //Adds the skill's functionalities into the loadout 
+            AssetManager.LoadPrefabs(skill._skillPrefab, (GameObject go) =>
+            {
+                skillPrefabs.Add(skill._skillName, go); //Preloads the prefab and stores it into dictionary with its name as the key
+            });
 
-        InitializePool(skill._skillName); //Creates a pool to store the prefabs 
+            skillLoadout.Add(AddSkillEffects(skillId)); //Adds the skill's functionalities into the loadout 
+
+            InitializePool(skill._skillName); //Creates a pool to store the prefabs 
+        }
+        else
+        {
+            Debug.Log("Not enough slots");
+        }
     }
-    private CastSkill AddSkillEffects(string skillId)
+    private SkillLoadoutObject AddSkillEffects(string skillId) //Adds behaviours to each skill based on its ID
     {
-        Skill skillChosen = Game._database._skillDB[skillId];
-        CastSkill result = null;
+        SkillLoadoutObject result = new SkillLoadoutObject(Game._database._skillDB[skillId], null, uILoadoutBox[skillCount]); //Adds a new object to store the skill, its effects as well as the UI element that it belongs to
         switch (skillId)
         {
             case "PROJ0001":
-                result = () =>
+                result._castSkill = () =>
                 {
-                    AddProjectileEffects(GetPool(skillChosen._skillName), skillChosen as Projectile);
+                    AddProjectileEffects(GetObject(result._skill._skillName), result._skill as Projectile, null);
                 };
                 break;
 
             case "AREA0001":
-                result = () =>
+                result._castSkill = () =>
                 {
-                    AddAOEEffects(GetPool(skillChosen._skillName), skillChosen as AOE);
+                    AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
+                };
+                break;
+            case "AREA0002":
+                result._castSkill = () =>
+                {
+                    AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
+                };
+                break;
+            case "AREA0003":
+                result._castSkill = () =>
+                {
+                    AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
+                };
+                break;
+            case "AREA0004":
+                result._castSkill = () =>
+                {
+                    AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
                 };
                 break;
             case "Test":
-                result = () =>
+                result._castSkill = () =>
                 {
 
                 };
                 break;
         }
+        uILoadoutBox[skillCount++].GetComponent<LoadoutCooldownBox>().SetImage(result._skill._skillIcon); //Loads the skill icon into the loadout
 
         return result;
     }
-    private void InitializePool(string skillName) //Creates a pool to contain the skill prefabs if it doesn't exist
+    //Creates a pool to contain the skill prefabs if it doesn't exist
+    private void InitializePool(string skillName) 
     {
-        if(skillPools.ContainsKey(skillName) == false)
+        if (skillPools.ContainsKey(skillName) == false)
         {
             skillPools.Add(skillName, new Stack<GameObject>());
         }
     }
-    private GameObject GetPool(string skillName)
+    //Used to initialize projectile skills 
+    private void AddProjectileEffects(GameObject skillToAdd, Projectile refSkill, UnityAction extras)
+    {
+        //Initializes the transform of the projectile to the player's location 
+        skillToAdd.transform.position = transform.position;
+        skillToAdd.transform.rotation = transform.rotation;
+
+        //Sets the stats of the projectile as well as the added effects
+        ProjectileBehaviour behaviour = skillToAdd.GetComponent<ProjectileBehaviour>();
+        behaviour.SetStats(CalculateDamage(refSkill._projectileDamage), refSkill._projectilePierce, refSkill._projectileSpeed, refSkill._projectileSize);
+        if (extras != null)
+        {
+            behaviour.SetSpellEffects(extras);
+        }
+    }
+    //Used to initialize aoe skills 
+    private void AddAOEEffects(GameObject skillToAdd, AOE refSkill, UnityAction extras)
+    {
+        //Initializes the location of the skill
+        skillToAdd.transform.position = GetCursorPos();
+
+        //Sets the stats of the skill as well as the added effects
+        AOEBehaviour behaviour = skillToAdd.GetComponent<AOEBehaviour>();
+        behaviour.GetComponent<AOEBehaviour>().SetStats(CalculateDamage(refSkill._aOEDamage), refSkill._aOESize);
+        if (extras != null)
+        {
+            behaviour.SetSpellEffects(extras);
+        }
+    }
+    #endregion
+
+    private GameObject GetObject(string skillName) //Gets the object from the pool
     {
         if (skillPools[skillName].TryPop(out GameObject result))
         {
@@ -328,24 +323,40 @@ public class SkillManager : MonoBehaviour
             return obj;
         }
     }
-    public void DestroySpell(GameObject spellToDelete)
+    public void DestroySpell(GameObject spellToDelete) //Function to add objects into the pool
     {
         spellToDelete.SetActive(false);
         skillPools[spellToDelete.name].Push(spellToDelete);
     }
-    private void AddProjectileEffects(GameObject skillToAdd, Projectile refSkill)
-    {
-        skillToAdd.transform.position = transform.position;
-        skillToAdd.transform.rotation = transform.rotation;
-        skillToAdd.GetComponent<ProjectileBehaviour>().SetStats(CalculateDamage(refSkill._projectileDamage), refSkill._projectilePierce, refSkill._projectileSpeed, refSkill._projectileSize);
-    }
-    private void AddAOEEffects(GameObject skillToAdd, AOE refSkill)
-    {
-        skillToAdd.transform.position = GetCursorPos();
-        skillToAdd.GetComponent<AOEBehaviour>().SetStats(CalculateDamage(refSkill._aOEDamage), refSkill._aOESize);
-    }
+    
     private Vector3 GetCursorPos()
     {
         return Game._cursor.transform.position;
+    }
+    private void OnDrawGizmos() //Delete after testing 
+    {
+        if (GetCursorPos() != null)
+        {
+            Gizmos.color = new Vector4(1, 0, 0, 0.5f);
+            Gizmos.DrawLine(this.transform.position, GetCursorPos());
+        }
+    }
+    private int CalculateDamage(float skillMultiplier) // Calculate the damage dealt
+    {
+        return (int)((Game._player._attack /* + modifiers from equipment*/) * skillMultiplier);
+    }
+    private IEnumerator CooldownTimer(SkillLoadoutObject obj) //Handles the cooldown for each skill
+    {
+        obj._canCast = false;
+
+        float timer = obj._skill._skillCooldown; //Gets the cooldown from the skill database
+
+        obj._uIBoxLocation.GetComponent<LoadoutCooldownBox>().StartCooldown(obj._skill._skillCooldown); //Starts the cooldown overlay in the UI 
+        while (timer >= 0f)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        obj._canCast = true;
     }
 }
