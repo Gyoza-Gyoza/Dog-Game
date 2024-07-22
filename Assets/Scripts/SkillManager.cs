@@ -112,7 +112,7 @@ public class SkillManager : MonoBehaviour
             if (skillLoadout[2]._canCast)
             {
                 skillLoadout[2]._castSkill.Invoke();
-                StartCoroutine(CooldownTimer(skillLoadout[1]));
+                StartCoroutine(CooldownTimer(skillLoadout[2]));
             }
             else
             {
@@ -124,7 +124,7 @@ public class SkillManager : MonoBehaviour
             if (skillLoadout[3]._canCast)
             {
                 skillLoadout[3]._castSkill.Invoke();
-                StartCoroutine(CooldownTimer(skillLoadout[1]));
+                StartCoroutine(CooldownTimer(skillLoadout[3]));
             }
             else
             {
@@ -136,7 +136,7 @@ public class SkillManager : MonoBehaviour
             if (skillLoadout[4]._canCast)
             {
                 skillLoadout[4]._castSkill.Invoke();
-                StartCoroutine(CooldownTimer(skillLoadout[1]));
+                StartCoroutine(CooldownTimer(skillLoadout[4]));
             }
             else
             {
@@ -150,7 +150,7 @@ public class SkillManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-
+            InitializePrefabSkills("AREA0002");
         }
     }
     //Checks if there are enemies in range
@@ -218,6 +218,12 @@ public class SkillManager : MonoBehaviour
                 break;
 
             case "AREA0001":
+                result._castSkill = () =>
+                {
+                    AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
+                };
+                break;
+            case "AREA0002":
                 result._castSkill = () =>
                 {
                     AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
