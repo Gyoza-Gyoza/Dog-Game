@@ -7,7 +7,8 @@ public enum EquipmentSlot
     Overall,
     Glove,
     Boot,
-    Weapon
+    Weapon,
+    Accessory
 }
 public class Equipment : Item
 {
