@@ -8,6 +8,7 @@ TagManager:
   - Card
   - Dependencies
   - Loadout
+  - InventoryMenu
   layers:
   - Default
   - TransparentFX
@@ -42,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: VFX
+    uniqueID: 2931727277
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

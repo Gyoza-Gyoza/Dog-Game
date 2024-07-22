@@ -41,6 +41,9 @@ public static class Game
     private static SkillManager
         skillManager;
 
+    private static WaveManager
+        waveManager;
+
     public static PlayerBehaviour _player
     { get { return player; } set { player = value; } }
 
@@ -73,11 +76,20 @@ public static class Game
 
     public static SkillManager _skillManager
     { get { return skillManager; } set { skillManager = value; } }
+
+    public static WaveManager _waveManager
+    { get { return waveManager; } set { waveManager = value; } }
     #endregion
 
     private static Player
         chosenPlayer; 
+    
+    private static GameObject
+        inventoryMenu;
 
     public static Player _chosenPlayer
     { get { return chosenPlayer; } set { chosenPlayer = value; } }
+
+    public static GameObject _inventoryMenu
+    { get { return inventoryMenu; } set { inventoryMenu = value; } }
 }

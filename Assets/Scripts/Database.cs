@@ -18,9 +18,9 @@ public class Database : MonoBehaviour
         sr;
 
     [SerializeField]
-    private List<Entity> 
-        enemyList = new List<Entity>(), 
-        playerClassList = new List<Entity>();
+    private Dictionary<string, Entity> 
+        enemyList = new Dictionary<string, Entity>(), 
+        playerClassList = new Dictionary<string, Entity>();
 
     //For testing
     [SerializeField]
@@ -38,10 +38,10 @@ public class Database : MonoBehaviour
     private Dictionary<string, Skill>
         skillDB = new Dictionary<string, Skill>();
 
-    public List<Entity> _enemyList 
+    public Dictionary<string, Entity> _enemyList 
     { get { return enemyList; } }
 
-    public List<Entity> _playerClassList
+    public Dictionary<string, Entity> _playerClassList
     { get { return playerClassList; } }
 
     public List<EnemyWaves> _enemyWaves
@@ -68,16 +68,14 @@ public class Database : MonoBehaviour
         foreach (string enemy in enemies)
         {
             string[] enemyEntry = enemy.Split(',');
-            enemyList.Add(new Enemy(
-                enemyEntry[0],
+            enemyList.Add(enemyEntry[0], new Enemy(
                 enemyEntry[1],
                 int.Parse(enemyEntry[2]),
                 int.Parse(enemyEntry[3]),
                 int.Parse(enemyEntry[4]),
                 int.Parse(enemyEntry[5]),
-                int.Parse(enemyEntry[6]),
-                int.Parse(enemyEntry[7]),
-                enemyEntry[8]));
+                enemyEntry[6],
+                int.Parse(enemyEntry[7])));
         }
 
         //Reading player csv
@@ -85,37 +83,31 @@ public class Database : MonoBehaviour
         foreach (string player in players)
         {
             string[] playerEntry = player.Split(',');
-            playerClassList.Add(new Player(
-                playerEntry[0],
+            playerClassList.Add(playerEntry[0], new Player(
                 playerEntry[1],
                 int.Parse(playerEntry[2]),
                 int.Parse(playerEntry[3]),
                 int.Parse(playerEntry[4]),
                 int.Parse(playerEntry[5]),
-                int.Parse(playerEntry[6]),
+                playerEntry[6],
                 int.Parse(playerEntry[7]),
-                playerEntry[8],
+                int.Parse(playerEntry[8]),
                 int.Parse(playerEntry[9]),
-                playerEntry[10]));
+                playerEntry[10], 
+                playerEntry[11],
+                int.Parse(playerEntry[12]),
+                float.Parse(playerEntry[13])
+                ));
         }
-        Game._chosenPlayer = playerClassList[3] as Player;
+        Game._chosenPlayer = playerClassList["CLASS_THIEF"] as Player;
 
         //For testing 
-        foreach (Entity ent in playerClassList)
-        {
-            playerList.Add(ent as Player);
-        }
-        //enemyList.Add(new Enemy("Slime", 1, 1, 1, 1, (EnemyTypes)0, "Assets/Images/SadHamster.png"));
-        //enemyList.Add(new Enemy("Fat Slime", 2, 2, 2, 2, (EnemyTypes)1, "Assets/Images/SadHamster.png"));
-        //enemyList.Add(new Enemy("Boss Slime", 5, 5, 5, 5, (EnemyTypes)2, "Assets/Images/SadHamster.png"));
-
-        //Change to read from player tables
-        //playerClassList.Add(new Player("Warrior", 1, 1, 1, 10));
-        //playerClassList.Add(new Player("Archer", 1, 1, 1, 10));
+        //foreach (Entity ent in playerClassList)
+        //{
+        //    playerList.Add(ent as Player);
+        //}
 
         //Change to read from enemywaves table
-        //The code will be structured so that the first number will be the entry
-        //in the enum and the second will be the number of enemies of that category
         enemyWaves.Add(new EnemyWaves("1", "0@2#1@3#2@1"));
 
         augmentList.Add(new Augment("Weak augment", "This is a weak augment", 0)); 
@@ -132,6 +124,9 @@ public class Database : MonoBehaviour
         itemList.Add(new Equipment("Glove1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Glove1.png", 1, EquipmentSlot.Glove, 1, 1, 1 ,1, 1));
 
         skillDB.Add("PROJ0001", new Projectile("Basic Projectile", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
+        skillDB.Add("PROJ0002", new Projectile("Basic Projectile2", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
+        skillDB.Add("PROJ0003", new Projectile("Basic Projectile3", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
+        skillDB.Add("PROJ0004", new Projectile("Basic Projectile4", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
         skillDB.Add("AREA0001", new AOE("HEAVENLY STRIKE", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
         skillDB.Add("AREA0002", new AOE("HEAVENLY STRIKE2", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
         skillDB.Add("AREA0003", new AOE("HEAVENLY STRIKE3", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));

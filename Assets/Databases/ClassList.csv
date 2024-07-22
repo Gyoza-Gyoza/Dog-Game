@@ -1,5 +1,5 @@
-classID (PK),className,classHP,classAttackDmg,classMagicDmg,classMoveSpeed,classArmor,classMagicResist,classSprite,classAttackSpeed,weaponType
-CLASS_KNIGHT,KNIGHT,200,10,0,4,100,100,,1,SWORD
-CLASS_MAGE,MAGE,100,0,15,4,50,75,,1,WAND
-CLASS_ARCHER,ARCHER,75,15,0,5,50,50,,2,BOW
-CLASS_THIEF,THIEF,75,15,0,5,35,35,,2,CLAW
+classID (PK),className,health,damage,moveSpeed,defence,classSprite,attackSpeed,attackRange,criticalChance,projectileType,classHurtSprite,dashSpeed,dashDuration
+CLASS_KNIGHT,KNIGHT,200,7,4,100,Assets/Images/Class/knight.png,5,5,0,PROJ0001,Assets/Images/Class/knight_hurt.png,50,0.1
+CLASS_MAGE,MAGE,100,10,4,50,Assets/Images/Class/mage.png,7,10,0,PROJ0002,Assets/Images/Class/mage_hurt.png,500,0.01
+CLASS_ARCHER,ARCHER,75,10,5,50,Assets/Images/Class/archer.png,7,10,50,PROJ0003,Assets/Images/Class/archer_hurt.png,50,0.1
+CLASS_THIEF,THIEF,75,7,6,50,Assets/Images/Class/thief.png,10,10,0,PROJ0004,Assets/images/Class/thief_hurt.png,50,0.1

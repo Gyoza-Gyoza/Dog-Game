@@ -52,7 +52,7 @@ public class SkillManager : MonoBehaviour
         timer, 
         playerRecoil = 0.5f, 
         dashSpeed = 50f, 
-        dashDuration = 0.2f;
+        dashDuration = 0.1f;
 
     private GameObject
         target = null;
@@ -60,6 +60,12 @@ public class SkillManager : MonoBehaviour
     [SerializeField]
     private List<GameObject>
         uILoadoutBox = new List<GameObject>();
+
+    public float _dashSpeed
+    { get { return dashSpeed; } set { dashSpeed = value; } }
+
+    public float _dashDuration
+    { get { return dashDuration; } set { dashDuration = value; } }
 
     public delegate void CastSkill();
 
@@ -74,7 +80,7 @@ public class SkillManager : MonoBehaviour
     private void Start()
     {
         uILoadoutBox = GameObject.FindGameObjectWithTag("Loadout").GetComponent<SkillLoadoutBoxes>().skillLoadoutBoxes;
-        InitializePrefabSkills("PROJ0001");
+        InitializePrefabSkills(Game._player._projectileType);
     }
     void Update()
     {
@@ -229,6 +235,27 @@ public class SkillManager : MonoBehaviour
         switch (skillId)
         {
             case "PROJ0001":
+                result._castSkill = () =>
+                {
+                    AddProjectileEffects(GetObject(result._skill._skillName), result._skill as Projectile, null);
+                };
+                break;
+
+            case "PROJ0002":
+                result._castSkill = () =>
+                {
+                    AddProjectileEffects(GetObject(result._skill._skillName), result._skill as Projectile, null);
+                };
+                break;
+
+            case "PROJ0003":
+                result._castSkill = () =>
+                {
+                    AddProjectileEffects(GetObject(result._skill._skillName), result._skill as Projectile, null);
+                };
+                break;
+
+            case "PROJ0004":
                 result._castSkill = () =>
                 {
                     AddProjectileEffects(GetObject(result._skill._skillName), result._skill as Projectile, null);

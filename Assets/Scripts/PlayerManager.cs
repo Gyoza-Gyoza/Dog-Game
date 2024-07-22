@@ -18,12 +18,25 @@ public class PlayerManager : MonoBehaviour
     }
     private void Start()
     {
-        SpawnPlayer(this.gameObject.transform);
+        SpawnPlayer(gameObject.transform);
     }
     public void SpawnPlayer(Transform pos)
     {
         GameObject result = Instantiate(player, pos);
         Player chosenEntity = Game._chosenPlayer;
-        result.GetComponent<PlayerBehaviour>().SetStats(chosenEntity._name, chosenEntity._hp, chosenEntity._attack, chosenEntity._magicAttack, chosenEntity._movementSpeed, chosenEntity._armor, chosenEntity._magicResist, chosenEntity._entitySprite, chosenEntity._attackSpeed, chosenEntity._weaponType);
+        result.GetComponent<PlayerBehaviour>().SetStats(
+            chosenEntity._name, 
+            chosenEntity._hp, 
+            chosenEntity._attack, 
+            chosenEntity._movementSpeed, 
+            chosenEntity._defence, 
+            chosenEntity._entitySprite, 
+            chosenEntity._attackSpeed, 
+            chosenEntity._attackRange, 
+            chosenEntity._critChance, 
+            chosenEntity._projectileType, 
+            chosenEntity._classHurtSprite,
+            chosenEntity._dashSpeed, 
+            chosenEntity._dashDuration);
     }
 }
