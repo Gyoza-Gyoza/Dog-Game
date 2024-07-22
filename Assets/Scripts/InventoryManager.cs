@@ -15,11 +15,9 @@ public class InventoryManager : MonoBehaviour
     private GameObject
         selectedItem;
 
-    [SerializeField]
     private ItemSlotScript[]
         inventoryBoxList;
 
-    [SerializeField]
     private EquipmentSlotScript[]
         equipmentBoxList;
 
@@ -27,8 +25,17 @@ public class InventoryManager : MonoBehaviour
     private Dictionary<int, Item>
         inventoryList = new Dictionary<int, Item>();
 
-    public int _damageBoost
-    {  get { return _damageBoost; } }
+    private Dictionary<EquipmentSlot, Equipment>
+        equipmentList = new Dictionary<EquipmentSlot, Equipment>();
+
+    private int
+        inventorySize = 15;
+
+    public ItemSlotScript[] _inventoryBoxList
+    {  get { return inventoryBoxList; } set { inventoryBoxList = value; } }
+
+    public EquipmentSlotScript[] _equipmentBoxList
+    { get { return equipmentBoxList; } set {  equipmentBoxList = value; } }
 
     private void Awake()
     {
@@ -39,14 +46,11 @@ public class InventoryManager : MonoBehaviour
     }
     private void Start()
     {
-        inventoryBoxList = GetComponentsInChildren<ItemSlotScript>(); //Gets references to inventory item UI boxes
-        equipmentBoxList = GetComponentsInChildren<EquipmentSlotScript>(); //Gets references to the equipment UI boxes
-
         for (int i = 0; i < Enum.GetNames(typeof(EquipmentSlot)).Length; i++)
         {
-            Game._player._equipmentList.Add((EquipmentSlot)i, null);
+            equipmentList.Add((EquipmentSlot)i, null);
         }
-        for(int i = 0; i < 15; i++)
+        for(int i = 0; i < inventorySize; i++)
         {
             inventoryList.Add(i, null);
         }
@@ -70,15 +74,15 @@ public class InventoryManager : MonoBehaviour
         }
         EquipmentSlot slotToBePlacedIn = equip._slotType;
 
-        if (Game._player._equipmentList[slotToBePlacedIn] == null)
+        if (equipmentList[slotToBePlacedIn] == null)
         {
-            Game._player._equipmentList[slotToBePlacedIn] = selectedItem.GetComponent<ItemSlotScript>()._itemHeld as Equipment;
+            equipmentList[slotToBePlacedIn] = selectedItem.GetComponent<ItemSlotScript>()._itemHeld as Equipment;
             inventoryList[selectedItem.GetComponent<ItemSlotScript>()._itemId] = null; //Remove item at the selected position 
         }
         else
         {
-            Item equippedItem = Game._player._equipmentList[slotToBePlacedIn]; //Store equipped item 
-            Game._player._equipmentList[slotToBePlacedIn] = selectedItem.GetComponent<ItemSlotScript>()._itemHeld as Equipment; //Replace equipped item with selected item 
+            Item equippedItem = equipmentList[slotToBePlacedIn]; //Store equipped item 
+            equipmentList[slotToBePlacedIn] = selectedItem.GetComponent<ItemSlotScript>()._itemHeld as Equipment; //Replace equipped item with selected item 
             inventoryList[selectedItem.GetComponent<ItemSlotScript>()._itemId] = null; //Remove item at the selected position 
             PickupItem(equippedItem); //Adds unequipped item to inventory 
         }
@@ -87,14 +91,14 @@ public class InventoryManager : MonoBehaviour
     }
     public Item UnequipItem(EquipmentSlot slot)
     {
-        if (Game._player._equipmentList[slot] == null)
+        if (equipmentList[slot] == null)
         {
             Debug.Log("No equipment to unequip");
         }
         else
         {
-            Item item = Game._player._equipmentList[slot];
-            Game._player._equipmentList[slot] = null;
+            Item item = equipmentList[slot];
+            equipmentList[slot] = null;
             Debug.Log($"Unequipped {item._itemName}");
             return item;
         }
@@ -123,7 +127,7 @@ public class InventoryManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.M))
         {
             Debug.Log("Checking Equipment"); 
-            foreach(KeyValuePair<EquipmentSlot, Equipment> keyValuePair in Game._player._equipmentList)
+            foreach(KeyValuePair<EquipmentSlot, Equipment> keyValuePair in equipmentList)
             {
                 string result = ""; 
 
@@ -182,9 +186,9 @@ public class InventoryManager : MonoBehaviour
         for (int i = 0; i < equipmentBoxList.Length; i++) //Loops through the equipment UI 
         {
             //Copies the items in the equipment list into the UI list as it iterates through both lists 
-            if (i < Game._player._equipmentList.Count)
+            if (i < equipmentList.Count)
             {
-                equipmentBoxList[i].AddItem(Game._player._equipmentList[(EquipmentSlot)i]);
+                equipmentBoxList[i].AddItem(equipmentList[(EquipmentSlot)i]);
                 equipmentBoxList[i].UpdateItemSlot();
             }
             else

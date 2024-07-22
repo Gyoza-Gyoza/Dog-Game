@@ -9,6 +9,12 @@ public class EnemyBehaviour : EntityBehaviour
     private GameObject
         target;
 
+    private int
+        goldDrop;
+
+    public int _goldDrop
+    { get {  return goldDrop; } }
+
     private void Start()
     {
         target = Game._player.gameObject;
@@ -20,16 +26,15 @@ public class EnemyBehaviour : EntityBehaviour
             ChangeDestination(target.transform.position);
         }
     }
-    public void SetStats(string enemyName, int hp, int attack, int magicAttack, int movementSpeed, int armor, int magicResist, string enemySprite)
+    public void SetStats(string enemyName, int hp, int attack, int movementSpeed, int defence, string enemySprite, int goldDrop)
     {
-        this.name = enemyName;
+        name = enemyName;
         this.hp = hp;
         this.currentHp = hp;
         this.attack = attack;
-        this.magicAttack = magicAttack;
         this.movementSpeed = movementSpeed;
-        this.armor = armor;
-        this.magicResist = magicResist;
+        this.defence = defence;
         AssetManager.SetSprite(enemySprite, this.gameObject);
+        this.goldDrop = goldDrop;
     }
 }

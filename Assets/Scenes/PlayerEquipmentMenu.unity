@@ -1017,6 +1017,7 @@ GameObject:
   - component: {fileID: 450935477}
   - component: {fileID: 450935479}
   - component: {fileID: 450935478}
+  - component: {fileID: 450935480}
   m_Layer: 5
   m_Name: Equipment
   m_TagString: Untagged
@@ -1086,6 +1087,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 450935476}
   m_CullTransparentMesh: 1
+--- !u!114 &450935480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450935476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4846bab569a0a4ab4d806b8cf0f6fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryBoxes:
+  - {fileID: 99453831}
+  - {fileID: 1915778870}
+  - {fileID: 1333681821}
+  - {fileID: 587425095}
+  - {fileID: 1181057339}
 --- !u!1 &473910793
 GameObject:
   m_ObjectHideFlags: 0
@@ -3347,6 +3366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1366629671}
+  - component: {fileID: 1366629672}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -3389,6 +3409,34 @@ RectTransform:
   m_AnchoredPosition: {x: -50.22821, y: -115.48425}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1366629672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366629670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd437cd5fb45d4d4f9fcf42b7e62d86e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryBoxes:
+  - {fileID: 722689143}
+  - {fileID: 1340690727}
+  - {fileID: 1561458772}
+  - {fileID: 373860796}
+  - {fileID: 1901238338}
+  - {fileID: 1613270855}
+  - {fileID: 2056467117}
+  - {fileID: 368449906}
+  - {fileID: 1953607357}
+  - {fileID: 1031643800}
+  - {fileID: 1443120233}
+  - {fileID: 1657797044}
+  - {fileID: 1228365438}
+  - {fileID: 614018694}
+  - {fileID: 1423184144}
 --- !u!1 &1415654045
 GameObject:
   m_ObjectHideFlags: 0
@@ -3472,7 +3520,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1692878945}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
         m_MethodName: DropItem
         m_Mode: 1
@@ -4082,7 +4130,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1692878945}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
         m_MethodName: EquipItem
         m_Mode: 1
@@ -4677,7 +4725,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1692878946}
-  - component: {fileID: 1692878945}
   m_Layer: 0
   m_Name: EquipmentManager
   m_TagString: Untagged
@@ -4685,20 +4732,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1692878945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1692878944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 684a150413bbd664fb41dae67fcaa7c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryBoxList: []
-  equipmentBoxList: []
 --- !u!4 &1692878946
 Transform:
   m_ObjectHideFlags: 0

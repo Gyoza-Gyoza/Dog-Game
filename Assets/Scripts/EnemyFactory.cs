@@ -20,9 +20,9 @@ public class EnemyFactory : MonoBehaviour
         }
     }
     
-    public GameObject GetEnemy(string enemyToSpawn, Transform spawnLocation)
+    public GameObject GetEnemy(string enemyId, Transform spawnLocation)
     {
-        GetPoolStack(enemyToSpawn).TryPop(out GameObject result);
+        GetPoolStack(Game._database._enemyList[enemyId]._name).TryPop(out GameObject result);
         if (result != null)
         {
             result.SetActive(true);
@@ -32,7 +32,7 @@ public class EnemyFactory : MonoBehaviour
         }
         else
         {
-            return CreateObject(enemyToSpawn, spawnLocation);
+            return CreateObject(enemyId, spawnLocation);
         }
     }
     public void DestroyEnemy(GameObject objToDestroy)
@@ -54,17 +54,13 @@ public class EnemyFactory : MonoBehaviour
         }
         return null;
     }
-    private GameObject CreateObject(string enemyName, Transform spawnLocation)
+    private GameObject CreateObject(string enemyId, Transform spawnLocation)
     {
         GameObject chosenEnemy = Instantiate(enemyBase, spawnLocation.position, spawnLocation.rotation);
-        foreach (Enemy enemy in Game._database._enemyList)
-        {
-            if (enemy._name == enemyName)
-            {
-                chosenEnemy.GetComponent<EnemyBehaviour>().SetStats(enemy._name, enemy._hp, enemy._attack, enemy._magicAttack, enemy._movementSpeed, enemy._armor, enemy._magicResist, enemy._entitySprite); 
-                break;
-            }
-        }
+        Enemy enemyStats = Game._database._enemyList[enemyId] as Enemy;
+
+        chosenEnemy.GetComponent<EnemyBehaviour>().SetStats(enemyStats._name, enemyStats._hp, enemyStats._attack, enemyStats._movementSpeed, enemyStats._defence, enemyStats._entitySprite, enemyStats._goldDrop); 
+
         return chosenEnemy;
     }
 }

@@ -6,10 +6,14 @@ using UnityEngine.AI;
 public class PlayerBehaviour : EntityBehaviour
 {
     protected string
-        weaponType;
+        projectileType,
+        classHurtSprite;
 
     protected int
-        attackSpeed;
+        attackSpeed, 
+        critChance,
+        dashSpeed,
+        dashDuration;
 
     private Vector2
         moveDir;
@@ -20,17 +24,16 @@ public class PlayerBehaviour : EntityBehaviour
     private bool
         disableMovement = false;
 
-    private Dictionary<EquipmentSlot, Equipment>
-        equipmentList = new Dictionary<EquipmentSlot, Equipment>();
-
+    public string _projectileType
+    { get { return projectileType; } }
     public int _attackSpeed
     { get { return player.attackSpeed; } }
 
     public bool _disableMovement
     { get { return player.disableMovement; } set { player.disableMovement = value; } }
 
-    public Dictionary<EquipmentSlot, Equipment> _equipmentList
-    { get { return equipmentList; } }
+    //public Dictionary<EquipmentSlot, Equipment> _equipmentList
+    //{ get { return equipmentList; } }
 
     private void Awake()
     {
@@ -49,23 +52,34 @@ public class PlayerBehaviour : EntityBehaviour
     {
         if(!disableMovement)
         {
-            nav.SetDestination(target);
+            nav.SetDestination(target); 
+            if (transform.position.x > target.x)
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
     }
-    public void SetStats(string entityName, int hp, int attack, int magicAttack, int movementSpeed, int armor, int magicResist, string entitySprite, int attackSpeed, string weaponType)
+    public void SetStats(string entityName, int hp, int attack, int movementSpeed, int defence, string entitySprite, int attackSpeed, int attackRange, int critChance, string projectileType, string classHurtSprite, int dashSpeed, float dashDuration)
     {
         nav = GetComponent<NavMeshAgent>();
         //Add attack range
         //GetComponentInChildren<CircleCollider2D>().radius = attackRange;
-        this.name = entityName;
+        name = entityName;
         this.hp = hp;
         this.attack = attack;
-        this.magicAttack = magicAttack;
         nav.speed = movementSpeed;
-        this.armor = armor;
-        this.magicResist = magicResist;
-        this.entitySprite = entitySprite;
+        this.defence = defence;
+        AssetManager.SetSprite(entitySprite, gameObject);
         this.attackSpeed = attackSpeed;
-        this.weaponType = weaponType;
+        GetComponentInChildren<CircleCollider2D>().radius = attackRange;
+        this.critChance = critChance;
+        this.projectileType = projectileType;
+        this.classHurtSprite = classHurtSprite;
+        Game._skillManager._dashSpeed = dashSpeed;
+        Game._skillManager._dashDuration = dashDuration;
     }
 }

@@ -5,24 +5,50 @@ using UnityEngine;
 [System.Serializable]
 public class Player : Entity
 {
-    [SerializeField]
     private int
-        attackSpeed;
+        attackSpeed,
+        attackRange,
+        critChance,
+        dashSpeed;
 
-    [SerializeField]
+    private float
+        dashDuration;
+
     private string
-        weaponType;
+        projectileType,
+        classHurtSprite;
 
     public int _attackSpeed
     { get { return attackSpeed; } }
 
-    public string _weaponType
-    { get { return weaponType; } }
+    public int _attackRange
+    { get { return attackRange; } }
 
-    public Player(string entityId, string entityName, int hp, int attack, int magicAttack, int movementSpeed, int armor, int magicResist, string entitySprite, int attackSpeed, string weaponType) 
-        : base (entityId, entityName, hp, attack, magicAttack, movementSpeed,armor, magicResist, entitySprite)
+    public int _critChance
+    { get { return critChance; } }
+
+    public int _dashSpeed
+    { get { return dashSpeed; } }
+
+    public float _dashDuration
+    { get { return dashDuration; } }
+
+    public string _projectileType
+    { get { return projectileType; } }
+
+    public string _classHurtSprite
+    { get { return classHurtSprite; } }
+
+    public Player(string entityName, int hp, int attack, int movementSpeed, int defence, string entitySprite, int attackSpeed, int attackRange, int critChance, string projectileType, string classHurtSprite, int dashSpeed, float dashDuration) 
+        : base(entityName, hp, attack, movementSpeed, defence, entitySprite)
     {
         this.attackSpeed = attackSpeed;
-        this.weaponType = weaponType;
+        this.attackRange = attackRange;
+        this.critChance = critChance;
+        this.projectileType = projectileType;
+        this.classHurtSprite = classHurtSprite;
+        this.dashSpeed = dashSpeed;
+        this.dashDuration = dashDuration;
     }
+
 }

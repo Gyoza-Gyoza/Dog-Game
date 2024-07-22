@@ -10,10 +10,8 @@ public class EntityBehaviour : MonoBehaviour, IDamageable
         hp,
         currentHp,
         attack,
-        magicAttack,
         movementSpeed,
-        armor,
-        magicResist;
+        defence;
 
     protected string
         entitySprite;
@@ -30,17 +28,11 @@ public class EntityBehaviour : MonoBehaviour, IDamageable
     public int _attack
     { get { return attack; } }
 
-    public int _magicAttack
-    { get { return magicAttack; } }
-
     public int _movementSpeed
     { get { return movementSpeed; } }
 
-    public int _armor
-    { get { return armor; } }
-
-    public int _magicResist
-    { get { return magicResist; } } 
+    public int _defence
+    { get { return defence; } }
 
     public NavMeshAgent _nav
     { get { return nav; } }
@@ -57,6 +49,14 @@ public class EntityBehaviour : MonoBehaviour, IDamageable
     public virtual void ChangeDestination(Vector3 target)
     {
         nav.SetDestination(target);
+        if(transform.position.x > target.x)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 
     public void TakeDamage(int damage)

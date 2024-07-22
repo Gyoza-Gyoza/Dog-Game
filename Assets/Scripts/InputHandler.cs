@@ -17,7 +17,7 @@ public class InputHandler : MonoBehaviour
     }
 
     private Menus
-        activeScene = Menus.None; 
+        activeScene = Menus.None;
 
     private void Awake()
     {
@@ -57,23 +57,24 @@ public class InputHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Game._enemyFactory.GetEnemy(Game._database._enemyList[0]._name, transform);
+            Game._enemyFactory.GetEnemy("ENEM00001", transform);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Game._enemyFactory.GetEnemy(Game._database._enemyList[1]._name, transform);
+            Game._enemyFactory.GetEnemy("ENEM00002", transform);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Game._enemyFactory.GetEnemy(Game._database._enemyList[2]._name, transform);
+            Game._enemyFactory.GetEnemy("ENEM00003", transform);
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ToggleMenus(Menus.Augments);
+            
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-            ToggleMenus(Menus.Equipment);
+            Debug.Log(Game._inventoryMenu.name);
+            Game._inventoryMenu.SetActive(!Game._inventoryMenu.activeInHierarchy);
         }
         if (Input.GetKeyDown(KeyCode.F1))
         {
