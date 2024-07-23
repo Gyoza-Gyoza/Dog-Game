@@ -6,6 +6,24 @@ public class CameraController : MonoBehaviour
 {
     private Vector3 
         vel = Vector3.zero;
+
+    private static CameraController
+        cameraController;
+
+    private void Awake()
+    {
+        if (cameraController != null && cameraController != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            cameraController = this;
+        } 
+            
+        DontDestroyOnLoad(cameraController);
+    }
+
     private void Update()
     {
         Vector3 playerPos = new Vector3(Game._player.transform.position.x, Game._player.transform.position.y, -10f);

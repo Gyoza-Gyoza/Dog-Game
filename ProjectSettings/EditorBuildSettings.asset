@@ -12,13 +12,22 @@ EditorBuildSettings:
     path: Assets/Scenes/Town.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Archive Scenes/Dungeon1.unity
-    guid: 94a2018aacfc5454391d8ad69c5e9e5f
-  - enabled: 1
     path: Assets/Scenes/AugmentsMenu.unity
     guid: 718fbbc24e9dd9241a4ab09f366b5a0c
   - enabled: 1
     path: Assets/Scenes/PlayerEquipmentMenu.unity
     guid: caa1b3cd108e4db4298cb1f9ad72b0d0
+  - enabled: 1
+    path: Assets/Scenes/Dungeon1.unity
+    guid: 99f3c0b87697b0e44870b2bfc2d7fea5
+  - enabled: 1
+    path: Assets/Scenes/Dungeon2.unity
+    guid: 7bf0f5e4bc3b6e045804139cfcda59b2
+  - enabled: 1
+    path: Assets/Scenes/Dungeon3.unity
+    guid: 835e9b16cc022a14f89b44628b47032a
+  - enabled: 1
+    path: Assets/Scenes/Dungeon4.unity
+    guid: bb95d33aa03b6074fa3631eeeace1e4d
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 93bcd17d5632fa14fa8cb09dbe344783, type: 2}

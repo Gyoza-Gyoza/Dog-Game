@@ -56,8 +56,20 @@ public class Database : MonoBehaviour
     public Dictionary<string, Skill> _skillDB
     { get { return skillDB; } }
 
+    private static Database
+        database; 
+
     private void Awake()
     {
+        if (database != null && database != this)
+        {
+            Destroy(this.gameObject); 
+        }
+        else
+        {
+            database = this;
+        }
+
         if(Game._database == null)
         {
             Game._database = this;

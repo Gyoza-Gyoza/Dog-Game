@@ -17,11 +17,11 @@ public class Cursor : MonoBehaviour
     private Vector3
         mousePos;
 
-    public Vector3
-        _mousePos
-    {
-        get { return mousePos; }
-    }
+    public Vector3 _mousePos
+    { get { return mousePos; } }
+
+    public Stack<GameObject> _arrowPool
+    { get { return arrowPool; } set { arrowPool = value; } }
 
     private void Awake()
     {
