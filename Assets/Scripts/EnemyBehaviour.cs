@@ -26,6 +26,18 @@ public class EnemyBehaviour : EntityBehaviour
             ChangeDestination(target.transform.position);
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+            Debug.Log($"Dealt {attack} Damage");
+            collision.GetComponent<IDamageable>().TakeDamage(attack);
+        }
+    }
+    protected override void Death()
+    {
+        Game._enemyFactory.DestroyEnemy(gameObject);
+    }
     public void SetStats(string enemyName, int hp, int attack, int movementSpeed, int defence, string enemySprite, int goldDrop)
     {
         name = enemyName;

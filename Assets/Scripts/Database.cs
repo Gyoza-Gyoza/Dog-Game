@@ -19,15 +19,15 @@ public class Database : MonoBehaviour
 
     [SerializeField]
     private Dictionary<string, Entity> 
-        enemyList = new Dictionary<string, Entity>(), 
-        playerClassList = new Dictionary<string, Entity>();
+        enemyDB = new Dictionary<string, Entity>(), 
+        playerDB = new Dictionary<string, Entity>();
 
     //For testing
     [SerializeField]
-    private List<Player> playerList = new List<Player>();
+    private List<Player> playerList = new List<Player>(); 
 
-    private List<EnemyWaves>
-        enemyWaves = new List<EnemyWaves>();
+    private Dictionary<string, Wave>
+        waveDB = new Dictionary<string, Wave>();
 
     private List<Augment>
         augmentList = new List<Augment>();
@@ -39,13 +39,13 @@ public class Database : MonoBehaviour
         skillDB = new Dictionary<string, Skill>();
 
     public Dictionary<string, Entity> _enemyList 
-    { get { return enemyList; } }
+    { get { return enemyDB; } }
 
     public Dictionary<string, Entity> _playerClassList
-    { get { return playerClassList; } }
+    { get { return playerDB; } }
 
-    public List<EnemyWaves> _enemyWaves
-    { get { return enemyWaves; } }
+    public Dictionary<string, Wave> _waveDB
+    { get { return waveDB; } }
 
     public List<Augment> _augmentList
     { get { return augmentList; } }
@@ -68,14 +68,15 @@ public class Database : MonoBehaviour
         foreach (string enemy in enemies)
         {
             string[] enemyEntry = enemy.Split(',');
-            enemyList.Add(enemyEntry[0], new Enemy(
+            enemyDB.Add(enemyEntry[0], new Enemy(
                 enemyEntry[1],
                 int.Parse(enemyEntry[2]),
                 int.Parse(enemyEntry[3]),
                 int.Parse(enemyEntry[4]),
                 int.Parse(enemyEntry[5]),
                 enemyEntry[6],
-                int.Parse(enemyEntry[7])));
+                int.Parse(enemyEntry[7]),
+                enemyEntry[8]));
         }
 
         //Reading player csv
@@ -83,7 +84,7 @@ public class Database : MonoBehaviour
         foreach (string player in players)
         {
             string[] playerEntry = player.Split(',');
-            playerClassList.Add(playerEntry[0], new Player(
+            playerDB.Add(playerEntry[0], new Player(
                 playerEntry[1],
                 int.Parse(playerEntry[2]),
                 int.Parse(playerEntry[3]),
@@ -99,7 +100,21 @@ public class Database : MonoBehaviour
                 float.Parse(playerEntry[13])
                 ));
         }
-        Game._chosenPlayer = playerClassList["CLASS_THIEF"] as Player;
+        Game._chosenPlayer = playerDB["CLASS_THIEF"] as Player;
+
+        //Reading wave csv 
+        List<string> waves = ParseCSV("Assets/Databases/WaveList.csv");
+        foreach (string wave in waves)
+        {
+            string[] waveEntry = wave.Split(",");
+            waveDB.Add(waveEntry[0], new Wave(
+                waveEntry[1],
+                int.Parse(waveEntry[2]),
+                int.Parse(waveEntry[3]),
+                int.Parse(waveEntry[4]),
+                int.Parse(waveEntry[5])
+                ));
+        }
 
         //For testing 
         //foreach (Entity ent in playerClassList)
@@ -107,8 +122,6 @@ public class Database : MonoBehaviour
         //    playerList.Add(ent as Player);
         //}
 
-        //Change to read from enemywaves table
-        enemyWaves.Add(new EnemyWaves("1", "0@2#1@3#2@1"));
 
         augmentList.Add(new Augment("Weak augment", "This is a weak augment", 0)); 
         augmentList.Add(new Augment("Strong augment", "This is a strong augment", 1));

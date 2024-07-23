@@ -164,26 +164,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: af481d88b59a5444f9889ba024fe82c2
-    m_Address: Assets/Images/Class/thief.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6eddb3a918787d944801ba7c29020851
-    m_Address: Assets/Images/Class/archer.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8d77655e3c1a0de478f069a9ab7444ab
-    m_Address: Assets/Images/Class/mage.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b30f3f2b3dcb10341a77dfb9e3f7bed9
-    m_Address: Assets/Images/Class/knight.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 46d56fb719fb9664787fe081d359ddb8, type: 2}
   m_SchemaSet:
