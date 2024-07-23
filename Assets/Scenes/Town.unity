@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d339df414912f14fb1b1c467f2d05c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonName: Dungeon1
+  dungeonName: Dungeon2
   exitingDungeon: 0
 --- !u!61 &5249662
 BoxCollider2D:
@@ -1787,7 +1787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d339df414912f14fb1b1c467f2d05c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonName: Dungeon1
+  dungeonName: Dungeon4
   exitingDungeon: 0
 --- !u!61 &703067241
 BoxCollider2D:
@@ -77039,7 +77039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d339df414912f14fb1b1c467f2d05c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonName: Dungeon1
+  dungeonName: Dungeon3
   exitingDungeon: 0
 --- !u!61 &2037660033
 BoxCollider2D:
