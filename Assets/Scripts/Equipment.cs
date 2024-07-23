@@ -40,10 +40,16 @@ public class Equipment : Item
     public int _attackSpeed
     { get { return attackSpeed; } }
 
-    public Equipment(string itemName, string itemDescription, string itemSprite, int costPrice, EquipmentSlot slotType, int itemDamage, int itemDefence, int projectileSize, int criticalChance, int attackSpeed)
+    public Equipment(string itemName, string itemDescription, string itemSprite, int costPrice, string slotType, int itemDamage, int itemDefence, int projectileSize, int criticalChance, int attackSpeed)
         : base(itemName, itemDescription, itemSprite, costPrice)
     {
-        this.slotType = slotType;
+        //switch (slotType)
+        //{
+        //    case "Helmet":
+        //        this.slotType = EquipmentSlot.Helmet;
+        //        break;
+        //}
+        //this.slotType = slotType;
         this.itemDamage = itemDamage;
         this.itemDefence = itemDefence;
         this.projectileSize = projectileSize;
