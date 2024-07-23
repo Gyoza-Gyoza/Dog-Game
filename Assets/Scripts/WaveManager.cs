@@ -68,13 +68,21 @@ public class WaveManager : MonoBehaviour
             }
         }
     }
+    public void InitializeStage(int stageNumber)
+    {
+        InitializeSpawns();
+        InitializeWave(stageNumber);
+        NextWave();
+    }
     private void InitializeSpawns()
     {
         spawnLocations = GameObject.FindGameObjectsWithTag("EnemySpawnLocation");
     }
     private void InitializeWave(int stageNumber)
     {
-        //Initializes the wave into a dictionary to sort the waves by its waveNumber 
+        Debug.Log("Initializing waves");
+        Debug.Log(stageNumber);
+        //Initializes the requested wave into a dictionary to sort the waves by its waveNumber 
         Dictionary<int, Wave> waves = new Dictionary<int, Wave>();
         foreach(KeyValuePair<string, Wave> keyValuePair in Game._database._waveDB)
         {

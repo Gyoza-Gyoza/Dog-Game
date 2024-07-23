@@ -69,7 +69,7 @@ public class InputHandler : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            
+
         }
         if (Input.GetKeyDown(KeyCode.I))
         {

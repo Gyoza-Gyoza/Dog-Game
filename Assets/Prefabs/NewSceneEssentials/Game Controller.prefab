@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1928271607439480428}
   - component: {fileID: 1468813729893566709}
   - component: {fileID: -7780863140978722717}
+  - component: {fileID: 7174093219965437144}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -50,8 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7db85d998cc57459b7ec79e5d95f70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyList: []
-  playerClassList: []
   playerList: []
 --- !u!114 &2699289398969544293
 MonoBehaviour:
@@ -129,5 +128,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684a150413bbd664fb41dae67fcaa7c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryBoxList: []
-  equipmentBoxList: []
+--- !u!114 &7174093219965437144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15808581406615647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0743177bfcc014b858f7ec26be6fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnLocations: []
+  bossEnemy: 
+  spawnFrequency: 0
+  killCount: 0
+  waveCompleteCount: 0

@@ -27,7 +27,7 @@ public class GameSceneManager : MonoBehaviour
     }
     public void OpenScene(string sceneName, bool isAdditive, UnityAction actionOnLoad)
     {
-        Time.timeScale = 0f;
+        Time.timeScale = isAdditive ? 0f : 1f;
         LoadSceneMode mode = isAdditive ? LoadSceneMode.Additive : LoadSceneMode.Single;
         SceneManager.LoadSceneAsync(sceneName, mode).completed += (asyncop) =>
         {
