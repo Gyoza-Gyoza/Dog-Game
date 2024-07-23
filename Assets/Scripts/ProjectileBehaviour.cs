@@ -15,6 +15,9 @@ public class ProjectileBehaviour : SkillBehaviour
         projectileSpeed = 30f, 
         timer = 0f;
 
+    private ParticleSystem
+        ps;
+
     //Getters and setters for interacting with the variables
     public int _damage
     { get { return damage; } set { damage = value; } }
@@ -22,6 +25,10 @@ public class ProjectileBehaviour : SkillBehaviour
     public int _currentPierce
     { get { return currentPierce; } set { currentPierce = value; } }
 
+    private void Awake()
+    {
+        ps = GetComponent<ParticleSystem>();
+    }
     private void Update()
     {
         transform.localPosition += transform.TransformDirection(0f, projectileSpeed * Time.deltaTime, 0f); //Moves the projectile along its y axis over time
@@ -48,24 +55,26 @@ public class ProjectileBehaviour : SkillBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        IDamageable dmg = collision.GetComponent<IDamageable>(); //Stores the interface to reduce getcomponent calls
-
-        if (dmg != null) //Checks if the entity the skill collides with has the interface on it
+        if(collision.tag != "Player")
         {
-            dmg.TakeDamage(damage); //Deals damage to the enemy holding on to the interface
+            IDamageable dmg = collision.GetComponent<IDamageable>(); //Stores the interface to reduce getcomponent calls
 
-            currentPierce++; //Keeps track of how many enemies the projectile pierced 
-            if(currentPierce > projectilePierce) 
+            if (dmg != null) //Checks if the entity the skill collides with has the interface on it
             {
-                Game._skillManager.DestroySpell(this.gameObject); //Places the object in the pool after it pierces enemies based on its defined pierce
+                dmg.TakeDamage(damage); //Deals damage to the enemy holding on to the interface
 
-                if (spellEffects != null) //Checks if the delegate is null
+                currentPierce++; //Keeps track of how many enemies the projectile pierced 
+                if (currentPierce > projectilePierce)
                 {
-                    spellEffects.Invoke(); //Calls the delegate that contains any extra effects 
+                    Game._skillManager.DestroySpell(this.gameObject); //Places the object in the pool after it pierces enemies based on its defined pierce
+
+                    if (spellEffects != null) //Checks if the delegate is null
+                    {
+                        spellEffects.Invoke(); //Calls the delegate that contains any extra effects 
+                    }
                 }
             }
         }
-        //Debug.Log($"Pierce is {projectilePierce}, number of targets pierced is {currentPierce}");
     }
     //Assigns effects to the delegate
     public void SetSpellEffects(UnityAction action)
@@ -76,6 +85,8 @@ public class ProjectileBehaviour : SkillBehaviour
     private void OnEnable()
     {
         currentPierce = 0;
+        ps.Stop();
+        ps.Play();
     }
     //Disabling the particle system when its done and placing it in the pool
     private void OnDisable()

@@ -43,8 +43,6 @@ public class EntityBehaviour : MonoBehaviour, IDamageable
         {
             nav = GetComponent<NavMeshAgent>();
         }
-        //nav.updateRotation = false;
-        //nav.updateUpAxis = false;
     }
     public virtual void ChangeDestination(Vector3 target)
     {
@@ -67,9 +65,9 @@ public class EntityBehaviour : MonoBehaviour, IDamageable
             Death();
         }
     }
-    private void Death()
+    protected virtual void Death()
     {
-        Game._enemyFactory.DestroyEnemy(this.gameObject);
+
     }
     public void ResetHealth()
     {

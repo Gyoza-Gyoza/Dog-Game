@@ -63,6 +63,10 @@ public class PlayerBehaviour : EntityBehaviour
             }
         }
     }
+    protected override void Death()
+    {
+        Debug.Log("Player dead");
+    }
     public void SetStats(string entityName, int hp, int attack, int movementSpeed, int defence, string entitySprite, int attackSpeed, int attackRange, int critChance, string projectileType, string classHurtSprite, int dashSpeed, float dashDuration)
     {
         nav = GetComponent<NavMeshAgent>();

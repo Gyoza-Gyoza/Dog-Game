@@ -97,7 +97,6 @@ public class SkillManager : MonoBehaviour
 
                 if (timer >= 1f)
                 {
-                    Debug.Log(skillLoadout[0]._skill._skillCooldown);
                     skillLoadout[0]._castSkill.Invoke();
                     timer = 0f;
                 }
