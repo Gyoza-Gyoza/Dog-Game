@@ -17,9 +17,12 @@ public class Equipment : Item
 
     protected int
         itemDamage,
-        itemDefence,
-        projectileSize,
+        itemDefence;
+
+    
+    protected float
         criticalChance,
+        projectileSize,
         attackSpeed;
 
     public EquipmentSlot _slotType
@@ -31,25 +34,40 @@ public class Equipment : Item
     public int _itemDefence
     { get { return itemDefence; } }
 
-    public int _projectileSize
+    public float _projectileSize
     { get { return projectileSize; } }
 
-    public int _criticalChance
+    public float _criticalChance
     { get { return criticalChance; } }
 
-    public int _attackSpeed
+    public float _attackSpeed
     { get { return attackSpeed; } }
 
-    public Equipment(string itemName, string itemDescription, string itemSprite, int costPrice, string slotType, int itemDamage, int itemDefence, int projectileSize, int criticalChance, int attackSpeed)
-        : base(itemName, itemDescription, itemSprite, costPrice)
+    public Equipment(string itemName, string itemDescription, string itemSprite, int costPrice, int sellPrice, string slotType, int itemDamage, int itemDefence, float projectileSize, float criticalChance, float attackSpeed)
+        : base(itemName, itemDescription, itemSprite, costPrice, sellPrice)
     {
-        //switch (slotType)
-        //{
-        //    case "Helmet":
-        //        this.slotType = EquipmentSlot.Helmet;
-        //        break;
-        //}
-        //this.slotType = slotType;
+        switch (slotType)
+        {
+            case "HELMET":
+                this.slotType = EquipmentSlot.Helmet;
+                break;
+            case "OVERALL":
+                this.slotType = EquipmentSlot.Overall;
+                break;
+            case "GLOVE":
+                this.slotType= EquipmentSlot.Glove;
+                break;
+            case "BOOT":
+                this.slotType = EquipmentSlot.Boot;
+                break;
+            case "WEAPON":
+                this.slotType = EquipmentSlot.Weapon;
+                break;
+            case "ACCESSORY":
+                this.slotType = EquipmentSlot.Accessory;
+                break;
+        }
+
         this.itemDamage = itemDamage;
         this.itemDefence = itemDefence;
         this.projectileSize = projectileSize;

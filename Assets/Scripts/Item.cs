@@ -10,7 +10,8 @@ public class Item
         itemSprite;
 
     protected int
-        costPrice;
+        costPrice,
+        sellPrice;
 
     public string _itemName
     { get { return itemName; } }
@@ -24,11 +25,15 @@ public class Item
     public int _costPrice
     { get { return costPrice; } }
 
-    public Item(string itemName, string itemDescription, string itemSprite, int costPrice)
+    public int _sellPrice
+    { get { return sellPrice;}}
+
+    public Item(string itemName, string itemDescription, string itemSprite, int costPrice, int sellPrice)
     {
         this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.itemSprite = itemSprite;
         this.costPrice = costPrice;
+        this.sellPrice = sellPrice;
     }
 }
