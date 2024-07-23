@@ -1,9 +1,0 @@
-equipmentID (PK),equipmentType (FK),equipmentName,equipmentDescription,imagePath,armour,magicResist,healthRegen,luck,moveSpeed,criticalChance,costPrice,canStack,stackSize
-EQ00001,HELMET,APPRENTICE KNIGHT HELMET,A basic helmet worn by novice knights.,/equipment/knight/apprenticehelmet,10,10,5,NULL,NULL,NULL,100,FALSE,1
-EQ00002,HELMET,ARCANE KNIGHT HELMET,"Enchanted with ancient runes, this helmet offers substantial protection and regeneration capabilities.",/equipment/knight/arcanehelmet,20,20,10,NULL,NULL,NULL,200,FALSE,1
-EQ00003,OVERALL,APPRENTICE KNIGHT OVERALL,A sturdy overall worn by apprentice knights.,/equipment/knight/apprenticeoverall,25,25,NULL,5,NULL,NULL,100,FALSE,1
-EQ00004,OVERALL,ARCANE KNIGHT BATTLEMAIL,"An overall imbued with arcane magic, enhancing the wearer’s luck and providing robust protection.",/equipment/knight/arcaneoverall,35,35,NULL,10,NULL,NULL,200,FALSE,1
-EQ00005,GLOVE,APPRENTICE KNIGHT GLOVE,Basic gloves designed for apprentice knights. ,/equipment/knight/apprenticeglove,5,5,NULL,NULL,5,NULL,100,FALSE,1
-EQ00006,GLOVE,ARCANE KNIGHT GLOVE,"Enchanted gloves for arcane knights, significantly increasing critical strike potential.",/equipment/knight/arcaneglove,10,10,NULL,NULL,10,NULL,200,FALSE,1
-EQ00007,BOOT,APPRENTICE KNIGHT BOOT,"Basic boots for apprentice knights, offering a slight boost in movement speed.",/equipment/knight/apprenticeboot,5,5,NULL,NULL,NULL,5,100,FALSE,1
-EQ00008,BOOT,ARCANE KNIGHT BOOT,"Boots infused with arcane energy, providing a significant boost in movement speed for swift combat maneuvers.",/equipment/knight/arcaneboot,10,10,NULL,NULL,NULL,10,200,FALSE,1

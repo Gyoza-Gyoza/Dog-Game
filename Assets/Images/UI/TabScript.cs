@@ -14,4 +14,9 @@ public class TabScript : MonoBehaviour
         }  
         tabs[tab-1].SetActive(true);
     }
+
+    public void CloseMenu()
+    {
+        gameObject.SetActive(!gameObject.activeInHierarchy);
+    }
 }

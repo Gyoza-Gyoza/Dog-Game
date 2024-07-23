@@ -26,6 +26,9 @@ public class Database : MonoBehaviour
     [SerializeField]
     private List<Player> playerList = new List<Player>(); 
 
+    private Dictionary<string, Equipment>
+        equipmentDB = new Dictionary<string, Equipment>();
+
     private Dictionary<string, Wave>
         waveDB = new Dictionary<string, Wave>();
 
@@ -116,6 +119,26 @@ public class Database : MonoBehaviour
                 ));
         }
 
+        List<string> equipments = ParseCSV("Assets/Databases/EquipmentList.csv");
+        foreach (string equipment in equipments)
+        {
+            string[] equipmentEntry = equipment.Split(",");
+            equipmentDB.Add(equipmentEntry[0], new Equipment(
+                equipmentEntry[1],
+                equipmentEntry[2],
+                equipmentEntry[3],
+                int.Parse(equipmentEntry[4]),
+                int.Parse(equipmentEntry[5]),
+                equipmentEntry[6],
+                int.Parse(equipmentEntry[7]),
+                int.Parse(equipmentEntry[8]),
+                float.Parse(equipmentEntry[9]),
+                float.Parse(equipmentEntry[10]),
+                float.Parse(equipmentEntry[11])
+                ));
+            Debug.Log(equipmentEntry[0] + equipmentEntry[1] + equipmentEntry[2] + equipmentEntry[3] + equipmentEntry[4] + equipmentEntry[5] + equipmentEntry[6] + equipmentEntry[7] + equipmentEntry[8] + equipmentEntry[9] + equipmentEntry[10] + equipmentEntry[11]);
+        }
+
         //For testing 
         //foreach (Entity ent in playerClassList)
         //{
@@ -127,14 +150,14 @@ public class Database : MonoBehaviour
         augmentList.Add(new Augment("Strong augment", "This is a strong augment", 1));
         augmentList.Add(new Augment("Legendary augment", "This is a legendary augment", 2));
 
-        itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword1.png", 1, "Weapon", 1, 1, 1, 1, 1));
-        itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword2.png", 1, "Weapon", 1, 1, 1, 1, 1));
-        itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword3.png", 1, "Weapon", 1, 1, 1, 1, 1));
-        itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword4.png", 1, "Weapon", 1, 1, 1, 1, 1));
-        itemList.Add(new Equipment("Helmet1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Helmet1.png", 1, "Helmet", 1, 1 ,1, 1, 1));
-        itemList.Add(new Equipment("Overall1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Overall1.png", 1, "Overall", 1 ,1, 1, 1, 1));
-        itemList.Add(new Equipment("Boot1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Boot1.png", 1, "Boot", 1, 1, 1, 1 ,1));
-        itemList.Add(new Equipment("Glove1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Glove1.png", 1, "Glove", 1, 1, 1 ,1, 1));
+        //itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword1.png", 1, "Weapon", 1, 1, 1, 1, 1));
+        //itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword2.png", 1, "Weapon", 1, 1, 1, 1, 1));
+        //itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword3.png", 1, "Weapon", 1, 1, 1, 1, 1));
+        //itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword4.png", 1, "Weapon", 1, 1, 1, 1, 1));
+        //itemList.Add(new Equipment("Helmet1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Helmet1.png", 1, "Helmet", 1, 1 ,1, 1, 1));
+        //itemList.Add(new Equipment("Overall1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Overall1.png", 1, "Overall", 1 ,1, 1, 1, 1));
+        //itemList.Add(new Equipment("Boot1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Boot1.png", 1, "Boot", 1, 1, 1, 1 ,1));
+        //itemList.Add(new Equipment("Glove1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Glove1.png", 1, "Glove", 1, 1, 1 ,1, 1));
 
         skillDB.Add("PROJ0001", new Projectile("Basic Projectile", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
         skillDB.Add("PROJ0002", new Projectile("Basic Projectile2", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
