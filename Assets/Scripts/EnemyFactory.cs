@@ -65,5 +65,9 @@ public class EnemyFactory : MonoBehaviour
 
         return chosenEnemy;
     }
+    public void ResetFactory()
+    {
+        enemyPool.Clear();
+    }
 }
 

@@ -50,5 +50,4 @@ public class Player : Entity
         this.dashSpeed = dashSpeed;
         this.dashDuration = dashDuration;
     }
-
 }

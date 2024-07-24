@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour
         if (cameraController != null && cameraController != this)
         {
             Destroy(this.gameObject);
+            return;
         }
         else
         {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,6 +16,9 @@ public class PlayerBehaviour : EntityBehaviour
         dashSpeed,
         dashDuration;
 
+    protected WaitForSeconds
+        iFrameDuration = new WaitForSeconds(1f);
+
     private Vector2
         moveDir;
 
@@ -22,7 +26,8 @@ public class PlayerBehaviour : EntityBehaviour
         player;
 
     private bool
-        disableMovement = false;
+        disableMovement = false,
+        damageImmune = false;
 
     public string _projectileType
     { get { return projectileType; } }
@@ -41,6 +46,7 @@ public class PlayerBehaviour : EntityBehaviour
         if(player != null && player != this)
         {
             Destroy(this.gameObject);
+            return;
         }
         else
         {
@@ -63,15 +69,41 @@ public class PlayerBehaviour : EntityBehaviour
             }
         }
     }
+    public override void TakeDamage(int damage)
+    {
+        if(!damageImmune)
+        {
+            currentHp -= (int)(damage * Game.CalculateDamageReduction(defence));
+            Debug.Log($"Took {damage * Game.CalculateDamageReduction(defence)}");
+
+            StartCoroutine(IFrame());
+
+            if (currentHp < 0)
+            {
+                Death();
+            }
+        }
+    }
+    private IEnumerator IFrame()
+    {
+        damageImmune = true;
+
+        yield return iFrameDuration;
+
+        damageImmune = false;
+    }
+    public void Respawn()
+    {
+        currentHp = hp;
+        Game._gameSceneManager.OpenScene("Town", false, null);
+    }
     protected override void Death()
     {
-        Debug.Log("Player dead");
+        Respawn();
     }
     public void SetStats(string entityName, int hp, int attack, int movementSpeed, int defence, string entitySprite, int attackSpeed, int attackRange, int critChance, string projectileType, string classHurtSprite, int dashSpeed, float dashDuration)
     {
         nav = GetComponent<NavMeshAgent>();
-        //Add attack range
-        //GetComponentInChildren<CircleCollider2D>().radius = attackRange;
         name = entityName;
         this.hp = hp;
         this.attack = attack;
@@ -85,5 +117,6 @@ public class PlayerBehaviour : EntityBehaviour
         this.classHurtSprite = classHurtSprite;
         Game._skillManager._dashSpeed = dashSpeed;
         Game._skillManager._dashDuration = dashDuration;
+        ResetHealth();
     }
 }

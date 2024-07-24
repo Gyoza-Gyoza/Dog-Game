@@ -30,7 +30,6 @@ public class EnemyBehaviour : EntityBehaviour
     {
         if(collision.tag == "Player")
         {
-            Debug.Log($"Dealt {attack} Damage");
             collision.GetComponent<IDamageable>().TakeDamage(attack);
         }
     }

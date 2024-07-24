@@ -4,21 +4,15 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    [SerializeField]
     private GameObject[]
-        spawnLocations; 
+        spawnLocations;
 
     private List<string>
         enemySpawnPool = new List<string>();
 
-    [SerializeField]
-    private string
-        bossEnemy;
-
     public Queue<Wave> 
         enemyWaves = new Queue<Wave>();
 
-    [SerializeField]
     private int
         spawnFrequency,
         killCount, 
@@ -27,8 +21,14 @@ public class WaveManager : MonoBehaviour
     private float
         timer;
 
+    private bool
+        startWave = false;
+
     public int _killCount
     { get { return killCount; } set { killCount = value; } }
+
+    public List<string> _enemySpawnPool
+    { get { return enemySpawnPool; } }
 
     public GameObject[] _spawnLocations
     { get { return spawnLocations; } }
@@ -50,21 +50,24 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
-        if (timer < 1f)
+        if(startWave)
         {
-            timer += Time.deltaTime * spawnFrequency;
+            if (timer < 1f)
+            {
+                timer += Time.deltaTime * spawnFrequency;
 
-            if (timer >= 1f)
-            {
-                SpawnEnemy(enemySpawnPool[Random.Range(0,enemySpawnPool.Count)]); //Spawns a random enemy from the pool
-                timer = 0f;
+                if (timer >= 1f)
+                {
+                    SpawnEnemy(enemySpawnPool[Random.Range(0, enemySpawnPool.Count)]); //Spawns a random enemy from the pool
+                    timer = 0f;
+                }
             }
-        }
-        if(killCount >= waveCompleteCount)
-        {
-            if(enemyWaves.Count != 0)
+            if (killCount >= waveCompleteCount)
             {
-                NextWave();
+                if (enemyWaves.Count != 0)
+                {
+                    NextWave();
+                }
             }
         }
     }
@@ -73,6 +76,7 @@ public class WaveManager : MonoBehaviour
         InitializeSpawns();
         InitializeWave(stageNumber);
         NextWave();
+        startWave = true;
     }
     private void InitializeSpawns()
     {
@@ -119,5 +123,12 @@ public class WaveManager : MonoBehaviour
     {
         //Picks a random location to spawn the enemy
         Game._enemyFactory.GetEnemy(enemyId, spawnLocations[Random.Range(0, spawnLocations.Length)].transform);
+    }
+    public void ResetWaves()
+    {
+        startWave = false;
+        spawnLocations = null;
+        enemySpawnPool.Clear();
+        enemyWaves.Clear();
     }
 }

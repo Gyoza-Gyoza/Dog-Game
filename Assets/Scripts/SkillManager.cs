@@ -385,4 +385,11 @@ public class SkillManager : MonoBehaviour
         }
         obj._canCast = true;
     }
+    public void ResetSkillPools()
+    {
+        foreach(KeyValuePair<string, Stack<GameObject>> keyValuePair in skillPools)
+        {
+            keyValuePair.Value.Clear();
+        }
+    }
 }

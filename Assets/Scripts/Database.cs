@@ -66,7 +66,8 @@ public class Database : MonoBehaviour
     {
         if (database != null && database != this)
         {
-            Destroy(this.gameObject); 
+            Destroy(this.gameObject);
+            return;
         }
         else
         {

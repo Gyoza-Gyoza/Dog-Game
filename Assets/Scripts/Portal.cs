@@ -19,8 +19,6 @@ public class Portal : MonoBehaviour
             Game._gameSceneManager.OpenScene(dungeonName, false, () => //Opens the scene 
             {
                 Debug.Log(dungeonName[dungeonName.Length - 1]);
-                Game._player._nav.Warp(Vector3.zero); //Sets the player position 
-                Game._cursor._arrowPool.Clear();
                 Game._waveManager.InitializeStage(int.Parse(dungeonName[dungeonName.Length - 1].ToString())); //Gets the wave number to initialize 
             });
         }

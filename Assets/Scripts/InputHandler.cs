@@ -25,6 +25,7 @@ public class InputHandler : MonoBehaviour
         {
             Game._inputHandler = this;
         }
+        Debug.Log(Game.CalculateDamageReduction(100));
     }
     public void SetInputReceiver(IInputReceiver inputReceiver)
     {

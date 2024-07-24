@@ -92,4 +92,9 @@ public static class Game
 
     public static GameObject _inventoryMenu
     { get { return inventoryMenu; } set { inventoryMenu = value; } }
+
+    public static float CalculateDamageReduction(int defence)
+    {
+        return (float)defence / (defence + 100);
+    }
 }
