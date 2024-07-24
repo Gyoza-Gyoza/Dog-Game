@@ -74,7 +74,7 @@ public class PlayerBehaviour : EntityBehaviour
         if(!damageImmune)
         {
             currentHp -= (int)(damage * Game.CalculateDamageReduction(defence));
-            Debug.Log($"Took {damage * Game.CalculateDamageReduction(defence)}");
+            //Debug.Log($"Took {damage * Game.CalculateDamageReduction(defence)}");
 
             StartCoroutine(IFrame());
 

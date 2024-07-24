@@ -82,8 +82,8 @@ public static class Game
     #endregion
 
     private static Player
-        chosenPlayer; 
-    
+        chosenPlayer;
+
     private static GameObject
         inventoryMenu;
 

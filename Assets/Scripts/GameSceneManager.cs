@@ -8,7 +8,7 @@ public class GameSceneManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject
-        dependencies; 
+        dependencies;
 
     private void Awake()
     {

@@ -164,6 +164,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6b4aa5205f9d0749b1370b3ddedcb1e
+    m_Address: Assets/Prefabs/NewSceneEssentials
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 46d56fb719fb9664787fe081d359ddb8, type: 2}
   m_SchemaSet:
