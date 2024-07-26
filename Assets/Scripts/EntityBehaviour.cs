@@ -57,9 +57,10 @@ public class EntityBehaviour : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
-        currentHp -= damage;
+        currentHp -= (int)(damage * Game.CalculateDamageReduction(this.defence));
+        //Debug.Log($"Dealt {damage} initial damage, Armor reduced damage by {(damage * Game.CalculateDamageReduction(this.defence))}, dealing {damage - (damage * Game.CalculateDamageReduction(defence))} damage");
         if (currentHp < 0)
         {
             Death();

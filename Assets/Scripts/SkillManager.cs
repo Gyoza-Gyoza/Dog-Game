@@ -196,7 +196,7 @@ public class SkillManager : MonoBehaviour
     {
         float dashTimer = 0f;
 
-        player._disableMovement = true;
+        Game._inputHandler._disableMovement = true;
         while (dashTimer < dashDuration)
         {
             player.transform.position = Vector3.MoveTowards(player.transform.position, dashPos, dashSpeed * Time.deltaTime);
@@ -205,7 +205,7 @@ public class SkillManager : MonoBehaviour
         }
 
         player._nav.SetDestination(player.transform.position);
-        player._disableMovement = false;
+        Game._inputHandler._disableMovement = false;
     }
     #region Loading
     public void InitializePrefabSkills(string skillId)
@@ -384,5 +384,12 @@ public class SkillManager : MonoBehaviour
             yield return null;
         }
         obj._canCast = true;
+    }
+    public void ResetSkillPools()
+    {
+        foreach(KeyValuePair<string, Stack<GameObject>> keyValuePair in skillPools)
+        {
+            keyValuePair.Value.Clear();
+        }
     }
 }

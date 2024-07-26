@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,6 +16,9 @@ public class PlayerBehaviour : EntityBehaviour
         dashSpeed,
         dashDuration;
 
+    protected WaitForSeconds
+        iFrameDuration = new WaitForSeconds(1f);
+
     private Vector2
         moveDir;
 
@@ -22,15 +26,12 @@ public class PlayerBehaviour : EntityBehaviour
         player;
 
     private bool
-        disableMovement = false;
+        damageImmune = false;
 
     public string _projectileType
     { get { return projectileType; } }
     public int _attackSpeed
     { get { return player.attackSpeed; } }
-
-    public bool _disableMovement
-    { get { return player.disableMovement; } set { player.disableMovement = value; } }
 
     //public Dictionary<EquipmentSlot, Equipment> _equipmentList
     //{ get { return equipmentList; } }
@@ -41,6 +42,7 @@ public class PlayerBehaviour : EntityBehaviour
         if(player != null && player != this)
         {
             Destroy(this.gameObject);
+            return;
         }
         else
         {
@@ -50,28 +52,51 @@ public class PlayerBehaviour : EntityBehaviour
     }
     public override void ChangeDestination(Vector3 target)
     {
-        if(!disableMovement)
+        nav.SetDestination(target); 
+        if (transform.position.x > target.x)
         {
-            nav.SetDestination(target); 
-            if (transform.position.x > target.x)
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
+    public override void TakeDamage(int damage)
+    {
+        if(!damageImmune)
+        {
+            currentHp -= (int)(damage * Game.CalculateDamageReduction(defence));
+            //Debug.Log($"Took {damage * Game.CalculateDamageReduction(defence)}");
+
+            StartCoroutine(IFrame());
+
+            if (currentHp < 0)
             {
-                GetComponent<SpriteRenderer>().flipX = true;
-            }
-            else
-            {
-                GetComponent<SpriteRenderer>().flipX = false;
+                Death();
             }
         }
     }
+    private IEnumerator IFrame()
+    {
+        damageImmune = true;
+
+        yield return iFrameDuration;
+
+        damageImmune = false;
+    }
+    public void Respawn()
+    {
+        currentHp = hp;
+        Game._gameSceneManager.OpenScene("Town", false, null);
+    }
     protected override void Death()
     {
-        Debug.Log("Player dead");
+        Respawn();
     }
     public void SetStats(string entityName, int hp, int attack, int movementSpeed, int defence, string entitySprite, int attackSpeed, int attackRange, int critChance, string projectileType, string classHurtSprite, int dashSpeed, float dashDuration)
     {
         nav = GetComponent<NavMeshAgent>();
-        //Add attack range
-        //GetComponentInChildren<CircleCollider2D>().radius = attackRange;
         name = entityName;
         this.hp = hp;
         this.attack = attack;
@@ -85,5 +110,6 @@ public class PlayerBehaviour : EntityBehaviour
         this.classHurtSprite = classHurtSprite;
         Game._skillManager._dashSpeed = dashSpeed;
         Game._skillManager._dashDuration = dashDuration;
+        ResetHealth();
     }
 }
