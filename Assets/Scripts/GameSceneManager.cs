@@ -31,12 +31,21 @@ public class GameSceneManager : MonoBehaviour
         LoadSceneMode mode = isAdditive ? LoadSceneMode.Additive : LoadSceneMode.Single;
         SceneManager.LoadSceneAsync(sceneName, mode).completed += (asyncop) =>
         {
-            Game._cursor._arrowPool.Clear(); //Clears the cursor pool to prevent missing references 
-            Game._waveManager.ResetWaves(); //Resets the wave manager
-            Game._enemyFactory.ResetFactory(); //Resets enemy factory
-            Game._skillManager.ResetSkillPools(); //Resets skill pools
-            actionOnLoad?.Invoke();
-            Game._player._nav.Warp(Vector3.zero); //Sets the player position 
+            if(isAdditive)
+            {
+                actionOnLoad?.Invoke(); //Invokes the unityaction given in the argument
+                Debug.Log("Opened additive scene");
+            }
+            else
+            {
+                Game._cursor._arrowPool.Clear(); //Clears the cursor pool to prevent missing references 
+                Game._waveManager.ResetWaves(); //Resets the wave manager
+                Game._enemyFactory.ResetFactory(); //Resets enemy factory
+                Game._skillManager.ResetSkillPools(); //Resets skill pools
+                actionOnLoad?.Invoke(); //Invokes the unityaction given in the argument
+                Game._player._nav.Warp(Vector3.zero); //Sets the player position 
+                Debug.Log("Changed scene");
+            }
         };
     }
     public void CloseScene(string sceneName)

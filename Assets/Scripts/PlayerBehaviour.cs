@@ -26,16 +26,12 @@ public class PlayerBehaviour : EntityBehaviour
         player;
 
     private bool
-        disableMovement = false,
         damageImmune = false;
 
     public string _projectileType
     { get { return projectileType; } }
     public int _attackSpeed
     { get { return player.attackSpeed; } }
-
-    public bool _disableMovement
-    { get { return player.disableMovement; } set { player.disableMovement = value; } }
 
     //public Dictionary<EquipmentSlot, Equipment> _equipmentList
     //{ get { return equipmentList; } }
@@ -56,17 +52,14 @@ public class PlayerBehaviour : EntityBehaviour
     }
     public override void ChangeDestination(Vector3 target)
     {
-        if(!disableMovement)
+        nav.SetDestination(target); 
+        if (transform.position.x > target.x)
         {
-            nav.SetDestination(target); 
-            if (transform.position.x > target.x)
-            {
-                GetComponent<SpriteRenderer>().flipX = true;
-            }
-            else
-            {
-                GetComponent<SpriteRenderer>().flipX = false;
-            }
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
         }
     }
     public override void TakeDamage(int damage)

@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+[System.Serializable]
 public enum EquipmentSlot
 {
     Helmet,
     Overall,
     Glove,
     Boot,
-    Weapon,
-    Accessory
+    Accessory,
+    Weapon
 }
 public class Equipment : Item
 {

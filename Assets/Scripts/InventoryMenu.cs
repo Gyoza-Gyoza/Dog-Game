@@ -10,9 +10,4 @@ public class InventoryMenu : MonoBehaviour
         Game._inventoryMenu = gameObject;
         gameObject.SetActive(false);
     }
-
-    public void CloseMenu()
-    {
-        gameObject.SetActive(!gameObject.activeInHierarchy);
-    }
 }

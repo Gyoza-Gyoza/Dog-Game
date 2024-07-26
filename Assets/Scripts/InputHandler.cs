@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class InputHandler : MonoBehaviour
 {
-    private IInputReceiver activeReceiver; //GET RID OF THIS
     private enum Menus
     {
         None, 
@@ -19,22 +18,18 @@ public class InputHandler : MonoBehaviour
     private Menus
         activeScene = Menus.None;
 
+    private bool
+        disableMovement = false;
+
+    public bool _disableMovement
+    {  get { return disableMovement; } set { disableMovement = value; } }
+
     private void Awake()
     {
         if(Game._inputHandler == null)
         {
             Game._inputHandler = this;
         }
-        Debug.Log(Game.CalculateDamageReduction(100));
-    }
-    public void SetInputReceiver(IInputReceiver inputReceiver)
-    {
-        //set current input receiver (to control 1 thing at a time)
-        activeReceiver = inputReceiver;
-    }
-    private void FixedUpdate()
-    {
-        //Movement(); 
     }
     // Update is called once per frame
     void Update()
@@ -48,7 +43,7 @@ public class InputHandler : MonoBehaviour
     }
     private void SetClickDestination()
     {
-        if(Time.timeScale > 0f)
+        if(Time.timeScale > 0f && !disableMovement)
         {
             Game._player.ChangeDestination(Game._cursor._mousePos);
             Game._cursor.SpawnArrowIndicator(Game._cursor._mousePos);
@@ -56,26 +51,41 @@ public class InputHandler : MonoBehaviour
     }
     private void GetKeyInput()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Game._enemyFactory.GetEnemy("ENEM00001", transform);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Game._enemyFactory.GetEnemy("ENEM00002", transform);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Game._enemyFactory.GetEnemy("ENEM00003", transform);
-        }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    Game._enemyFactory.GetEnemy("ENEM00001", transform);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    Game._enemyFactory.GetEnemy("ENEM00002", transform);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    Game._enemyFactory.GetEnemy("ENEM00003", transform);
+        //}
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Debug.Log(Game._inventoryMenu.name);
             Game._inventoryMenu.SetActive(!Game._inventoryMenu.activeInHierarchy);
+            if(Time.timeScale == 0f)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            Game._tabManager.gameObject.SetActive(!Game._tabManager.gameObject.activeInHierarchy);
+            if (Time.timeScale == 0f)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
         }
         if (Input.GetKeyDown(KeyCode.F1))
         {
@@ -90,53 +100,63 @@ public class InputHandler : MonoBehaviour
             Game._player.ChangeDestination(Game._player.transform.position);
         }
     }
-    private void Movement()
+    public void PauseGame()
     {
-        float horDir = 0f;
-        float vertDir = 0f;
-
-        if (Input.GetAxis("Horizontal") > 0)
-        {
-            horDir = 1f;
-        }
-        else if (Input.GetAxis("Horizontal") < 0)
-        {
-            horDir = -1f;
-        }
-
-        if (Input.GetAxis("Vertical") > 0)
-        {
-            vertDir = 1f;
-        }
-        else if (Input.GetAxis("Vertical") < 0)
-        {
-            vertDir = -1f;
-        }
-
-        activeReceiver.DoMoveDir(new Vector2(horDir, vertDir));
+        Time.timeScale = 0f;
+        disableMovement = true;
     }
-    private void GetMovementInput()
+    public void ResumeGame()
     {
-        if (Input.GetButtonDown("Horizontal"))
-        {
-            if (Input.GetAxisRaw("Horizontal") > 0)
-            {
-                activeReceiver.DoRightAction();
-            }
-            else if (Input.GetAxisRaw("Horizontal") < 0)
-            {
-                activeReceiver.DoLeftAction();
-            }
-        }
-        else if (Input.GetButtonDown("Submit"))
-        {
-            activeReceiver.DoSubmitAction();
-        }
-        else if (Input.GetButtonDown("Cancel"))
-        {
-            activeReceiver.DoCancelAction();
-        }
+        Time.timeScale = 1f; 
+        disableMovement = false;
     }
+    //private void Movement()
+    //{
+    //    float horDir = 0f;
+    //    float vertDir = 0f;
+
+    //    if (Input.GetAxis("Horizontal") > 0)
+    //    {
+    //        horDir = 1f;
+    //    }
+    //    else if (Input.GetAxis("Horizontal") < 0)
+    //    {
+    //        horDir = -1f;
+    //    }
+
+    //    if (Input.GetAxis("Vertical") > 0)
+    //    {
+    //        vertDir = 1f;
+    //    }
+    //    else if (Input.GetAxis("Vertical") < 0)
+    //    {
+    //        vertDir = -1f;
+    //    }
+
+    //    activeReceiver.DoMoveDir(new Vector2(horDir, vertDir));
+    //}
+    //private void GetMovementInput()
+    //{
+    //    if (Input.GetButtonDown("Horizontal"))
+    //    {
+    //        if (Input.GetAxisRaw("Horizontal") > 0)
+    //        {
+    //            activeReceiver.DoRightAction();
+    //        }
+    //        else if (Input.GetAxisRaw("Horizontal") < 0)
+    //        {
+    //            activeReceiver.DoLeftAction();
+    //        }
+    //    }
+    //    else if (Input.GetButtonDown("Submit"))
+    //    {
+    //        activeReceiver.DoSubmitAction();
+    //    }
+    //    else if (Input.GetButtonDown("Cancel"))
+    //    {
+    //        activeReceiver.DoCancelAction();
+    //    }
+    //}
     private void ToggleMenus(Menus menuToToggle)
     {
         switch (menuToToggle)

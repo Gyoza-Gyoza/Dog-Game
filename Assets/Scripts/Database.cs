@@ -4,7 +4,6 @@ using System.IO;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEditor.PackageManager.UI;
 
 public enum DatabaseTypes
 {
@@ -59,6 +58,9 @@ public class Database : MonoBehaviour
     public Dictionary<string, Skill> _skillDB
     { get { return skillDB; } }
 
+    public Dictionary<string, Equipment> _equipmentDB
+    { get { return equipmentDB; } }
+
     private static Database
         database; 
 
@@ -80,7 +82,7 @@ public class Database : MonoBehaviour
         }
 
         //Reading enemies csv 
-        List<string> enemies = ParseCSV("Assets/Databases/EnemyList.csv");
+        List<string> enemies = ParseCSV("/Databases/EnemyList.csv");
         foreach (string enemy in enemies)
         {
             string[] enemyEntry = enemy.Split(',');
@@ -96,7 +98,7 @@ public class Database : MonoBehaviour
         }
 
         //Reading player csv
-        List<string> players = ParseCSV("Assets/Databases/ClassList.csv"); 
+        List<string> players = ParseCSV("/Databases/ClassList.csv"); 
         foreach (string player in players)
         {
             string[] playerEntry = player.Split(',');
@@ -119,7 +121,7 @@ public class Database : MonoBehaviour
         Game._chosenPlayer = playerDB["CLASS_THIEF"] as Player;
 
         //Reading wave csv 
-        List<string> waves = ParseCSV("Assets/Databases/WaveList.csv");
+        List<string> waves = ParseCSV("/Databases/WaveList.csv");
         foreach (string wave in waves)
         {
             string[] waveEntry = wave.Split(",");
@@ -132,7 +134,7 @@ public class Database : MonoBehaviour
                 ));
         }
 
-        List<string> equipments = ParseCSV("Assets/Databases/EquipmentList.csv");
+        List<string> equipments = ParseCSV("/Databases/EquipmentList.csv");
         foreach (string equipment in equipments)
         {
             string[] equipmentEntry = equipment.Split(",");
@@ -186,7 +188,7 @@ public class Database : MonoBehaviour
     {
         List<string> result = new List<string>();
 
-        sr = File.OpenText(filePath); 
+        sr = File.OpenText(Application.streamingAssetsPath + filePath); 
 
         sr.ReadLine();
         while (!sr.EndOfStream)

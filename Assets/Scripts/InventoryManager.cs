@@ -29,13 +29,17 @@ public class InventoryManager : MonoBehaviour
         equipmentList = new Dictionary<EquipmentSlot, Equipment>();
 
     private int
-        inventorySize = 15;
+        inventorySize = 15, 
+        goldCount;
 
     public ItemSlotScript[] _inventoryBoxList
     {  get { return inventoryBoxList; } set { inventoryBoxList = value; } }
 
     public EquipmentSlotScript[] _equipmentBoxList
     { get { return equipmentBoxList; } set {  equipmentBoxList = value; } }
+
+    public int _goldCount
+    { get { return goldCount; } }
 
     private void Awake()
     {
@@ -165,6 +169,11 @@ public class InventoryManager : MonoBehaviour
             int rand = UnityEngine.Random.Range(0, Game._database._itemList.Count);
             PickupItem(Game._database._itemList[rand]);
         }
+    }
+    public void GainGold(int goldAmount)
+    {
+        goldCount += goldAmount;
+        Debug.Log($"Gained {goldAmount}, current gold is {goldCount}");
     }
     private void UpdateInventory()
     {

@@ -36,6 +36,7 @@ public class EnemyBehaviour : EntityBehaviour
     protected override void Death()
     {
         Game._enemyFactory.DestroyEnemy(gameObject);
+        Game._inventoryManager.GainGold(goldDrop);
     }
     public void SetStats(string enemyName, int hp, int attack, int movementSpeed, int defence, string enemySprite, int goldDrop)
     {

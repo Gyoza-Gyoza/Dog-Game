@@ -44,6 +44,9 @@ public static class Game
     private static WaveManager
         waveManager;
 
+    private static TabManager
+        tabManager;
+
     public static PlayerBehaviour _player
     { get { return player; } set { player = value; } }
 
@@ -79,13 +82,19 @@ public static class Game
 
     public static WaveManager _waveManager
     { get { return waveManager; } set { waveManager = value; } }
-    #endregion
 
+    public static TabManager _tabManager
+    { get { return tabManager; } set { tabManager = value; } }
+    #endregion
+    #region Objects
     private static Player
         chosenPlayer;
 
     private static GameObject
         inventoryMenu;
+
+    private static List<GameObject>
+        equipmentMenus = new List<GameObject>();
 
     public static Player _chosenPlayer
     { get { return chosenPlayer; } set { chosenPlayer = value; } }
@@ -93,6 +102,13 @@ public static class Game
     public static GameObject _inventoryMenu
     { get { return inventoryMenu; } set { inventoryMenu = value; } }
 
+    public static List<GameObject> _equipmentMenus
+    { get { return equipmentMenus; } }
+    public static void AddToEquipmentMenus(GameObject go)
+    {
+        equipmentMenus.Add(go);
+    }
+    #endregion
     public static float CalculateDamageReduction(int defence)
     {
         return (float)defence / (defence + 100);
