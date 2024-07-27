@@ -151,7 +151,39 @@ public class Database : MonoBehaviour
                 float.Parse(equipmentEntry[10]),
                 float.Parse(equipmentEntry[11])
                 ));
-            Debug.Log(equipmentEntry[0] + equipmentEntry[1] + equipmentEntry[2] + equipmentEntry[3] + equipmentEntry[4] + equipmentEntry[5] + equipmentEntry[6] + equipmentEntry[7] + equipmentEntry[8] + equipmentEntry[9] + equipmentEntry[10] + equipmentEntry[11]);
+            //Debug.Log(equipmentEntry[0] + equipmentEntry[1] + equipmentEntry[2] + equipmentEntry[3] + equipmentEntry[4] + equipmentEntry[5] + equipmentEntry[6] + equipmentEntry[7] + equipmentEntry[8] + equipmentEntry[9] + equipmentEntry[10] + equipmentEntry[11]);
+        }
+
+        List<string> projectiles = ParseCSV("/Databases/ProjectileSkillList.csv");
+        foreach (string projectile in projectiles)
+        {
+            string[] projectileEntry = projectile.Split(",");
+            skillDB.Add(projectileEntry[0], new Projectile(
+                projectileEntry[1],
+                projectileEntry[2],
+                projectileEntry[3],
+                projectileEntry[4],
+                int.Parse(projectileEntry[5]),
+                float.Parse(projectileEntry[6]),
+                int.Parse(projectileEntry[7]),
+                float.Parse(projectileEntry[8]),
+                int.Parse(projectileEntry[9])));
+            Debug.Log($"{projectileEntry[0]} {projectileEntry[1]} {projectileEntry[2]} {projectileEntry[3]} {projectileEntry[4]} {projectileEntry[5]} {projectileEntry[6]} {projectileEntry[7]} {projectileEntry[8]} {projectileEntry[9]}");
+        }
+
+        List<string> aoes = ParseCSV("/Databases/AOESkillList.csv");
+        foreach(string aoe in aoes)
+        {
+            string[] aoesEntry = aoe.Split(",");
+            skillDB.Add(aoesEntry[0], new AOE(
+                aoesEntry[1],
+                aoesEntry[2],
+                aoesEntry[3],
+                aoesEntry[4],
+                int.Parse(aoesEntry[5]),
+                float.Parse(aoesEntry[6]),
+                int.Parse(aoesEntry[7])));
+            Debug.Log($"{aoesEntry[0]} {aoesEntry[1]} {aoesEntry[2]} {aoesEntry[3]} {aoesEntry[4]} {aoesEntry[5]} {aoesEntry[6]} {aoesEntry[7]}");
         }
 
         //For testing 
@@ -174,15 +206,14 @@ public class Database : MonoBehaviour
         //itemList.Add(new Equipment("Boot1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Boot1.png", 1, "Boot", 1, 1, 1, 1 ,1));
         //itemList.Add(new Equipment("Glove1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Glove1.png", 1, "Glove", 1, 1, 1 ,1, 1));
 
-        skillDB.Add("PROJ0001", new Projectile("Basic Projectile", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
-        skillDB.Add("PROJ0002", new Projectile("Basic Projectile2", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
-        skillDB.Add("PROJ0003", new Projectile("Basic Projectile3", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
-        skillDB.Add("PROJ0004", new Projectile("Basic Projectile4", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
-        skillDB.Add("AREA0001", new AOE("HEAVENLY STRIKE", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
-        skillDB.Add("AREA0002", new AOE("HEAVENLY STRIKE2", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
-        skillDB.Add("AREA0003", new AOE("HEAVENLY STRIKE3", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
-        skillDB.Add("AREA0004", new AOE("HEAVENLY STRIKE4", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
-
+        //skillDB.Add("PROJ0001", new Projectile("Basic Projectile", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
+        //skillDB.Add("PROJ0002", new Projectile("Basic Projectile2", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
+        //skillDB.Add("PROJ0003", new Projectile("Basic Projectile3", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
+        //skillDB.Add("PROJ0004", new Projectile("Basic Projectile4", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
+        //skillDB.Add("AREA0001", new AOE("HEAVENLY STRIKE", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
+        //skillDB.Add("AREA0002", new AOE("HEAVENLY STRIKE2", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
+        //skillDB.Add("AREA0003", new AOE("HEAVENLY STRIKE3", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
+        //skillDB.Add("AREA0004", new AOE("HEAVENLY STRIKE4", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
     }
     private List<string> ParseCSV(string filePath)
     {

@@ -58,6 +58,10 @@ public class SkillManager : MonoBehaviour
         target = null;
 
     [SerializeField]
+    private GameObject
+        cursorAim;
+
+    [SerializeField]
     private List<GameObject>
         uILoadoutBox = new List<GameObject>();
 
@@ -84,8 +88,12 @@ public class SkillManager : MonoBehaviour
     }
     void Update()
     {
+        //Aims at the cursor 
+        Vector2 cursorDir = new Vector2(Game._cursor.transform.position.x - transform.position.x, Game._cursor.transform.position.y - transform.position.y);
+        cursorAim.transform.up = cursorDir;
+
         //Handles the auto shooting of projectiles
-        if(target != null)
+        if (target != null)
         {
             float recoil = Random.Range(-playerRecoil, playerRecoil); //Creates a random float based on the player's recoil variable and adds it to the target's location to create a recoil effect
             Vector2 dir = new Vector2(target.transform.position.x + recoil - transform.position.x, target.transform.position.y + recoil - transform.position.y);
@@ -161,19 +169,19 @@ public class SkillManager : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.H))
         {
-            InitializePrefabSkills("AREA0001");
+            InitializePrefabSkills("PROJ0005");
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
-            InitializePrefabSkills("AREA0002");
+            InitializePrefabSkills("PROJ0006");
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            InitializePrefabSkills("AREA0003");
+            InitializePrefabSkills("PROJ0007");
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            InitializePrefabSkills("AREA0004");
+            InitializePrefabSkills("PROJ0008");
         }
     }
     //Checks if there are enemies in range
@@ -231,67 +239,92 @@ public class SkillManager : MonoBehaviour
     private SkillLoadoutObject AddSkillEffects(string skillId) //Adds behaviours to each skill based on its ID
     {
         SkillLoadoutObject result = new SkillLoadoutObject(Game._database._skillDB[skillId], null, uILoadoutBox[skillCount]); //Adds a new object to store the skill, its effects as well as the UI element that it belongs to
-        switch (skillId)
+
+        if (skillId.Substring(0,4) == "PROJ")
         {
-            case "PROJ0001":
+            if(skillId == "PROJ0001" || skillId == "PROJ0002" || skillId == "PROJ0003" || skillId == "PROJ0004")
+            {
+                result._castSkill = () =>
+                {
+                    AddBasicProjectileEffects(GetObject(result._skill._skillName), result._skill as Projectile, null);
+                };
+            }
+            else
+            {
                 result._castSkill = () =>
                 {
                     AddProjectileEffects(GetObject(result._skill._skillName), result._skill as Projectile, null);
                 };
-                break;
-
-            case "PROJ0002":
-                result._castSkill = () =>
-                {
-                    AddProjectileEffects(GetObject(result._skill._skillName), result._skill as Projectile, null);
-                };
-                break;
-
-            case "PROJ0003":
-                result._castSkill = () =>
-                {
-                    AddProjectileEffects(GetObject(result._skill._skillName), result._skill as Projectile, null);
-                };
-                break;
-
-            case "PROJ0004":
-                result._castSkill = () =>
-                {
-                    AddProjectileEffects(GetObject(result._skill._skillName), result._skill as Projectile, null);
-                };
-                break;
-
-            case "AREA0001":
-                result._castSkill = () =>
-                {
-                    AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
-                };
-                break;
-            case "AREA0002":
-                result._castSkill = () =>
-                {
-                    AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
-                };
-                break;
-            case "AREA0003":
-                result._castSkill = () =>
-                {
-                    AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
-                };
-                break;
-            case "AREA0004":
-                result._castSkill = () =>
-                {
-                    AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
-                };
-                break;
-            case "Test":
-                result._castSkill = () =>
-                {
-
-                };
-                break;
+            }
         }
+        else if (skillId.Substring(0,4) == "AREA")
+        {
+            result._castSkill = () =>
+            {
+                AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
+            };
+        }
+        //switch (skillId)
+        //{
+        //    case "PROJ0001":
+        //        result._castSkill = () =>
+        //        {
+        //            AddProjectileEffects(GetObject(result._skill._skillName), result._skill as Projectile, null);
+        //        };
+        //        break;
+
+        //    case "PROJ0002":
+        //        result._castSkill = () =>
+        //        {
+        //            AddProjectileEffects(GetObject(result._skill._skillName), result._skill as Projectile, null);
+        //        };
+        //        break;
+
+        //    case "PROJ0003":
+        //        result._castSkill = () =>
+        //        {
+        //            AddProjectileEffects(GetObject(result._skill._skillName), result._skill as Projectile, null);
+        //        };
+        //        break;
+
+        //    case "PROJ0004":
+        //        result._castSkill = () =>
+        //        {
+        //            AddProjectileEffects(GetObject(result._skill._skillName), result._skill as Projectile, null);
+        //        };
+        //        break;
+
+        //    case "AREA0001":
+        //        result._castSkill = () =>
+        //        {
+        //            AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
+        //        };
+        //        break;
+        //    case "AREA0002":
+        //        result._castSkill = () =>
+        //        {
+        //            AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
+        //        };
+        //        break;
+        //    case "AREA0003":
+        //        result._castSkill = () =>
+        //        {
+        //            AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
+        //        };
+        //        break;
+        //    case "AREA0004":
+        //        result._castSkill = () =>
+        //        {
+        //            AddAOEEffects(GetObject(result._skill._skillName), result._skill as AOE, null);
+        //        };
+        //        break;
+        //    case "Test":
+        //        result._castSkill = () =>
+        //        {
+
+        //        };
+        //        break;
+        //}
         uILoadoutBox[skillCount++].GetComponent<LoadoutCooldownBox>().SetImage(result._skill._skillIcon); //Loads the skill icon into the loadout
 
         return result;
@@ -304,12 +337,27 @@ public class SkillManager : MonoBehaviour
             skillPools.Add(skillName, new Stack<GameObject>());
         }
     }
-    //Used to initialize projectile skills 
-    private void AddProjectileEffects(GameObject skillToAdd, Projectile refSkill, UnityAction extras)
+    //Used to initialize basic projectile skills 
+    private void AddBasicProjectileEffects(GameObject skillToAdd, Projectile refSkill, UnityAction extras)
     {
         //Initializes the transform of the projectile to the player's location 
         skillToAdd.transform.position = transform.position;
         skillToAdd.transform.rotation = transform.rotation;
+
+        //Sets the stats of the projectile as well as the added effects
+        ProjectileBehaviour behaviour = skillToAdd.GetComponent<ProjectileBehaviour>();
+        behaviour.SetStats(CalculateDamage(refSkill._projectileDamage), refSkill._projectilePierce, refSkill._projectileSpeed, refSkill._projectileSize);
+        if (extras != null)
+        {
+            behaviour.SetSpellEffects(extras);
+        }
+    }
+    //Used to initialize projectile skills 
+    private void AddProjectileEffects(GameObject skillToAdd, Projectile refSkill, UnityAction extras)
+    {
+        //Initializes the transform of the projectile to the player's location 
+        skillToAdd.transform.position = cursorAim.transform.position;
+        skillToAdd.transform.rotation = cursorAim.transform.rotation;
 
         //Sets the stats of the projectile as well as the added effects
         ProjectileBehaviour behaviour = skillToAdd.GetComponent<ProjectileBehaviour>();

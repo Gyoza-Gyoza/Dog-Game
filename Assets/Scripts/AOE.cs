@@ -17,8 +17,8 @@ public class AOE : Skill
     public int _aOEDamage
     { get { return aOEDamage; } }
 
-    public AOE(string skillName, string skillDescription, string skillIcon, string skillSprite, int skillCooldown, float size, int damage)
-        : base (skillName, skillDescription, skillIcon, skillSprite, skillCooldown)
+    public AOE(string skillName, string skillDescription, string skillIcon, string skillPrefab, int skillCooldown, float size, int damage)
+        : base (skillName, skillDescription, skillIcon, skillPrefab, skillCooldown)
     {
         this.aOEsize = size;
         this.aOEDamage = damage;

@@ -25,8 +25,8 @@ public class Projectile : Skill
     public float _projectileSize
     { get { return projectileSize; } }
 
-    public Projectile(string skillName, string skillDescription, string skillIcon, int skillCooldown, string skillSprite, float projectileDamage, int projectilePierce, float projectileSize, int projectileSpeed) 
-        : base (skillName, skillDescription, skillIcon, skillSprite, skillCooldown)
+    public Projectile(string skillName, string skillDescription, string skillIcon, string skillPrefab, int skillCooldown, float projectileDamage, int projectilePierce, float projectileSize, int projectileSpeed) 
+        : base (skillName, skillDescription, skillIcon, skillPrefab, skillCooldown)
     {
         this.projectileDamage = projectileDamage;
         this.projectilePierce = projectilePierce;
