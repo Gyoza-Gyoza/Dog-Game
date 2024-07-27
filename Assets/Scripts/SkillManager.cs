@@ -159,19 +159,19 @@ public class SkillManager : MonoBehaviour
         {
             StartCoroutine(Dash(Game._cursor.transform.position));
         }
-        if(Input.GetKeyDown(KeyCode.Keypad1))
+        if(Input.GetKeyDown(KeyCode.H))
         {
             InitializePrefabSkills("AREA0001");
         }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             InitializePrefabSkills("AREA0002");
         }
-        if (Input.GetKeyDown(KeyCode.Keypad3))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             InitializePrefabSkills("AREA0003");
         }
-        if (Input.GetKeyDown(KeyCode.Keypad4))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             InitializePrefabSkills("AREA0004");
         }

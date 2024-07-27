@@ -90,23 +90,23 @@ public static class Game
     private static Player
         chosenPlayer;
 
-    private static GameObject
-        inventoryUIManager;
+    private static UIManager
+        uIManager;
 
-    private static List<GameObject>
-        equipmentMenus = new List<GameObject>();
+    private static List<ShopMenu>
+        shopMenus = new List<ShopMenu>();
 
     public static Player _chosenPlayer
     { get { return chosenPlayer; } set { chosenPlayer = value; } }
 
-    public static GameObject _inventoryUIManager
-    { get { return inventoryUIManager; } set { inventoryUIManager = value; } }
+    public static UIManager _uIManager
+    { get { return uIManager; } set { uIManager = value; } }
 
-    public static List<GameObject> _equipmentMenus
-    { get { return equipmentMenus; } }
-    public static void AddToEquipmentMenus(GameObject go)
+    public static List<ShopMenu> _shopMenus
+    { get { return shopMenus; } }
+    public static void AddToShopMenus(ShopMenu go)
     {
-        equipmentMenus.Add(go);
+        shopMenus.Add(go);
     }
     #endregion
     public static float CalculateDamageReduction(int defence)

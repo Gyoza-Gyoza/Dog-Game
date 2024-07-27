@@ -65,7 +65,7 @@ public class InputHandler : MonoBehaviour
         //}
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Game._inventoryUIManager.SetActive(!Game._inventoryUIManager.activeInHierarchy);
+            Game._uIManager.ToggleInventory();
             if(Time.timeScale == 0f)
             {
                 ResumeGame();
@@ -73,11 +73,12 @@ public class InputHandler : MonoBehaviour
             else
             {
                 PauseGame();
+                Game._inventoryManager.UpdateInventory();
             }
         }
         if(Input.GetKeyDown(KeyCode.O))
         {
-            Game._tabManager.gameObject.SetActive(!Game._tabManager.gameObject.activeInHierarchy);
+            Game._uIManager.ToggleShop();
             if (Time.timeScale == 0f)
             {
                 ResumeGame();
@@ -85,6 +86,8 @@ public class InputHandler : MonoBehaviour
             else
             {
                 PauseGame();
+                Game._inventoryManager.UpdateInventory();
+                Game._inventoryManager.UpdateShopMenu();
             }
         }
         if (Input.GetKeyDown(KeyCode.F1))
@@ -98,6 +101,10 @@ public class InputHandler : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.S))
         {
             Game._player.ChangeDestination(Game._player.transform.position);
+        }
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            Game._inventoryManager.GainGold(100);
         }
     }
     public void PauseGame()
