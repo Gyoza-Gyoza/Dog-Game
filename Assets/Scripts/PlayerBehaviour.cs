@@ -32,6 +32,8 @@ public class PlayerBehaviour : EntityBehaviour
     { get { return projectileType; } }
     public int _attackSpeed
     { get { return player.attackSpeed; } }
+    public int _critChance
+    {  get { return player.critChance; } }
 
     //public Dictionary<EquipmentSlot, Equipment> _equipmentList
     //{ get { return equipmentList; } }

@@ -20,30 +20,35 @@ public class Equipment : Item
     protected int
         itemDamage,
         itemDefence;
-
     
     protected float
         criticalChance,
         projectileSize,
         attackSpeed;
 
+    protected Stats 
+        stats = new Stats();
+
     public EquipmentSlot _slotType
     { get { return slotType; } }
 
     public int _itemDamage
-    { get { return itemDamage; } }
+    { get { return stats.damage; } }
 
     public int _itemDefence
-    { get { return itemDefence; } }
+    { get { return stats.defence; } }
 
     public float _projectileSize
-    { get { return projectileSize; } }
+    { get { return stats.projectileSize; } }
 
     public float _criticalChance
-    { get { return criticalChance; } }
+    { get { return stats.critChance; } }
 
     public float _attackSpeed
-    { get { return attackSpeed; } }
+    { get { return stats.attackSpeed; } }
+
+    public Stats _stats
+    { get { return stats; } }
 
     public Equipment(string itemName, string itemDescription, string itemSprite, int costPrice, int sellPrice, string slotType, int itemDamage, int itemDefence, float projectileSize, float criticalChance, float attackSpeed)
         : base(itemName, itemDescription, itemSprite, costPrice, sellPrice)
@@ -70,10 +75,10 @@ public class Equipment : Item
                 break;
         }
 
-        this.itemDamage = itemDamage;
-        this.itemDefence = itemDefence;
-        this.projectileSize = projectileSize;
-        this.criticalChance = criticalChance;
-        this.attackSpeed = attackSpeed;
+        this.stats.damage = itemDamage;
+        this.stats.defence = itemDefence;
+        this.stats.projectileSize = projectileSize;
+        this.stats.critChance = criticalChance;
+        this.stats.attackSpeed = attackSpeed;
     }
 }

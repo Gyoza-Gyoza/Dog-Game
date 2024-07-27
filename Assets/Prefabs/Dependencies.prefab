@@ -11790,7 +11790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1289233023131891884}
   m_Layer: 0
-  m_Name: EquipmentManager
+  m_Name: UI Tabs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

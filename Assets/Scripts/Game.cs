@@ -91,7 +91,7 @@ public static class Game
         chosenPlayer;
 
     private static GameObject
-        inventoryMenu;
+        inventoryUIManager;
 
     private static List<GameObject>
         equipmentMenus = new List<GameObject>();
@@ -99,8 +99,8 @@ public static class Game
     public static Player _chosenPlayer
     { get { return chosenPlayer; } set { chosenPlayer = value; } }
 
-    public static GameObject _inventoryMenu
-    { get { return inventoryMenu; } set { inventoryMenu = value; } }
+    public static GameObject _inventoryUIManager
+    { get { return inventoryUIManager; } set { inventoryUIManager = value; } }
 
     public static List<GameObject> _equipmentMenus
     { get { return equipmentMenus; } }
