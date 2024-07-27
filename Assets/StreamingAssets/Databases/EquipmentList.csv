@@ -40,7 +40,7 @@ EQ00038,PHANTOM SPECTER'S BOOTS,Elegantly crafted boots that allow the wearer to
 EQ00039,IRON CLAW,Basic iron claws that provide reliable damage for any thief.,Assets/Images/Weapon/Thief/claw1.png,150,85,WEAPON,40,10,0,0,0.25
 EQ00040,SHADOW TALONS,Elegantly crafted claws that strike with deadly precision# enhancing the thief's stealth and lethality.,Assets/Images/Weapon/Thief/claw2.png,300,160,WEAPON,75,10,0,0,0.5
 EQ00041,RING OF ETERNAL FLAME,A beautifully crafted ring imbued with the essence of fire.,Assets/Images/Equipment/Accessories/ring1.png,150,85,ACCESSORY,5,5,0.1,0.1,0.1
-EQ00042,PENDANT OF THE MYSTIC MOON,A shimmering pendant with a crescent moon gem.,Assets/Images/Equipment/Accessories/pendant1.png,150,85,ACCESSORY,3,5,0.2,0.05,0.2
-EQ00043,PENDANT OF THE FLAME KEEPER,A pendant adorned with a blazing fire gem.,Assets/Images/Equipment/Accessories/pendant2.png,150,85,ACCESSORY,5,5,0.1,0.1,0.1
+EQ00042,PENDANT OF THE MOON,A shimmering pendant with a crescent moon gem.,Assets/Images/Equipment/Accessories/pendant1.png,150,85,ACCESSORY,3,5,0.2,0.05,0.2
+EQ00043,PENDANT OF THE FLAMES,A pendant adorned with a blazing fire gem.,Assets/Images/Equipment/Accessories/pendant2.png,150,85,ACCESSORY,5,5,0.1,0.1,0.1
 EQ00044,SCARF OF THE WIND WALKER,A dark and stealthy scarf that blends into the shadows.,Assets/Images/Equipment/Accessories/scarf1.png,150,85,ACCESSORY,3,7,0.1,0.1,0.1
-EQ00045,SCARF OF THE SHADOW STALKER,A lightweight scarf that flutters gracefully in the breeze.,Assets/Images/Equipment/Accessories/scarf2.png,150,85,ACCESSORY,3,7,0.1,0.05,0.15
+EQ00045,SCARF OF THE STALKER,A lightweight scarf that flutters gracefully in the breeze.,Assets/Images/Equipment/Accessories/scarf2.png,150,85,ACCESSORY,3,7,0.1,0.05,0.15

@@ -25,10 +25,11 @@ public class ShopMenu : MonoBehaviour
 
     private void Awake()
     {
-        Game.AddToEquipmentMenus(this.gameObject);
+        Game.AddToShopMenus(this);
     }
     private void Start()
     {
+        //Creates a item entry for each item in the database 
         foreach(KeyValuePair<string, Equipment> keyValuePair in Game._database._equipmentDB)
         {
             if (keyValuePair.Value._slotType == menuType)
@@ -38,6 +39,9 @@ public class ShopMenu : MonoBehaviour
                 shopUIBoxes.Add(box);
             }
         }
+
+        //Check if all tabs are active before turning them off 
+        //This is used to preload all the shop items upon game start 
         if(menuType != 0)
         {
             menuTab.SetActive(false);

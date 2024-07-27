@@ -24,7 +24,7 @@ public class TabManager : MonoBehaviour
 
         tabs[activeTab].SetActive(false); //Closes the old tab 
 
-        activeTab = tab; //Keeps track of the currently open tab 
+        activeTab = tab; //Keeps track of the currently open tab
     }
 
     public void CountInitializedTabs()
@@ -33,12 +33,7 @@ public class TabManager : MonoBehaviour
 
         if (initializedTabs == tabs.Length) //When all tabs are initialized, close the menu
         {
-            CloseMenu();
+            Game._uIManager.CloseAllMenus();
         }
-    }
-
-    public void CloseMenu()
-    {
-        gameObject.SetActive(!gameObject.activeInHierarchy);
     }
 }

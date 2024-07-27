@@ -57,7 +57,22 @@ public class InventoryManager : MonoBehaviour
     public int _goldCount
     { get { return goldCount; } }
     public Stats _statBoost
-    { get { return statBoost; } }
+    { 
+        get //Calculate stats upon request
+        { 
+            Stats result = new Stats();
+            
+            for(int i = 0; i < equipmentList.Count; i++)
+            {
+                if(equipmentList.ElementAt(i).Value != null)
+                {
+                    result += equipmentList.ElementAt(i).Value._stats;
+                }
+            }
+
+            return result;
+        } 
+    }
 
     private void Awake()
     {
@@ -106,18 +121,19 @@ public class InventoryManager : MonoBehaviour
             Item equippedItem = equipmentList[slotToBePlacedIn]; //Store equipped item 
             equipmentList[slotToBePlacedIn] = selectedItem.GetComponent<ItemSlotScript>()._itemHeld as Equipment; //Replace equipped item with selected item 
             inventoryList[selectedItem.GetComponent<ItemSlotScript>()._itemId] = null; //Remove item at the selected position 
-            PickupItem(equippedItem); //Adds unequipped item to inventory 
+            AddItem(equippedItem); //Adds unequipped item to inventory 
         }
 
-        //Get stats of the equipment 
-        for (int i = 0; i < equipmentList.Count; i++)
-        {
-            if(equipmentList.ElementAt(i).Value != null)
-            {
-                statBoost += equipmentList.ElementAt(i).Value._stats;
-            }
-        }
+        ////Get stats of the equipment 
+        //for (int i = 0; i < equipmentList.Count; i++)
+        //{
+        //    if(equipmentList.ElementAt(i).Value != null)
+        //    {
+        //        statBoost += equipmentList.ElementAt(i).Value._stats;
+        //    }
+        //}
 
+        //Updates the inventory UI
         UpdateInventory();
     }
     public Item UnequipItem(EquipmentSlot slot)
@@ -135,23 +151,44 @@ public class InventoryManager : MonoBehaviour
         }
         return null;
     }
-    public void PickupItem(Item itemToPickup)
+    public void AddItem(Item itemToAdd)
     {
-        for(int i = 0; i < inventoryBoxList.Length; i++)
+        for (int i = 0; i < inventoryBoxList.Length; i++)
         {
             if (inventoryList[i] == null)
             {
-                inventoryList[i] = itemToPickup;
+                inventoryList[i] = itemToAdd;
                 UpdateInventory();
-                Debug.Log($"Obtained a {itemToPickup._itemName}!");
+                Debug.Log($"Obtained a {itemToAdd._itemName}!");
                 break;
             }
+        }
+    }
+    public void BuyItem(Item itemToBuy)
+    {
+        if (goldCount >= itemToBuy._costPrice)
+        {
+            AddItem(itemToBuy);
+            goldCount -= itemToBuy._costPrice;
+
+            UpdateInventory();
+            UpdateShopMenu();
         }
     }
     public void DropItem()
     {
         inventoryList[selectedItem.GetComponent<ItemSlotScript>()._itemId] = null;
         UpdateInventory();
+    }
+    public void SellItem()
+    {
+        if(inventoryList[selectedItem.GetComponent<ItemSlotScript>()._itemId] != null)
+        {
+            GainGold(inventoryList[selectedItem.GetComponent<ItemSlotScript>()._itemId]._sellPrice);
+            DropItem();
+
+            UpdateShopMenu(); //Updates shop menu here only as its the only way to get gold while in the shop
+        }
     }
     private void Update()
     {
@@ -191,18 +228,25 @@ public class InventoryManager : MonoBehaviour
             //    Debug.Log($"Slot {keyValuePair.Key}, {invResult}");
             //}
         }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            int rand = UnityEngine.Random.Range(0, Game._database._equipmentDB.Count);
-            PickupItem(Game._database._equipmentDB.ElementAt(rand).Value);
-        }
+        //if (Input.GetKeyDown(KeyCode.N))
+        //{
+        //    int rand = UnityEngine.Random.Range(0, Game._database._equipmentDB.Count);
+        //    PickupItem(Game._database._equipmentDB.ElementAt(rand).Value);
+        //}
     }
     public void GainGold(int goldAmount)
     {
         goldCount += goldAmount;
-        Debug.Log($"Gained {goldAmount}, current gold is {goldCount}");
     }
-    private void UpdateInventory()
+    //private void OnEnable() //Updates all the UIs 
+    //{
+    //    if(inventoryBoxList != null && equipmentBoxList != null)
+    //    {
+    //        UpdateInventory();
+    //        Game._uIManager.UpdateInventory();
+    //    }
+    //}
+    public void UpdateInventory()
     {
         for (int i = 0; i < inventoryBoxList.Length; i++) //Loops through the inventory UI 
         {
@@ -231,6 +275,25 @@ public class InventoryManager : MonoBehaviour
             {
                 equipmentBoxList[i].RemoveItem();
                 equipmentBoxList[i].UpdateItemSlot();
+            }
+        }
+        Game._uIManager.UpdateInventory();
+    }
+    public void UpdateShopMenu()
+    {
+        foreach(ShopMenu shop in Game._shopMenus)
+        {
+            foreach(ShopUIBox box in shop._shopUIBoxes)
+            {
+                ShopUIBox shopUIBox = box.GetComponent<ShopUIBox>();
+                if (goldCount >= box._itemCostPrice)
+                {
+                    shopUIBox.EnableButton();
+                }
+                else
+                {
+                    shopUIBox.DisableButton();
+                }
             }
         }
     }

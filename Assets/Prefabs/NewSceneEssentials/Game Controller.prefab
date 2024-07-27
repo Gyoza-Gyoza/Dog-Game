@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b849d0e66f2869047b7863770b1326cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dependencies: {fileID: 982022572828976738, guid: 98f53ae3b647ceb49830201c78fc02fd, type: 3}
+  dependencies: {fileID: 982022572828976738, guid: 3c7b441f4ef3b2c4586f6783aa073a0c, type: 3}
 --- !u!114 &6625689015034076563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,8 +140,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e0743177bfcc014b858f7ec26be6fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnLocations: []
-  bossEnemy: 
-  spawnFrequency: 0
-  killCount: 0
-  waveCompleteCount: 0
