@@ -1,0 +1,5 @@
+aoeSkillID (PK),skillName,skillDescription,skillIcon,skillPrefab,skillCooldown,aoeSize,aoeDamage
+AREA0001,HEAVENLY STRIKE,Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.,Assets/Images/Skill/AOE/AOE0001.png,Assets/Prefabs/AOE/AREA0001.prefab,10,1,3
+AREA0002,MORNING STAR,Attacks the enemy by dropping a star of destruction created by the power of darkness# exploding on impact.,Assets/Images/Skill/AOE/AOE0002.png,Assets/Prefabs/AOE/AREA0002.prefab,10,1,3
+AREA0003,ATOMIC BOMB,Call for an aerial strike# marking a target area on the ground. An atomic missle bombards the marked area# dealing significant damage to all enemies within the zone.,Assets/Images/Skill/AOE/AOE0003.png,Assets/Prefabs/AOE/AREA0003.prefab,10,1,3
+AREA0004,SHADOW BURST,Throw a smoke bomb infused with shadow energy. Upon impact# the bomb release a thick cloud of smoke that explodes!,Assets/Images/Skill/AOE/AOE0004.png,Assets/Prefabs/AOE/AREA0004.prefab,10,1,3

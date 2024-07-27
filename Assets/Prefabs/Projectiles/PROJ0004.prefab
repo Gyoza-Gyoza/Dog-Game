@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4900091123347229328}
   - component: {fileID: 6904784546379956101}
   m_Layer: 0
-  m_Name: PROJ0003
+  m_Name: PROJ0004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -1034,7 +1034,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
       cycleCount: 1
-      repeatInterval: 0.01
+      repeatInterval: 1
       probability: 1
   SizeModule:
     enabled: 0
@@ -1540,11 +1540,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     speedRange: {x: 0, y: 1}
-    tilesX: 1
-    tilesY: 4
+    tilesX: 4
+    tilesY: 1
     animationType: 0
     rowIndex: 0
-    cycles: 1000
+    cycles: 999
     uvChannelMask: -1
     rowMode: 1
     sprites:
@@ -4838,7 +4838,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f454a7d607d6c36409e0a2fd05088154, type: 2}
+  - {fileID: 2100000, guid: ea93f1ecf8a4dcc4982b8ad25c22f0df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

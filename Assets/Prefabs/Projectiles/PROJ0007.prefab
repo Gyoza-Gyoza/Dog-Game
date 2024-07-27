@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4900091123347229328}
   - component: {fileID: 6904784546379956101}
   m_Layer: 0
-  m_Name: PROJ0008
+  m_Name: PROJ0007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,7 +172,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 5
       maxCurve:
         serializedVersion: 2
