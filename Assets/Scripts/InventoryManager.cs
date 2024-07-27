@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -22,24 +24,40 @@ public class InventoryManager : MonoBehaviour
         equipmentBoxList;
 
     [SerializeField]
-    private Dictionary<int, Item>
-        inventoryList = new Dictionary<int, Item>();
+    //private Dictionary<int, Item>
+    //    inventoryList = new Dictionary<int, Item>();
+
+    private List<Item> 
+        inventoryList = new List<Item>();
 
     private Dictionary<EquipmentSlot, Equipment>
-        equipmentList = new Dictionary<EquipmentSlot, Equipment>();
-
-    private int
-        inventorySize = 15, 
-        goldCount;
+        equipmentList = new Dictionary<EquipmentSlot, Equipment>(); 
 
     public ItemSlotScript[] _inventoryBoxList
-    {  get { return inventoryBoxList; } set { inventoryBoxList = value; } }
-
+    { 
+        get { return inventoryBoxList; } 
+        set 
+        { 
+            inventoryBoxList = value; 
+            foreach(ItemSlotScript iss in inventoryBoxList)
+            {
+                inventoryList.Add(null);
+            }
+        } 
+    }
     public EquipmentSlotScript[] _equipmentBoxList
-    { get { return equipmentBoxList; } set {  equipmentBoxList = value; } }
+    { get { return equipmentBoxList; } set { equipmentBoxList = value; } }
+
+    private int 
+        goldCount;
+
+    private Stats
+        statBoost = new Stats(); 
 
     public int _goldCount
     { get { return goldCount; } }
+    public Stats _statBoost
+    { get { return statBoost; } }
 
     private void Awake()
     {
@@ -54,10 +72,10 @@ public class InventoryManager : MonoBehaviour
         {
             equipmentList.Add((EquipmentSlot)i, null);
         }
-        for(int i = 0; i < inventorySize; i++)
-        {
-            inventoryList.Add(i, null);
-        }
+        //for(int i = 0; i < 15; i++)
+        //{
+        //    inventoryList.Add(i, null);
+        //}
     }
     public void SelectSlot(EquipmentSlot slotToSelect)
     {
@@ -91,6 +109,15 @@ public class InventoryManager : MonoBehaviour
             PickupItem(equippedItem); //Adds unequipped item to inventory 
         }
 
+        //Get stats of the equipment 
+        for (int i = 0; i < equipmentList.Count; i++)
+        {
+            if(equipmentList.ElementAt(i).Value != null)
+            {
+                statBoost += equipmentList.ElementAt(i).Value._stats;
+            }
+        }
+
         UpdateInventory();
     }
     public Item UnequipItem(EquipmentSlot slot)
@@ -110,7 +137,7 @@ public class InventoryManager : MonoBehaviour
     }
     public void PickupItem(Item itemToPickup)
     {
-        for(int i = 0; i < inventoryList.Count; i++)
+        for(int i = 0; i < inventoryBoxList.Length; i++)
         {
             if (inventoryList[i] == null)
             {
@@ -149,25 +176,25 @@ public class InventoryManager : MonoBehaviour
 
             Debug.Log("Checking Inventory"); 
 
-            foreach(KeyValuePair<int, Item> keyValuePair in inventoryList)
-            {
-                string invResult = "";
+            //foreach(KeyValuePair<int, Item> keyValuePair in inventoryList)
+            //{
+            //    string invResult = "";
 
-                if (keyValuePair.Value == null)
-                {
-                    invResult = "no item found";
-                }
-                else
-                {
-                    invResult = keyValuePair.Value._itemName;
-                }
-                Debug.Log($"Slot {keyValuePair.Key}, {invResult}");
-            }
+            //    if (keyValuePair.Value == null)
+            //    {
+            //        invResult = "no item found";
+            //    }
+            //    else
+            //    {
+            //        invResult = keyValuePair.Value._itemName;
+            //    }
+            //    Debug.Log($"Slot {keyValuePair.Key}, {invResult}");
+            //}
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
-            int rand = UnityEngine.Random.Range(0, Game._database._itemList.Count);
-            PickupItem(Game._database._itemList[rand]);
+            int rand = UnityEngine.Random.Range(0, Game._database._equipmentDB.Count);
+            PickupItem(Game._database._equipmentDB.ElementAt(rand).Value);
         }
     }
     public void GainGold(int goldAmount)
@@ -206,15 +233,5 @@ public class InventoryManager : MonoBehaviour
                 equipmentBoxList[i].UpdateItemSlot();
             }
         }
-
-        //Game._player._damageBoost = 0;
-        //for(int i = 0; i < Game._player._equipmentList.Count; i++)
-        //{
-        //    Equipment equipment = Game._player._equipmentList.ElementAt(i).Value;
-        //    if (equipment != null)
-        //    {
-        //        Game._player._damageBoost += equipment._itemDamage;
-        //    }
-        //}
     }
 }

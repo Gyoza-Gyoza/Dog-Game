@@ -65,7 +65,7 @@ public class InputHandler : MonoBehaviour
         //}
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Game._inventoryMenu.SetActive(!Game._inventoryMenu.activeInHierarchy);
+            Game._inventoryUIManager.SetActive(!Game._inventoryUIManager.activeInHierarchy);
             if(Time.timeScale == 0f)
             {
                 ResumeGame();
