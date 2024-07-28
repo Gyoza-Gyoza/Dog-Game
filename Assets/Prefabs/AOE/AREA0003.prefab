@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8196559225087194299}
   - component: {fileID: 7216829311583147873}
+  - component: {fileID: 8633029111815190830}
   - component: {fileID: 3495411129013926752}
-  - component: {fileID: 4364879063641897590}
   - component: {fileID: 4900091123347229328}
   - component: {fileID: 6904784546379956101}
   m_Layer: 0
@@ -51,7 +51,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -172,7 +172,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -290,7 +290,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1540,15 +1540,15 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     speedRange: {x: 0, y: 1}
-    tilesX: 1
-    tilesY: 4
+    tilesX: 9
+    tilesY: 1
     animationType: 0
     rowIndex: 0
-    cycles: 1000
+    cycles: 1
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: -1665170014, guid: 809ede6eabe247d4aa99aa734777c0a8, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4817,6 +4817,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &8633029111815190830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706602233092058999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267e5017db4d2844fbc2b686c0fb9b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!199 &3495411129013926752
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -4838,7 +4850,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e49555f4f5664f949b3191277be70d4c, type: 2}
+  - {fileID: 2100000, guid: 9189c888729206f44afc5dd53aaaafaf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4891,18 +4903,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &4364879063641897590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 706602233092058999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a67460c50d14874cbb6a7d8f0797a3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &4900091123347229328
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4937,7 +4937,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.71
+  m_Radius: 0.5
 --- !u!50 &6904784546379956101
 Rigidbody2D:
   serializedVersion: 4

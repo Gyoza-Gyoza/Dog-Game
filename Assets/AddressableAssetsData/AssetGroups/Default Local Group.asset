@@ -144,21 +144,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1a1bcd9b46617c5468179fc999cab42d
-    m_Address: Assets/Prefabs/AOE/AREA0002.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7fca5f5c77311a24db88049041b5c605
-    m_Address: Assets/Prefabs/AOE/AREA0003.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b723093a4bbef9141ba9ae7dbaec82ba
-    m_Address: Assets/Prefabs/AOE/AREA0004.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a1adb0bede0b04c4c944a1721468b6dd
     m_Address: Assets/Prefabs/AOE/TestExplosion.prefab
     m_ReadOnly: 0
@@ -166,6 +151,21 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a6b4aa5205f9d0749b1370b3ddedcb1e
     m_Address: Assets/Prefabs/NewSceneEssentials
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5115a4839b14e3940b28e0059530b12e
+    m_Address: Assets/Prefabs/AOE/AREA0003.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 156b9c18755fc27469b571afe1444899
+    m_Address: Assets/Prefabs/AOE/AREA0002.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: adfac6193327056418751095b6e28fda
+    m_Address: Assets/Prefabs/AOE/AREA0004.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
