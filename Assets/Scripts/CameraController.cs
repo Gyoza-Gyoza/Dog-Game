@@ -27,7 +27,10 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        Vector3 playerPos = new Vector3(Game._player.transform.position.x, Game._player.transform.position.y, -10f);
-        this.transform.position = Vector3.SmoothDamp(this.transform.position, playerPos, ref vel, 0.1f);
+        if(Game._player != null)
+        {
+            Vector3 playerPos = new Vector3(Game._player.transform.position.x, Game._player.transform.position.y, -10f);
+            this.transform.position = Vector3.SmoothDamp(this.transform.position, playerPos, ref vel, 0.1f);
+        }
     }
 }

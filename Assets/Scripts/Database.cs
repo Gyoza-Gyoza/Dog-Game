@@ -43,7 +43,7 @@ public class Database : MonoBehaviour
     public Dictionary<string, Entity> _enemyList 
     { get { return enemyDB; } }
 
-    public Dictionary<string, Entity> _playerClassList
+    public Dictionary<string, Entity> _playerDB
     { get { return playerDB; } }
 
     public Dictionary<string, Wave> _waveDB
@@ -118,7 +118,7 @@ public class Database : MonoBehaviour
                 float.Parse(playerEntry[13])
                 ));
         }
-        Game._chosenPlayer = playerDB["CLASS_THIEF"] as Player;
+        //Game._chosenPlayer = playerDB["CLASS_THIEF"] as Player;
 
         //Reading wave csv 
         List<string> waves = ParseCSV("/Databases/WaveList.csv");
@@ -214,6 +214,10 @@ public class Database : MonoBehaviour
         //skillDB.Add("AREA0002", new AOE("HEAVENLY STRIKE2", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
         //skillDB.Add("AREA0003", new AOE("HEAVENLY STRIKE3", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
         //skillDB.Add("AREA0004", new AOE("HEAVENLY STRIKE4", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
+    }
+    private void Start()
+    {
+        Game._gameSceneManager.OpenScene("MainMenu", true, null);
     }
     private List<string> ParseCSV(string filePath)
     {
