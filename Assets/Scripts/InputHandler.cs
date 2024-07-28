@@ -108,7 +108,7 @@ public class InputHandler : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Game._inventoryManager.GainGold(100);
+            Game._player.Interact();
         }
     }
     public void PauseGame()
