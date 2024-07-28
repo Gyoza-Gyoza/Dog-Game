@@ -50,6 +50,8 @@ public static class Game
     private static DialogueManager
         dialogueManager;
 
+    private static AnalyticsUIManager
+        analyticsUIManager;
     public static PlayerBehaviour _player
     { get { return player; } set { player = value; } }
 
@@ -91,6 +93,9 @@ public static class Game
 
     public static DialogueManager _dialogueManager
     { get { return dialogueManager; } set { dialogueManager = value; } }
+
+    public static AnalyticsUIManager _analyticsUIManager
+    { get { return analyticsUIManager; } set { analyticsUIManager = value; } }
     #endregion
     #region Objects
     private static Player

@@ -7,6 +7,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+//This code was made for a cancelled mechanic called augments, it would display a few choices to the player and upon choosing one, it would give 
+//the player new skills;
 public class Augment
 {
     private string
@@ -54,7 +56,7 @@ public class AugmentManager : MonoBehaviour
     }
     public void InitializeList()
     {
-        augmentList = Game._database._augmentList.ToList();
+        //augmentList = Game._database._augmentList.ToList();
     }
     public void SetAugment()
     {

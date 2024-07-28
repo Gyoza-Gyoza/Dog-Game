@@ -16,6 +16,9 @@ public class Database : MonoBehaviour
     private StreamReader
         sr;
 
+    private StreamWriter
+        sw;
+
     [SerializeField]
     private Dictionary<string, Entity> 
         enemyDB = new Dictionary<string, Entity>(), 
@@ -31,8 +34,8 @@ public class Database : MonoBehaviour
     private Dictionary<string, Wave>
         waveDB = new Dictionary<string, Wave>();
 
-    private List<Augment>
-        augmentList = new List<Augment>();
+    //private List<Augment>
+    //    augmentList = new List<Augment>();
 
     private List<Item> 
         itemList = new List<Item>();
@@ -52,8 +55,8 @@ public class Database : MonoBehaviour
     public Dictionary<string, Wave> _waveDB
     { get { return waveDB; } }
 
-    public List<Augment> _augmentList
-    { get { return augmentList; } }
+    //public List<Augment> _augmentList
+    //{ get { return augmentList; } }
 
     public List<Item> _itemList
     { get { return itemList; } }
@@ -125,7 +128,6 @@ public class Database : MonoBehaviour
                 float.Parse(playerEntry[13])
                 ));
         }
-        //Game._chosenPlayer = playerDB["CLASS_THIEF"] as Player;
 
         //Reading wave csv 
         List<string> waves = ParseCSV("/Databases/WaveList.csv");
@@ -222,9 +224,9 @@ public class Database : MonoBehaviour
         //}
 
 
-        augmentList.Add(new Augment("Weak augment", "This is a weak augment", 0)); 
-        augmentList.Add(new Augment("Strong augment", "This is a strong augment", 1));
-        augmentList.Add(new Augment("Legendary augment", "This is a legendary augment", 2));
+        //augmentList.Add(new Augment("Weak augment", "This is a weak augment", 0)); 
+        //augmentList.Add(new Augment("Strong augment", "This is a strong augment", 1));
+        //augmentList.Add(new Augment("Legendary augment", "This is a legendary augment", 2));
 
         //itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword1.png", 1, "Weapon", 1, 1, 1, 1, 1));
         //itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword2.png", 1, "Weapon", 1, 1, 1, 1, 1));
@@ -261,5 +263,26 @@ public class Database : MonoBehaviour
         }
 
         return result;
+    }
+    private void OnApplicationQuit()
+    {
+        AnalyticsManager._timePlayed = Time.realtimeSinceStartup;
+        string filePath = Application.streamingAssetsPath + "/Databases/AnalyticsList.csv";
+
+        if (File.Exists(filePath))
+        {
+            using (sw = new StreamWriter(filePath, true)) //If file exists, add on to the file 
+            {
+                sw.WriteLine($"{AnalyticsManager._goldEarned},{AnalyticsManager._monstersKilled},{AnalyticsManager._damageDealt},{AnalyticsManager._timePlayed}");
+            }
+        }
+        else
+        {
+            using (sw = new StreamWriter(filePath)) //If it doesn't, create a new file and add on to it 
+            {
+                sw.WriteLine("goldEarned,monstersKilled,damageDealt,timePlayed");
+                sw.WriteLine($"{AnalyticsManager._goldEarned},{AnalyticsManager._monstersKilled},{AnalyticsManager._damageDealt},{AnalyticsManager._timePlayed}");
+            }
+        }
     }
 }
