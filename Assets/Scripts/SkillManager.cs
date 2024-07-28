@@ -169,19 +169,19 @@ public class SkillManager : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.H))
         {
-            InitializePrefabSkills("PROJ0005");
+            InitializePrefabSkills("AREA0001");
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
-            InitializePrefabSkills("PROJ0006");
+            InitializePrefabSkills("AREA0002");
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            InitializePrefabSkills("PROJ0007");
+            InitializePrefabSkills("AREA0003");
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            InitializePrefabSkills("PROJ0008");
+            InitializePrefabSkills("AREA0004");
         }
     }
     //Checks if there are enemies in range

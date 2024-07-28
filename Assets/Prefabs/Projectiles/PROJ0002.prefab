@@ -45,7 +45,7 @@ ParticleSystem:
   m_GameObject: {fileID: 706602233092058999}
   serializedVersion: 8
   lengthInSec: 1
-  simulationSpeed: 1
+  simulationSpeed: 0.05
   stopAction: 1
   cullingMode: 0
   ringBufferMode: 0
@@ -1544,7 +1544,7 @@ ParticleSystem:
     tilesY: 1
     animationType: 0
     rowIndex: 0
-    cycles: 1
+    cycles: 100
     uvChannelMask: -1
     rowMode: 1
     sprites:
