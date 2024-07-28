@@ -13,16 +13,16 @@ D00011,D1COMPLETE,SirK9,What drives you so fiercely?,TRUE,0,It's personal. Let's
 D00012,D1COMPLETE,SirK9,What type of creature is this?,TRUE,0,A DOG!,D00013,Something that resembles a dog.,D00013
 D00013,D1COMPLETE,SirK9,I see. Remember# the path of the knight is not just about strength but also about understanding and growth.,FALSE,QUIT,0,0,0,0
 D00014,D2COMPLETE,SirK9,Evan# your progress is impressive. You move with purpose and determination.,TRUE,0,It's all thanks to your training# Sir K9. I'm grateful.,D00015,It's all thanks to your training. Maybe you're not so bad for a dog.,D00015
-D00015,D2COMPLETE,SirK9,There is a story behind every warrior. Tell me Evan# why do you harbor such animosity towards dogs?,TRUE,0,When I was young# a dog stole my lunch. From that day on# I vowed to find and eradicate the one responsible. Every dog I see reminds me of that day.,D00016,I rather not say still...,D00017
+D00015,D2COMPLETE,SirK9,There is a story behind every warrior. Tell me Evan# why do you harbor such animosity towards dogs?,TRUE,0,When I was young# a dog stole my lunch. From that day on# I vowed to eradicate the one responsible.,D00016,I rather not say still...,D00017
 D00016,D2COMPLETE,SirK9,A single incident has shaped your destiny. Perhaps there is more to learn from this journey than you realize.,FALSE,D00017,0,0,0,0
 D00017,D2COMPLETE,SirK9,Well# enough talking. Let us proceed with your training. Head on in to the third dungeon.,FALSE,QUIT,0,0,0,0
 ,,SirK9,,,,,,,
 D00018,D3COMPLETE,SirK9,Evan# you continue to surpass my expectations. Each challenge you overcome brings you closer to your goal.,TRUE,0,I'm getting stronger# but I know I still have much to learn.,D00019,I'm getting stronger# but I need much more strength to fulfil my mission. ,D00019
-D00019,D3COMPLETE,SirK9,Strength alone is not enough# Evan. You must also learn to see beyond your past and understand the true essence of knighthood.,TRUE,0,I understand# Sir K9. I will try to let go of my anger.,D00020,I can't shake the feeling that you know more about my past than you're letting on.,D00021
+D00019,D3COMPLETE,SirK9,Strength alone is not enough# Evan. You must also learn to see beyond your past and understand the true essence of knighthood.,TRUE,0,I understand# Sir K9. I will try to let go of my anger.,D00020,I can't shake the feeling that you know more about my past.,D00021
 D00020,D3COMPLETE,SirK9,Your final challenge awaits in the Catacombs. Face it with the courage and wisdom you have gained. Remember# a true knight is defined by his actions and his heart.,FALSE,QUIT,0,0,0,0
 D00021,D3COMPLETE,SirK9,I don't know what you're talking about. Proceed to the last dungeon.,FALSE,QUIT,0,0,0,0
 D00022,D4COMPLETE,SirK9,Evan# you have come far. You have faced many challenges and emerged victorious each time. Now# it is time you know the truth.,TRUE,0,...Okay?,D00023,0,0
-D00023,D4COMPLETE,SirK9,Because it is time you face your greatest challenge. Evan# I am the dog who stole your lunch.,TRUE,0,I forgive you# Sir K9. I see now that it was meant to help me grow.,D00024,I knew it. I suspected you all along. So# it was you who betrayed me. I will defeat you and prove my strength!,D00026
+D00023,D4COMPLETE,SirK9,Because it is time you face your greatest challenge. Evan# I am the dog who stole your lunch.,TRUE,0,I forgive you# Sir K9. I see now that it was meant to help me grow.,D00024,So# it was you who betrayed me. I will defeat you and prove my strength!,D00026
 D00024,D4COMPLETE,SirK9,You have truly learned what it means to be a knight. As a reward# I want you to have this.,FALSE,D00025,0,0,0,0
 D00025,D4COMPLETE,SirK9,Now# go on young one. The world is your oyster.,FALSE,QUIT,0,0,0,0
 D00026,D4COMPLETE,SirK9,Urgh.. You have defeated me Evan.. I hope you are nowable to let go of the anger within you.,FALSE,D00027,0,0,0,0
