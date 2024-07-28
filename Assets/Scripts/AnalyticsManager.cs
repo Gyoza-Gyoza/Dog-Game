@@ -16,8 +16,8 @@ public static class AnalyticsManager
     {  get { return goldEarned; } 
         set 
         {
-            Game._analyticsUIManager.UpdateGoldUI();
             goldEarned = value; 
+            Game._analyticsUIManager.UpdateGoldUI();
         } 
     } 
 
@@ -25,8 +25,8 @@ public static class AnalyticsManager
     { get { return monstersKilled; } 
         set 
         { 
-            Game._analyticsUIManager.UpdateKillsUI();
             monstersKilled = value; 
+            Game._analyticsUIManager.UpdateKillsUI();
         } 
     }
 
@@ -34,8 +34,8 @@ public static class AnalyticsManager
     { get { return damageDealt; } 
         set 
         { 
-            Game._analyticsUIManager.UpdateDamageUI();
             damageDealt = value; 
+            Game._analyticsUIManager.UpdateDamageUI();
         } 
     }
 

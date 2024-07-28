@@ -20,14 +20,14 @@ public class AnalyticsUIManager : MonoBehaviour
     }
     public void UpdateGoldUI()
     {
-        goldEarned.text = AnalyticsManager._goldEarned.ToString();
+        goldEarned.text = $"Gold: {AnalyticsManager._goldEarned.ToString()}";
     }
     public void UpdateKillsUI()
     {
-        monstersKilled.text = AnalyticsManager._monstersKilled.ToString();
+        monstersKilled.text = $"Kills: {AnalyticsManager._monstersKilled.ToString()}";
     }
     public void UpdateDamageUI()
     {
-        damageDealt.text = AnalyticsManager._damageDealt.ToString();
+        damageDealt.text = $"Damage: {AnalyticsManager._damageDealt.ToString()}";
     }
 }
