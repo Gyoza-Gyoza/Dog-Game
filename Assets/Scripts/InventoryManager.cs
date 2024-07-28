@@ -237,6 +237,7 @@ public class InventoryManager : MonoBehaviour
     public void GainGold(int goldAmount)
     {
         goldCount += goldAmount;
+        AnalyticsManager._goldEarned += goldAmount;
     }
     //private void OnEnable() //Updates all the UIs 
     //{

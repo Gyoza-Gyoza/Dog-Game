@@ -40,7 +40,7 @@ public class EnemyFactory : MonoBehaviour
         enemyPool.TryGetValue(objToDestroy.GetComponent<EnemyBehaviour>().gameObject.name, out Stack<GameObject> result);
         objToDestroy.SetActive(false);
         Game._waveManager._killCount++;
-        Debug.Log($"Enemy killed, kill count is {Game._waveManager._killCount}");
+        AnalyticsManager._monstersKilled++;
         result.Push(objToDestroy);
     }
     private Stack<GameObject> GetPoolStack(string enemyName)

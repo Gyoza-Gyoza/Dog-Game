@@ -78,7 +78,7 @@ public class InputHandler : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Game._playerManager.SpawnPlayer(gameObject.transform);
+            Application.Quit();
         }
         if(Input.GetKeyDown(KeyCode.S))
         {

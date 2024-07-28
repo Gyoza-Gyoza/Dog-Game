@@ -33,6 +33,16 @@ public class EnemyBehaviour : EntityBehaviour
             collision.GetComponent<IDamageable>().TakeDamage(attack);
         }
     }
+    public override void TakeDamage(int damage)
+    {
+        int finalDamage = (int)(damage * Game.CalculateDamageReduction(this.defence));
+        currentHp -= finalDamage;
+        AnalyticsManager._damageDealt += finalDamage;
+        if (currentHp < 0)
+        {
+            Death();
+        }
+    }
     protected override void Death()
     {
         Game._enemyFactory.DestroyEnemy(gameObject);
