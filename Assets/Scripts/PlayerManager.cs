@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void Start()
     {
-        SpawnPlayer(gameObject.transform);
+        //SpawnPlayer(gameObject.transform);
     }
     public void SpawnPlayer(Transform pos)
     {

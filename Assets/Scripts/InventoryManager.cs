@@ -246,6 +246,17 @@ public class InventoryManager : MonoBehaviour
     //        Game._uIManager.UpdateInventory();
     //    }
     //}
+    private bool InventoryHasSpace()
+    {
+        foreach (Item item in inventoryList)
+        {
+            if(item == null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     public void UpdateInventory()
     {
         for (int i = 0; i < inventoryBoxList.Length; i++) //Loops through the inventory UI 
@@ -286,7 +297,7 @@ public class InventoryManager : MonoBehaviour
             foreach(ShopUIBox box in shop._shopUIBoxes)
             {
                 ShopUIBox shopUIBox = box.GetComponent<ShopUIBox>();
-                if (goldCount >= box._itemCostPrice)
+                if (goldCount >= box._itemCostPrice && InventoryHasSpace())
                 {
                     shopUIBox.EnableButton();
                 }

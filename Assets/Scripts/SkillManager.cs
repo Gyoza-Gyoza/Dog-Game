@@ -405,7 +405,11 @@ public class SkillManager : MonoBehaviour
     
     private Vector3 GetCursorPos()
     {
-        return Game._cursor.transform.position;
+        if(Game._cursor != null)
+        {
+            return Game._cursor.transform.position;
+        }
+        return Vector3.zero;
     }
     private void OnDrawGizmos() //Delete after testing 
     {

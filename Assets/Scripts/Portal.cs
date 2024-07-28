@@ -18,7 +18,6 @@ public class Portal : MonoBehaviour
         {
             Game._gameSceneManager.OpenScene(dungeonName, false, () => //Opens the scene 
             {
-                Debug.Log(dungeonName[dungeonName.Length - 1]);
                 Game._waveManager.InitializeStage(int.Parse(dungeonName[dungeonName.Length - 1].ToString())); //Gets the wave number to initialize 
             });
         }

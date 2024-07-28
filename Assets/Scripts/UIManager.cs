@@ -49,7 +49,6 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         Game._uIManager = this;
-        //gameObject.SetActive(false);
         Game._inventoryManager._inventoryBoxList = inventoryBoxList;
         Game._inventoryManager._equipmentBoxList = equipmentBoxList;
     }
@@ -97,16 +96,19 @@ public class UIManager : MonoBehaviour
         bg.SetActive(false);
         closeMenu.SetActive(false);
     }
-    public void UpdateInventory()
+    public void UpdateInventory() //Updates the UI 
     {
         goldAmount.text = $"{Game._inventoryManager._goldCount}"; //Update gold amount 
 
         //Update stats 
-        health.text = $"{Game._chosenPlayer._hp} + {Game._inventoryManager._statBoost.health}"; 
-        attack.text = $"{Game._chosenPlayer._attack} + {Game._inventoryManager._statBoost.damage}";
-        defence.text = $"{Game._chosenPlayer._defence} + {Game._inventoryManager._statBoost.defence}";
-        projectileSize.text = $"{Game._inventoryManager._statBoost.projectileSize}"; //Get the projectile size of equipment 
-        attackSpeed.text = $"{Game._chosenPlayer._attackSpeed} + {Game._inventoryManager._statBoost.attackSpeed}";
-        critChance.text = $"{Game._chosenPlayer._critChance} + {Game._inventoryManager._statBoost.critChance}";
+        if(Game._chosenPlayer != null)
+        {
+            health.text = $"{Game._chosenPlayer._hp} + {Game._inventoryManager._statBoost.health}";
+            attack.text = $"{Game._chosenPlayer._attack} + {Game._inventoryManager._statBoost.damage}";
+            defence.text = $"{Game._chosenPlayer._defence} + {Game._inventoryManager._statBoost.defence}";
+            projectileSize.text = $"{Game._inventoryManager._statBoost.projectileSize}";  
+            attackSpeed.text = $"{Game._chosenPlayer._attackSpeed} + {Game._inventoryManager._statBoost.attackSpeed}";
+            critChance.text = $"{Game._chosenPlayer._critChance} + {Game._inventoryManager._statBoost.critChance}";
+        }
     }
 }

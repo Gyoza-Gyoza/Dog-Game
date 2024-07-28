@@ -20,11 +20,14 @@ public class TabManager : MonoBehaviour
     }
     public void TurnOnTabs(int tab)
     {
-        tabs[tab].SetActive(true); //Opens the selected tab 
+        if(tab != activeTab)
+        {
+            tabs[tab].SetActive(true); //Opens the selected tab 
 
-        tabs[activeTab].SetActive(false); //Closes the old tab 
+            tabs[activeTab].SetActive(false); //Closes the old tab 
 
-        activeTab = tab; //Keeps track of the currently open tab
+            activeTab = tab; //Keeps track of the currently open tab
+        }
     }
 
     public void CountInitializedTabs()

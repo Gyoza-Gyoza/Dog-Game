@@ -34,7 +34,6 @@ public class GameSceneManager : MonoBehaviour
             if(isAdditive)
             {
                 actionOnLoad?.Invoke(); //Invokes the unityaction given in the argument
-                Debug.Log("Opened additive scene");
             }
             else
             {
@@ -44,7 +43,6 @@ public class GameSceneManager : MonoBehaviour
                 Game._skillManager.ResetSkillPools(); //Resets skill pools
                 actionOnLoad?.Invoke(); //Invokes the unityaction given in the argument
                 Game._player._nav.Warp(Vector3.zero); //Sets the player position 
-                Debug.Log("Changed scene");
             }
         };
     }
