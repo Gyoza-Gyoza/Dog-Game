@@ -1,46 +1,46 @@
 equipmentID (PK),equipmentName,equipmentDescription,imagePath,costPrice,sellPrice,equipmentType,damage,defence,projectileSize,criticalChance,attackSpeed
-EQ00001,IRON HELMET,A basic iron helmet offering standard protection.,Assets/Images/Equipment/Knight/helmet1.png,75,40,HELMET,5,10,0,0,0
-EQ00002,CROWN OF VALOR,A beautifully crafted helm fit for a knight of the royal court# providing superior protection and prestige.,Assets/Images/Equipment/Knight/helmet2.png,150,85,HELMET,10,15,0,0,0
-EQ00003,STEEL ARMOR,Standard steel armor providing reliable defense.,Assets/Images/Equipment/Knight/overall1.png,100,60,OVERALL,5,15,0,0,0
-EQ00004,REGAL KNIGHT'S ARMOR,Magnificent armor adorned with royal insignia# offering exceptional protection and an air of nobility.,Assets/Images/Equipment/Knight/overall1.png,200,110,OVERALL,10,25,0,0,0
-EQ00005,LEATHER GAUNTLETS,Simple leather gloves offering basic hand protection.,Assets/Images/Equipment/Knight/glove1.png,50,35,GLOVE,5,10,0,0,0
-EQ00006,GAUNTLET OF NOBILITY,Finely crafted gauntlets that enhance the knight's grip and provide superior defense.,Assets/Images/Equipment/Knight/glove2.png,100,60,GLOVE,10,15,0,0,0
-EQ00007,IRON GREAVES,Basic iron boots providing solid foot protection.,Assets/Images/Equipment/Knight/boot1.png,50,35,BOOT,5,10,0,0,0
-EQ00008,BOOTS OF THE ROYAL GUARD,Elegant boots designed for the elite royal guards# offering excellent mobility and protection.,Assets/Images/Equipment/Knight/boot2.png,100,60,BOOT,10,15,0,0,0
-EQ00009,IRON SWORD,A basic iron sword# reliable and sturdy for any knight.,Assets/Images/Weapon/Knight/sword1.png,150,85,WEAPON,50,10,0,0,0
-EQ00010,EXACLIBUR,The legendary sword of kings# granting unmatched power and prestige to its wielder.,Assets/Images/Weapon/Knight/sword2.png,300,160,WEAPON,100,10,0,0,0
-EQ00011,APPRENTICE'S MAGICIAN HAT,A simple hat worn by novice magicians# imbued with minor magical properties.,Assets/Images/Equipment/Mage/helmet1.png,75,40,HELMET,3,5,0.15,0,0
-EQ00012,ARCANE SORCERER'S DIADEM,A magnificent diadem that significantly boosts the wearer's magical prowess.,Assets/Images/Equipment/Mage/helmet2.png,150,85,HELMET,5,10,0.25,0,0
-EQ00013,MYSTIC ROBE,Robes adorned with mystical runes that enhance the wearer's magical abilities.,Assets/Images/Equipment/Mage/overall1.png,100,60,OVERALL,3,5,0.15,0,0
-EQ00014,ARCHMAGE'S REGALIA,Elaborate and enchanted robes that provide exceptional magical protection and power.,Assets/Images/Equipment/Mage/overall1.png,200,110,OVERALL,5,10,0.25,0,0
-EQ00015,ENCHANTED GLOVES,Gloves imbued with magic# enhancing spell casting precision and power.,Assets/Images/Equipment/Mage/glove1.png,50,35,GLOVE,3,5,0.15,0,0
-EQ00016,GRAND SORCERER'S GAUNTLET,Exquisitely crafted gloves that amplify the wearer's magical strength and casting speed.,Assets/Images/Equipment/Mage/glove2.png,100,60,GLOVE,5,10,0.25,0,0
-EQ00017,MAGE'S BOOTS,Light boots designed to aid in quick movements and spell casting.,Assets/Images/Equipment/Mage/boot1.png,50,35,BOOT,3,5,0.15,0,0
-EQ00018,ARCANE ETHERAL BOOTS,Elegant boots that enhance mobility and magical resistance# allowing the wearer to move gracefully.,Assets/Images/Equipment/Mage/boot2.png,100,60,BOOT,5,10,0.25,0,0
-EQ00019,WOODEN WAND,A simple wand used by novice magicians to practice basic spells.,Assets/Images/Weapon/Mage/wand1.png,150,75,WEAPON,40,10,0.25,0,0
-EQ00020,WAND OF THE ARCANE,An exquisitely crafted wand that channels immense magical power and precision.,Assets/Images/Weapon/Mage/wand2.png,300,160,WEAPON,75,10,0.5,0,0
-EQ00021,LEATHER HOOD,A simple hood providing basic protection and enhancing stealth.,Assets/Images/Equipment/Archer/helmet1.png,75,40,HELMET,3,5,0,0.1,0
-EQ00022,HUNTER'S GOWL,A masterfully crafted hood that offers superior protection and enhances the wearer's precision and focus.,Assets/Images/Equipment/Archer/helmet2.png,150,85,HELMET,5,10,0,0.15,0
-EQ00023,HUNTER GARB,Lightweight armor that provides good mobility and basic protection.,Assets/Images/Equipment/Archer/overall1.png,100,60,OVERALL,3,5,0,0.1,0
-EQ00024,SHARPSHOOTER'S ARMOR,Refined and sturdy armor designed for the elite rangers# offering enhanced protection and agility.,Assets/Images/Equipment/Archer/overall2.png,200,110,OVERALL,5,10,0,0.15,0
-EQ00025,ARCHER'S GLOVE,Gloves that improve grip and dexterity# aiding in precise shooting.,Assets/Images/Equipment/Archer/glove1.png,50,35,GLOVE,3,5,0,0.1,0
-EQ00026,GLOVES OF THE EAGLE EYE,Finely made gloves that significantly enhance the wearer's archery skills and accuracy.,Assets/Images/Equipment/Archer/glove2.png,100,60,GLOVE,5,10,0,0.15,0
-EQ00027,STURDY BOOTS,Durable boots that provide basic protection and good mobility.,Assets/Images/Equipment/Archer/boot1.png,50,35,BOOT,3,5,0,0.1,0
-EQ00028,PATHFINDER'S BOOTS,Superior boots designed for expert trackers.,Assets/Images/Equipment/Archer/boot2.png,100,60,BOOT,5,10,0,0.15,0
-EQ00029,SHORT BOW,A basic bow made from sturdy wood# ideal for beginners.,Assets/Images/Weapon/Archer/bow1.png,150,85,WEAPON,40,10,0,0.2,0
-EQ00030,BOW OF THE SILVER HAWK,A masterfully crafted bow# known for its exceptional range and accuracy# favored by elite archers.,Assets/Images/Weapon/Archer/bow2.png,300,160,WEAPON,75,10,0,0.4,0
-EQ00031,SHADOW MASK,A mask that provides basic protection and enhances stealth abilities.,Assets/Images/Equipment/Thief/helmet1.png,75,40,HELMET,3,5,0,0,0.15
-EQ00032,VEIL OF SHADOWS,A finely crafted hood that offers superior protection and significantly improves stealth capabilities.,Assets/Images/Equipment/Thief/helmet2.png,150,85,HELMET,5,10,0,0,0.25
-EQ00033,ASSASSIN'S GARB,Lightweight clothing designed for quick# silent movements.,Assets/Images/Equipment/Thief/overall1.png,100,60,OVERALL,3,5,0,0,0.15
-EQ00034,MASTER THIEF'S ENSEMBLE,Exquisite attire that offers excellent protection and enhances the wearer's agility and stealth.,Assets/Images/Equipment/Thief/overall2.png,200,110,OVERALL,5,10,0,0,0.25
-EQ00035,SILENT GLOVES,Gloves that enhance the wearer's dexterity and ability to move silently.,Assets/Images/Equipment/Thief/glove1.png,50,35,GLOVE,3,5,0,0,0.15
-EQ00036,GLOVES OF THE SILENT BLADE,Sophisticated gloves that significantly enhance the wearer's agility and precision in combat.,Assets/Images/Equipment/Thief/glove1.png,100,60,GLOVE,5,10,0,0,0.25
-EQ00037,LIGHTFOOT BOOTS,Boots designed to aid in silent and swift movements.,Assets/Images/Equipment/Thief/boot1.png,50,35,BOOT,3,5,0,0,0.15
-EQ00038,PHANTOM SPECTER'S BOOTS,Elegantly crafted boots that allow the wearer to move almost invisibly# enhancing stealth and speed.,Assets/Images/Equipment/Thief/boot2.png,100,60,BOOT,5,10,0,0,0.25
-EQ00039,IRON CLAW,Basic iron claws that provide reliable damage for any thief.,Assets/Images/Weapon/Thief/claw1.png,150,85,WEAPON,40,10,0,0,0.25
-EQ00040,SHADOW TALONS,Elegantly crafted claws that strike with deadly precision# enhancing the thief's stealth and lethality.,Assets/Images/Weapon/Thief/claw2.png,300,160,WEAPON,75,10,0,0,0.5
-EQ00041,RING OF ETERNAL FLAME,A beautifully crafted ring imbued with the essence of fire.,Assets/Images/Equipment/Accessories/ring1.png,150,85,ACCESSORY,5,5,0.1,0.1,0.1
-EQ00042,PENDANT OF THE MOON,A shimmering pendant with a crescent moon gem.,Assets/Images/Equipment/Accessories/pendant1.png,150,85,ACCESSORY,3,5,0.2,0.05,0.2
-EQ00043,PENDANT OF THE FLAMES,A pendant adorned with a blazing fire gem.,Assets/Images/Equipment/Accessories/pendant2.png,150,85,ACCESSORY,5,5,0.1,0.1,0.1
-EQ00044,SCARF OF THE WIND WALKER,A dark and stealthy scarf that blends into the shadows.,Assets/Images/Equipment/Accessories/scarf1.png,150,85,ACCESSORY,3,7,0.1,0.1,0.1
-EQ00045,SCARF OF THE STALKER,A lightweight scarf that flutters gracefully in the breeze.,Assets/Images/Equipment/Accessories/scarf2.png,150,85,ACCESSORY,3,7,0.1,0.05,0.15
+EQ00001,IRON HELMET,A basic iron helmet offering standard protection.,Assets/Images/Equipment/Knight/helmet1.png,300,40,HELMET,5,10,0,0,0
+EQ00002,CROWN OF VALOR,A beautifully crafted helm fit for a knight of the royal court# providing superior protection and prestige.,Assets/Images/Equipment/Knight/helmet2.png,600,85,HELMET,10,15,0,0,0
+EQ00003,STEEL ARMOR,Standard steel armor providing reliable defense.,Assets/Images/Equipment/Knight/overall1.png,400,60,OVERALL,5,15,0,0,0
+EQ00004,REGAL KNIGHT'S ARMOR,Magnificent armor adorned with royal insignia# offering exceptional protection and an air of nobility.,Assets/Images/Equipment/Knight/overall2.png,800,110,OVERALL,10,25,0,0,0
+EQ00005,LEATHER GAUNTLETS,Simple leather gloves offering basic hand protection.,Assets/Images/Equipment/Knight/glove1.png,200,35,GLOVE,5,10,0,0,0
+EQ00006,GAUNTLET OF NOBILITY,Finely crafted gauntlets that enhance the knight's grip and provide superior defense.,Assets/Images/Equipment/Knight/glove2.png,400,60,GLOVE,10,15,0,0,0
+EQ00007,IRON GREAVES,Basic iron boots providing solid foot protection.,Assets/Images/Equipment/Knight/boot1.png,200,35,BOOT,5,10,0,0,0
+EQ00008,BOOTS OF THE ROYAL GUARD,Elegant boots designed for the elite royal guards# offering excellent mobility and protection.,Assets/Images/Equipment/Knight/boot2.png,400,60,BOOT,10,15,0,0,0
+EQ00009,IRON SWORD,A basic iron sword# reliable and sturdy for any knight.,Assets/Images/Weapon/Knight/sword1.png,600,85,WEAPON,50,10,0,0,0
+EQ00010,EXACLIBUR,The legendary sword of kings# granting unmatched power and prestige to its wielder.,Assets/Images/Weapon/Knight/sword2.png,1200,160,WEAPON,100,10,0,0,0
+EQ00011,APPRENTICE'S MAGICIAN HAT,A simple hat worn by novice magicians# imbued with minor magical properties.,Assets/Images/Equipment/Mage/helmet1.png,300,40,HELMET,3,5,1,0,0
+EQ00012,ARCANE SORCERER'S DIADEM,A magnificent diadem that significantly boosts the wearer's magical prowess.,Assets/Images/Equipment/Mage/helmet2.png,600,85,HELMET,5,10,1.5,0,0
+EQ00013,MYSTIC ROBE,Robes adorned with mystical runes that enhance the wearer's magical abilities.,Assets/Images/Equipment/Mage/overall1.png,400,60,OVERALL,3,5,1,0,0
+EQ00014,ARCHMAGE'S REGALIA,Elaborate and enchanted robes that provide exceptional magical protection and power.,Assets/Images/Equipment/Mage/overall2.png,800,110,OVERALL,5,10,1.5,0,0
+EQ00015,ENCHANTED GLOVES,Gloves imbued with magic# enhancing spell casting precision and power.,Assets/Images/Equipment/Mage/glove1.png,200,35,GLOVE,3,5,1,0,0
+EQ00016,GRAND SORCERER'S GAUNTLET,Exquisitely crafted gloves that amplify the wearer's magical strength and casting speed.,Assets/Images/Equipment/Mage/glove2.png,400,60,GLOVE,5,10,1.5,0,0
+EQ00017,MAGE'S BOOTS,Light boots designed to aid in quick movements and spell casting.,Assets/Images/Equipment/Mage/boot1.png,200,35,BOOT,3,5,1,0,0
+EQ00018,ARCANE ETHERAL BOOTS,Elegant boots that enhance mobility and magical resistance# allowing the wearer to move gracefully.,Assets/Images/Equipment/Mage/boot2.png,400,60,BOOT,5,10,1.5,0,0
+EQ00019,WOODEN WAND,A simple wand used by novice magicians to practice basic spells.,Assets/Images/Weapon/Mage/wand1.png,600,75,WEAPON,40,10,2,0,0
+EQ00020,WAND OF THE ARCANE,An exquisitely crafted wand that channels immense magical power and precision.,Assets/Images/Weapon/Mage/wand2.png,1200,160,WEAPON,75,10,3,0,0
+EQ00021,LEATHER HOOD,A simple hood providing basic protection and enhancing stealth.,Assets/Images/Equipment/Archer/helmet1.png,300,40,HELMET,3,5,0,0.1,0
+EQ00022,HUNTER'S GOWL,A masterfully crafted hood that offers superior protection and enhances the wearer's precision and focus.,Assets/Images/Equipment/Archer/helmet2.png,600,85,HELMET,5,10,0,0.15,0
+EQ00023,HUNTER GARB,Lightweight armor that provides good mobility and basic protection.,Assets/Images/Equipment/Archer/overall1.png,400,60,OVERALL,3,5,0,0.1,0
+EQ00024,SHARPSHOOTER'S ARMOR,Refined and sturdy armor designed for the elite rangers# offering enhanced protection and agility.,Assets/Images/Equipment/Archer/overall2.png,800,110,OVERALL,5,10,0,0.15,0
+EQ00025,ARCHER'S GLOVE,Gloves that improve grip and dexterity# aiding in precise shooting.,Assets/Images/Equipment/Archer/glove1.png,200,35,GLOVE,3,5,0,0.1,0
+EQ00026,GLOVES OF THE EAGLE EYE,Finely made gloves that significantly enhance the wearer's archery skills and accuracy.,Assets/Images/Equipment/Archer/glove2.png,400,60,GLOVE,5,10,0,0.15,0
+EQ00027,STURDY BOOTS,Durable boots that provide basic protection and good mobility.,Assets/Images/Equipment/Archer/boot1.png,200,35,BOOT,3,5,0,0.1,0
+EQ00028,PATHFINDER'S BOOTS,Superior boots designed for expert trackers.,Assets/Images/Equipment/Archer/boot2.png,400,60,BOOT,5,10,0,0.15,0
+EQ00029,SHORT BOW,A basic bow made from sturdy wood# ideal for beginners.,Assets/Images/Weapon/Archer/bow1.png,600,85,WEAPON,40,10,0,0.2,0
+EQ00030,BOW OF THE SILVER HAWK,A masterfully crafted bow# known for its exceptional range and accuracy# favored by elite archers.,Assets/Images/Weapon/Archer/bow2.png,1200,160,WEAPON,75,10,0,0.4,0
+EQ00031,SHADOW MASK,A mask that provides basic protection and enhances stealth abilities.,Assets/Images/Equipment/Thief/helmet1.png,300,40,HELMET,3,5,0,0,0.15
+EQ00032,VEIL OF SHADOWS,A finely crafted hood that offers superior protection and significantly improves stealth capabilities.,Assets/Images/Equipment/Thief/helmet2.png,600,85,HELMET,5,10,0,0,0.25
+EQ00033,ASSASSIN'S GARB,Lightweight clothing designed for quick# silent movements.,Assets/Images/Equipment/Thief/overall1.png,400,60,OVERALL,3,5,0,0,0.15
+EQ00034,MASTER THIEF'S ENSEMBLE,Exquisite attire that offers excellent protection and enhances the wearer's agility and stealth.,Assets/Images/Equipment/Thief/overall2.png,800,110,OVERALL,5,10,0,0,0.25
+EQ00035,SILENT GLOVES,Gloves that enhance the wearer's dexterity and ability to move silently.,Assets/Images/Equipment/Thief/glove1.png,200,35,GLOVE,3,5,0,0,0.15
+EQ00036,GLOVES OF THE SILENT BLADE,Sophisticated gloves that significantly enhance the wearer's agility and precision in combat.,Assets/Images/Equipment/Thief/glove2.png,400,60,GLOVE,5,10,0,0,0.25
+EQ00037,LIGHTFOOT BOOTS,Boots designed to aid in silent and swift movements.,Assets/Images/Equipment/Thief/boot1.png,200,35,BOOT,3,5,0,0,0.15
+EQ00038,PHANTOM SPECTER'S BOOTS,Elegantly crafted boots that allow the wearer to move almost invisibly# enhancing stealth and speed.,Assets/Images/Equipment/Thief/boot2.png,400,60,BOOT,5,10,0,0,0.25
+EQ00039,IRON CLAW,Basic iron claws that provide reliable damage for any thief.,Assets/Images/Weapon/Thief/claw1.png,600,85,WEAPON,40,10,0,0,0.25
+EQ00040,SHADOW TALONS,Elegantly crafted claws that strike with deadly precision# enhancing the thief's stealth and lethality.,Assets/Images/Weapon/Thief/claw2.png,1200,160,WEAPON,75,10,0,0,0.5
+EQ00041,RING OF ETERNAL FLAME,A beautifully crafted ring imbued with the essence of fire.,Assets/Images/Equipment/Accessories/ring1.png,300,85,ACCESSORY,5,5,0.1,0.1,0.1
+EQ00042,PENDANT OF THE MOON,A shimmering pendant with a crescent moon gem.,Assets/Images/Equipment/Accessories/pendant1.png,300,85,ACCESSORY,3,5,0.2,0.05,0.2
+EQ00043,PENDANT OF THE FLAMES,A pendant adorned with a blazing fire gem.,Assets/Images/Equipment/Accessories/pendant2.png,300,85,ACCESSORY,5,5,0.1,0.1,0.1
+EQ00044,SCARF OF THE WIND WALKER,A dark and stealthy scarf that blends into the shadows.,Assets/Images/Equipment/Accessories/scarf1.png,300,85,ACCESSORY,3,7,0.1,0.1,0.1
+EQ00045,SCARF OF THE STALKER,A lightweight scarf that flutters gracefully in the breeze.,Assets/Images/Equipment/Accessories/scarf2.png,300,85,ACCESSORY,3,7,0.1,0.05,0.15

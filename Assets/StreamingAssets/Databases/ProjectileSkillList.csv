@@ -1,9 +1,9 @@
 projectileSkillID (PK),skillName,skillDescription,skillIcon,skillPrefab,skillCoolDown,projectileDamage,projectilePierce,projectileSize,projectileSpeed
-PROJ0001,SWORD SLASH,Release a powerful horizontal slash with the sword# dealing damage to enemies.,Assets/Images/Skill/Projectiles/PROJ0001.png,Assets/Prefabs/Projectiles/PROJ0001.prefab,0,1,1,1,30
-PROJ0002,ARCANE ORB,Conjure a magical orb that homes in on the nearest enemy.,Assets/Images/Skill/Projectiles/PROJ0002.png,Assets/Prefabs/Projectiles/PROJ0002.prefab,0,1,1,1,30
-PROJ0003,ARROW SHOT,Fire a precise arrow at a target# dealing damage from a distance.,Assets/Images/Skill/Projectiles/PROJ0003.png,Assets/Prefabs/Projectiles/PROJ0003.prefab,0,1,1,1,30
-PROJ0004,SHURIKEN THROW,Throw a shuriken at a target# dealing damage from a distance.,Assets/Images/Skill/Projectiles/PROJ0004.png,Assets/Prefabs/Projectiles/PROJ0004.prefab,0,1,1,1,30
-PROJ0005,SOLAR DIVIDE,Unleash a powerful sword slash that sends out a piercing wave of radiant energy. This waves deals damage to each target it passes through.,Assets/Images/Skill/Projectiles/PROJ0005.png,Assets/Prefabs/Projectiles/PROJ0005.prefab,5,1.5,999,3,45
-PROJ0006,THUNDER SPHERE,Summon a condensed sphere of lightning energy that hovers in a single direction. This sphere deals damage to each target it passes through.,Assets/Images/Skill/Projectiles/PROJ0006.png,Assets/Prefabs/Projectiles/PROJ0006.prefab,5,1.5,999,5,20
-PROJ0007,PIERCING CANNON,Fire a large rocket that pierces through multiple enemies in a line# dealing damage to each.,Assets/Images/Skill/Projectiles/PROJ0007.png,Assets/Prefabs/Projectiles/PROJ0007.prefab,5,1.5,999,5,20
-PROJ0008,SUDDEN RAID,Throw a large dagger that pierces any target# dealing damage from a distance.,Assets/Images/Skill/Projectiles/PROJ0008.png,Assets/Prefabs/Projectiles/PROJ0008.prefab,5,1.5,999,3,45
+PROJ0001,SWORD SLASH,Release a powerful horizontal slash with the sword# dealing damage to enemies.,Assets/Images/Skill/Projectiles/PROJ0001.png,Assets/Prefabs/Projectiles/PROJ0001.prefab,1,20,2,1,10
+PROJ0002,ARCANE ORB,Conjure a magical orb that homes in on the nearest enemy.,Assets/Images/Skill/Projectiles/PROJ0002.png,Assets/Prefabs/Projectiles/PROJ0002.prefab,1,30,1,1,10
+PROJ0003,ARROW SHOT,Fire a precise arrow at a target# dealing damage from a distance.,Assets/Images/Skill/Projectiles/PROJ0003.png,Assets/Prefabs/Projectiles/PROJ0003.prefab,1,20,2,1,10
+PROJ0004,SHURIKEN THROW,Throw a shuriken at a target# dealing damage from a distance.,Assets/Images/Skill/Projectiles/PROJ0004.png,Assets/Prefabs/Projectiles/PROJ0004.prefab,1,20,2,1,10
+PROJ0005,SOLAR DIVIDE,Unleash a powerful sword slash that sends out a piercing wave of radiant energy. This waves deals damage to each target it passes through.,Assets/Images/Skill/Projectiles/PROJ0005.png,Assets/Prefabs/Projectiles/PROJ0005.prefab,5,50,999,2,10
+PROJ0006,THUNDER SPHERE,Summon a condensed sphere of lightning energy that hovers in a single direction. This sphere deals damage to each target it passes through.,Assets/Images/Skill/Projectiles/PROJ0006.png,Assets/Prefabs/Projectiles/PROJ0006.prefab,5,75,999,2,10
+PROJ0007,PIERCING CANNON,Fire a large rocket that pierces through multiple enemies in a line# dealing damage to each.,Assets/Images/Skill/Projectiles/PROJ0007.png,Assets/Prefabs/Projectiles/PROJ0007.prefab,5,50,999,2,10
+PROJ0008,SUDDEN RAID,Throw a large dagger that pierces any target# dealing damage from a distance.,Assets/Images/Skill/Projectiles/PROJ0008.png,Assets/Prefabs/Projectiles/PROJ0008.prefab,5,50,999,2,10
