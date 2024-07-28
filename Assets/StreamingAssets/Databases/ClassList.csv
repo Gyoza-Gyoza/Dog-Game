@@ -1,5 +1,5 @@
 classID (PK),className,health,damage,moveSpeed,defence,classSprite,attackSpeed,attackRange,criticalChance,projectileType,classHurtSprite,dashSpeed,dashDuration
-CLASS_KNIGHT,KNIGHT,200,7,4,100,Assets/Images/Class/knight.png,5,5,0,PROJ0001,Assets/Images/Class/knight_hurt.png,50,0.1
-CLASS_MAGE,MAGE,100,10,4,50,Assets/Images/Class/mage.png,7,10,0,PROJ0002,Assets/Images/Class/mage_hurt.png,500,0.01
-CLASS_ARCHER,ARCHER,75,10,5,50,Assets/Images/Class/archer.png,7,10,50,PROJ0003,Assets/Images/Class/archer_hurt.png,50,0.1
-CLASS_THIEF,THIEF,75,7,6,50,Assets/Images/Class/thief.png,10,10,0,PROJ0004,Assets/images/Class/thief_hurt.png,50,0.1
+CLASS_KNIGHT,KNIGHT,200,20,4,100,Assets/Images/Class/knight.png,2,3,0,PROJ0001,Assets/Images/Class/knight_hurt.png,25,0.1
+CLASS_MAGE,MAGE,100,35,4,50,Assets/Images/Class/mage.png,2,6,0,PROJ0002,Assets/Images/Class/mage_hurt.png,25,0.1
+CLASS_ARCHER,ARCHER,75,20,4,50,Assets/Images/Class/archer.png,2,10,50,PROJ0003,Assets/Images/Class/archer_hurt.png,25,0.1
+CLASS_THIEF,THIEF,75,20,6,50,Assets/Images/Class/thief.png,3,6,0,PROJ0004,Assets/Images/Class/thief_hurt.png,30,0.15
