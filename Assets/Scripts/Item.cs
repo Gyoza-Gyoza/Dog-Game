@@ -31,7 +31,7 @@ public class Item
     public Item(string itemName, string itemDescription, string itemSprite, int costPrice, int sellPrice)
     {
         this.itemName = itemName;
-        this.itemDescription = itemDescription;
+        this.itemDescription = itemDescription.Replace('#', ',');
         this.itemSprite = itemSprite;
         this.costPrice = costPrice;
         this.sellPrice = sellPrice;

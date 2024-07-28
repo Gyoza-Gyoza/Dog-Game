@@ -31,7 +31,7 @@ public class Skill
     public Skill(string skillName, string skillDescription, string skillIcon, string skillPrefab, int skillCooldown)
     {
         this.skillName = skillName;
-        this.skillDescription = skillDescription;
+        this.skillDescription = skillDescription.Replace('#', ',');
         this.skillIcon = skillIcon;
         this.skillPrefab = skillPrefab;
         this.skillCooldown = skillCooldown;

@@ -40,6 +40,9 @@ public class Database : MonoBehaviour
     private Dictionary<string, Skill>
         skillDB = new Dictionary<string, Skill>();
 
+    private Dictionary<string, Dialogue>
+        dialogueDB = new Dictionary<string, Dialogue>();
+
     public Dictionary<string, Entity> _enemyList 
     { get { return enemyDB; } }
 
@@ -60,6 +63,10 @@ public class Database : MonoBehaviour
 
     public Dictionary<string, Equipment> _equipmentDB
     { get { return equipmentDB; } }
+
+    public Dictionary<string, Dialogue> _dialogueDB
+    { get { return dialogueDB; } }
+
 
     private static Database
         database; 
@@ -168,7 +175,6 @@ public class Database : MonoBehaviour
                 int.Parse(projectileEntry[7]),
                 float.Parse(projectileEntry[8]),
                 int.Parse(projectileEntry[9])));
-            Debug.Log($"{projectileEntry[0]} {projectileEntry[1]} {projectileEntry[2]} {projectileEntry[3]} {projectileEntry[4]} {projectileEntry[5]} {projectileEntry[6]} {projectileEntry[7]} {projectileEntry[8]} {projectileEntry[9]}");
         }
 
         List<string> aoes = ParseCSV("/Databases/AOESkillList.csv");
@@ -183,8 +189,31 @@ public class Database : MonoBehaviour
                 int.Parse(aoesEntry[5]),
                 float.Parse(aoesEntry[6]),
                 int.Parse(aoesEntry[7])));
-            Debug.Log($"{aoesEntry[0]} {aoesEntry[1]} {aoesEntry[2]} {aoesEntry[3]} {aoesEntry[4]} {aoesEntry[5]} {aoesEntry[6]} {aoesEntry[7]}");
         }
+
+        List<string> dialogues = ParseCSV("/Databases/DialogueList.csv");
+        foreach (string dialogue in dialogues)
+        {
+            string[] dialogueEntry = dialogue.Split(",");
+            dialogueDB.Add(dialogueEntry[0], new Dialogue(
+                dialogueEntry[1],
+                dialogueEntry[2],
+                dialogueEntry[3],
+                dialogueEntry[4],
+                dialogueEntry[5],
+                dialogueEntry[6],
+                dialogueEntry[7],
+                dialogueEntry[8],
+                dialogueEntry[9]
+                ));
+
+            Debug.Log($"{dialogueEntry[0]} {dialogueEntry[1]} {dialogueEntry[2]} {dialogueEntry[3]} {dialogueEntry[4]} {dialogueEntry[5]} {dialogueEntry[6]} {dialogueEntry[7]} {dialogueEntry[8]} {dialogueEntry[9]}");
+        }
+
+        //dialogueDB.Add("D00001", new Dialogue("SHOP", "FrogShop", "Welcome to my Frog Shop ribbit", "TRUE", "0", "Enter Shop", "SHOP", "Talk", "D00002"));
+        //dialogueDB.Add("D00002", new Dialogue("SHOP", "FrogShop", "Haven't seen many people around here", "FALSE", "D00003", "0", "0", "0", "0"));
+        //dialogueDB.Add("D00003", new Dialogue("SHOP", "FrogShop", "There's a lot of flies though", "FALSE", "D00004", "0", "0", "0", "0"));
+        //dialogueDB.Add("D00004", new Dialogue("SHOP", "FrogShop", "I like flies", "TRUE", "0", "...Okay?", "QUIT", "That's interesting", "QUIT"));
 
         //For testing 
         //foreach (Entity ent in playerClassList)

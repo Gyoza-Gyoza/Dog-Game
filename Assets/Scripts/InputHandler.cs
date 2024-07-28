@@ -76,24 +76,6 @@ public class InputHandler : MonoBehaviour
                 Game._inventoryManager.UpdateInventory();
             }
         }
-        if(Input.GetKeyDown(KeyCode.O))
-        {
-            Game._uIManager.ToggleShop();
-            if (Time.timeScale == 0f)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-                Game._inventoryManager.UpdateInventory();
-                Game._inventoryManager.UpdateShopMenu();
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            Game._lootManager.DropLoot(Game._player.transform, Game._database._itemList[1]);
-        }
         if (Input.GetKeyDown(KeyCode.Z))
         {
             Game._playerManager.SpawnPlayer(gameObject.transform);
@@ -108,7 +90,7 @@ public class InputHandler : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            //Game._player.Interact();
+            Game._player.Interact();
         }
     }
     public void PauseGame()
@@ -168,41 +150,41 @@ public class InputHandler : MonoBehaviour
     //        activeReceiver.DoCancelAction();
     //    }
     //}
-    private void ToggleMenus(Menus menuToToggle)
-    {
-        switch (menuToToggle)
-        {
-            case Menus.Augments:
-                if (activeScene == Menus.None)
-                {
-                    activeScene = Menus.Augments;
-                    Game._gameSceneManager.OpenScene("AugmentsMenu", true, () =>
-                    {
-                        Game._augmentManager.InitializeList();
-                        Game._augmentManager.SetAugment();
-                    });
-                }
-                else if (activeScene == Menus.Augments)
-                {
-                    Game._gameSceneManager.CloseScene("AugmentsMenu");
-                    activeScene = Menus.None;
-                }
-                break;
+    //private void ToggleMenus(Menus menuToToggle)
+    //{
+    //    switch (menuToToggle)
+    //    {
+    //        case Menus.Augments:
+    //            if (activeScene == Menus.None)
+    //            {
+    //                activeScene = Menus.Augments;
+    //                Game._gameSceneManager.OpenScene("AugmentsMenu", true, () =>
+    //                {
+    //                    Game._augmentManager.InitializeList();
+    //                    Game._augmentManager.SetAugment();
+    //                });
+    //            }
+    //            else if (activeScene == Menus.Augments)
+    //            {
+    //                Game._gameSceneManager.CloseScene("AugmentsMenu");
+    //                activeScene = Menus.None;
+    //            }
+    //            break;
 
-            case Menus.Equipment:
-                if (activeScene == Menus.None)
-                {
-                    activeScene = Menus.Equipment;
-                    Game._gameSceneManager.OpenScene("PlayerEquipmentMenu", true, null);
-                }
-                else if(activeScene == Menus.Equipment)
-                {
-                    Game._gameSceneManager.CloseScene("PlayerEquipmentMenu"); 
-                    activeScene = Menus.None;
-                }
-                break;
-        }
-    }
+    //        case Menus.Equipment:
+    //            if (activeScene == Menus.None)
+    //            {
+    //                activeScene = Menus.Equipment;
+    //                Game._gameSceneManager.OpenScene("PlayerEquipmentMenu", true, null);
+    //            }
+    //            else if(activeScene == Menus.Equipment)
+    //            {
+    //                Game._gameSceneManager.CloseScene("PlayerEquipmentMenu"); 
+    //                activeScene = Menus.None;
+    //            }
+    //            break;
+    //    }
+    //}
     private void UseSkills()
     {
         if (Input.GetKeyDown(KeyCode.Q))

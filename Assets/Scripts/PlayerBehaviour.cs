@@ -85,6 +85,10 @@ public class PlayerBehaviour : EntityBehaviour
             }
         }
     }
+    public void Interact()
+    {
+        npcInRange?.Interact();
+    }
     private IEnumerator IFrame()
     {
         damageImmune = true;

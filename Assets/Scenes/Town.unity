@@ -1557,7 +1557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551b1e04392ee3544a4481784a977c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcType: 1
+  dialogueRef: D00005
 --- !u!1 &465445708
 GameObject:
   m_ObjectHideFlags: 0
@@ -77368,7 +77368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551b1e04392ee3544a4481784a977c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcType: 0
+  dialogueRef: D00001
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
