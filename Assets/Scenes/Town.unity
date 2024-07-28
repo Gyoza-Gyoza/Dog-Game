@@ -1540,6 +1540,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.5, y: -16.97, z: 0}
+  m_LocalPosition: {x: -2.5, y: -16.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1557,7 +1558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551b1e04392ee3544a4481784a977c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcType: 0
+  dialogueRef: D00005
 --- !u!1 &465445708
 GameObject:
   m_ObjectHideFlags: 0
@@ -77315,7 +77316,7 @@ Transform:
   m_GameObject: {fileID: 2087129388}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.09, y: -16.39, z: 0}
+  m_LocalPosition: {x: -7.17, y: -16.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77368,7 +77369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551b1e04392ee3544a4481784a977c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcType: 0
+  dialogueRef: D00001
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

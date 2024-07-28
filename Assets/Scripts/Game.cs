@@ -47,6 +47,9 @@ public static class Game
     private static TabManager
         tabManager;
 
+    private static DialogueManager
+        dialogueManager;
+
     public static PlayerBehaviour _player
     { get { return player; } set { player = value; } }
 
@@ -85,6 +88,9 @@ public static class Game
 
     public static TabManager _tabManager
     { get { return tabManager; } set { tabManager = value; } }
+
+    public static DialogueManager _dialogueManager
+    { get { return dialogueManager; } set { dialogueManager = value; } }
     #endregion
     #region Objects
     private static Player

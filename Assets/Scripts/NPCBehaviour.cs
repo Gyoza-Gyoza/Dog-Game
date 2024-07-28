@@ -5,8 +5,8 @@ using UnityEngine;
 public class NPCBehaviour : MonoBehaviour 
 {
     [SerializeField]
-    private NPC
-        npcType;
+    private string
+        dialogueRef; 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,10 +22,8 @@ public class NPCBehaviour : MonoBehaviour
             Game._player._npcInRange = null;
         }
     }
-}
-
-public enum NPC
-{
-    FrogShop,
-    SirK9
+    public virtual void Interact()
+    {
+        Game._dialogueManager.StartDialogue(dialogueRef);
+    }
 }

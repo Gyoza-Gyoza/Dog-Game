@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Cancelled feature 
+//This originally manages the loot that the monsters will drop upon dying
 public class LootManager : MonoBehaviour
 {
     [SerializeField]
