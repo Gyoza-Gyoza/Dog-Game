@@ -26,8 +26,10 @@ public class PlayerBehaviour : EntityBehaviour
         player;
 
     private bool
-        damageImmune = false, 
-        canInteract;
+        damageImmune = false;
+
+    private NPCBehaviour
+        npcInRange; 
 
     public string _projectileType
     { get { return projectileType; } }
@@ -35,8 +37,9 @@ public class PlayerBehaviour : EntityBehaviour
     { get { return player.attackSpeed; } }
     public int _critChance
     {  get { return player.critChance; } }
-    public bool _canInteract
-    { get { return player.canInteract; } set { canInteract = value} }
+
+    public NPCBehaviour _npcInRange
+    { get { return npcInRange; } set { npcInRange = value; } }
 
     //public Dictionary<EquipmentSlot, Equipment> _equipmentList
     //{ get { return equipmentList; } }
