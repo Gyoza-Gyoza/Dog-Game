@@ -76,7 +76,8 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(string dialogueIDToPlay) //Called by NPCs to start dialogue 
     {
         Game._inputHandler.PauseGame();
-        endDialogue = false; 
+        endDialogue = false;
+        canEndDialogue = false;
 
         //Adds the dialogues needed for the required dialogue 
         foreach (KeyValuePair<string, Dialogue> kvp in Game._database._dialogueDB)
