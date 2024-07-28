@@ -1435,6 +1435,7 @@ GameObject:
   - component: {fileID: 459217382}
   - component: {fileID: 459217381}
   - component: {fileID: 459217380}
+  - component: {fileID: 459217383}
   m_Layer: 0
   m_Name: Sir K9
   m_TagString: Untagged
@@ -1544,6 +1545,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &459217383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459217379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 551b1e04392ee3544a4481784a977c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcType: 1
 --- !u!1 &465445708
 GameObject:
   m_ObjectHideFlags: 0
@@ -77232,6 +77246,7 @@ GameObject:
   - component: {fileID: 2087129390}
   - component: {fileID: 2087129389}
   - component: {fileID: 2087129391}
+  - component: {fileID: 2087129392}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -77341,6 +77356,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.5
+--- !u!114 &2087129392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087129388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 551b1e04392ee3544a4481784a977c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcType: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

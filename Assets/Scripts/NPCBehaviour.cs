@@ -12,7 +12,14 @@ public class NPCBehaviour : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            Game._player._canInteract = true;
+            Game._player._npcInRange = this;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            Game._player._npcInRange = null;
         }
     }
 }
