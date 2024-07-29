@@ -1,12 +1,3 @@
-goldEarned,monstersKilled,damageDealt,timePlayer
-0,0,0,10268.61
-0,0,0,9.352563
-0,0,0,14.69386
-0,0,0,14.15393
-56,56,10735,75.68737
-96,48,13736,56.63605
-26,13,3672,23.39637
-16,8,1404,21.28941
-8,4,1088,19.46929
-6,3,520,16.84509
-4,2,544,14.24369
+goldEarned,monstersKilled,damageDealt,timePlayed,achievements
+8064,1967,2038961,20.33423
+6668,1618,1654769,13.81816,monsterHunter#tonsOfDamage#

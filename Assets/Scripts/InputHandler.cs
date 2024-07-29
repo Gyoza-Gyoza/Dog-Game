@@ -76,10 +76,6 @@ public class InputHandler : MonoBehaviour
                 Game._inventoryManager.UpdateInventory();
             }
         }
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Application.Quit();
-        }
         if(Input.GetKeyDown(KeyCode.S))
         {
             Game._player.ChangeDestination(Game._player.transform.position);
@@ -87,6 +83,7 @@ public class InputHandler : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.P))
         {
             Game._inventoryManager.GainGold(100);
+            Game._inventoryManager.UpdateInventory();
         }
         if (Input.GetKeyDown(KeyCode.F))
         {

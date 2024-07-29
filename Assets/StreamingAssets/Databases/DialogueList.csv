@@ -21,7 +21,7 @@ D00018,D3COMPLETE,SirK9,Evan# you continue to surpass my expectations. Each chal
 D00019,D3COMPLETE,SirK9,Strength alone is not enough# Evan. You must also learn to see beyond your past and understand the true essence of knighthood.,TRUE,0,I understand# Sir K9. I will try to let go of my anger.,D00020,I can't shake the feeling that you know more about my past.,D00021
 D00020,D3COMPLETE,SirK9,Your final challenge awaits in the Catacombs. Face it with the courage and wisdom you have gained. Remember# a true knight is defined by his actions and his heart.,FALSE,QUIT,0,0,0,0
 D00021,D3COMPLETE,SirK9,I don't know what you're talking about. Proceed to the last dungeon.,FALSE,QUIT,0,0,0,0
-D00022,D4COMPLETE,SirK9,Evan# you have come far. You have faced many challenges and emerged victorious each time. Now# it is time you know the truth.,TRUE,0,...Okay?,D00023,0,0
+D00022,D4COMPLETE,SirK9,Evan# you have come far. You have faced many challenges and emerged victorious each time. Now# it is time you know the truth.,TRUE,0,...Okay?,D00023,...,D00023
 D00023,D4COMPLETE,SirK9,Because it is time you face your greatest challenge. Evan# I am the dog who stole your lunch.,TRUE,0,I forgive you# Sir K9. I see now that it was meant to help me grow.,D00024,So# it was you who betrayed me. I will defeat you and prove my strength!,D00026
 D00024,D4COMPLETE,SirK9,You have truly learned what it means to be a knight. As a reward# I want you to have this.,FALSE,D00025,0,0,0,0
 D00025,D4COMPLETE,SirK9,Now# go on young one. The world is your oyster.,FALSE,QUIT,0,0,0,0

@@ -167,19 +167,37 @@ public class SkillManager : MonoBehaviour
         {
             StartCoroutine(Dash(Game._cursor.transform.position));
         }
-        if(Input.GetKeyDown(KeyCode.H))
+
+        //Used to add in skills 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            InitializePrefabSkills("PROJ0005");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            InitializePrefabSkills("PROJ0006");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            InitializePrefabSkills("PROJ0007");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            InitializePrefabSkills("PROJ0008");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             InitializePrefabSkills("AREA0001");
         }
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             InitializePrefabSkills("AREA0002");
         }
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             InitializePrefabSkills("AREA0003");
         }
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.Alpha8))
         {
             InitializePrefabSkills("AREA0004");
         }

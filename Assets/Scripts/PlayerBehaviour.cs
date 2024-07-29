@@ -31,10 +31,23 @@ public class PlayerBehaviour : EntityBehaviour
     private NPCBehaviour
         npcInRange; 
 
+    public int _hp
+    {
+        get { return hp + Game._inventoryManager._statBoost.health; }
+        set { hp = value; }
+    }
+    public int _attack
+    {
+        get { return attack + Game._inventoryManager._statBoost.damage; }
+    }
+    public int _defence
+    {
+        get { return defence + Game._inventoryManager._statBoost.defence; }
+    }
     public string _projectileType
     { get { return projectileType; } }
     public int _attackSpeed
-    { get { return player.attackSpeed; } }
+    { get { return (int)(player.attackSpeed * Game._inventoryManager._statBoost.attackSpeed); } }
     public int _critChance
     {  get { return player.critChance; } }
 
@@ -74,8 +87,9 @@ public class PlayerBehaviour : EntityBehaviour
     {
         if(!damageImmune)
         {
-            currentHp -= (int)(damage * Game.CalculateDamageReduction(defence));
-            //Debug.Log($"Took {damage * Game.CalculateDamageReduction(defence)}");
+            currentHp -= (int)(damage * Game.CalculateDamageReduction(_defence));
+
+            Game._healthBar.UpdateHealthbar((float)currentHp / _hp);
 
             StartCoroutine(IFrame());
 
@@ -99,11 +113,12 @@ public class PlayerBehaviour : EntityBehaviour
     }
     public void Respawn()
     {
-        currentHp = hp;
+        currentHp = _hp;
         Game._gameSceneManager.OpenScene("Town", false, null);
     }
     protected override void Death()
     {
+        Game._healthBar.UpdateHealthbar((float)currentHp / _hp);
         Respawn();
     }
     public void SetStats(string entityName, int hp, int attack, int movementSpeed, int defence, string entitySprite, int attackSpeed, int attackRange, int critChance, string projectileType, string classHurtSprite, int dashSpeed, float dashDuration)
