@@ -8,16 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class InputHandler : MonoBehaviour
 {
-    private enum Menus
-    {
-        None, 
-        Augments, 
-        Equipment
-    }
-
-    private Menus
-        activeScene = Menus.None;
-
     private bool
         disableMovement = false;
 
@@ -39,7 +29,6 @@ public class InputHandler : MonoBehaviour
             SetClickDestination();
         }
         GetKeyInput();
-        //GetMovementInput();
     }
     private void SetClickDestination()
     {
@@ -51,18 +40,6 @@ public class InputHandler : MonoBehaviour
     }
     private void GetKeyInput()
     {
-        //if (Input.GetKeyDown(KeyCode.Alpha1))
-        //{
-        //    Game._enemyFactory.GetEnemy("ENEM00001", transform);
-        //}
-        //if (Input.GetKeyDown(KeyCode.Alpha2))
-        //{
-        //    Game._enemyFactory.GetEnemy("ENEM00002", transform);
-        //}
-        //if (Input.GetKeyDown(KeyCode.Alpha3))
-        //{
-        //    Game._enemyFactory.GetEnemy("ENEM00003", transform);
-        //}
         if (Input.GetKeyDown(KeyCode.I))
         {
             Game._uIManager.ToggleInventory();
@@ -100,88 +77,7 @@ public class InputHandler : MonoBehaviour
         Time.timeScale = 1f; 
         disableMovement = false;
     }
-    //private void Movement()
-    //{
-    //    float horDir = 0f;
-    //    float vertDir = 0f;
-
-    //    if (Input.GetAxis("Horizontal") > 0)
-    //    {
-    //        horDir = 1f;
-    //    }
-    //    else if (Input.GetAxis("Horizontal") < 0)
-    //    {
-    //        horDir = -1f;
-    //    }
-
-    //    if (Input.GetAxis("Vertical") > 0)
-    //    {
-    //        vertDir = 1f;
-    //    }
-    //    else if (Input.GetAxis("Vertical") < 0)
-    //    {
-    //        vertDir = -1f;
-    //    }
-
-    //    activeReceiver.DoMoveDir(new Vector2(horDir, vertDir));
-    //}
-    //private void GetMovementInput()
-    //{
-    //    if (Input.GetButtonDown("Horizontal"))
-    //    {
-    //        if (Input.GetAxisRaw("Horizontal") > 0)
-    //        {
-    //            activeReceiver.DoRightAction();
-    //        }
-    //        else if (Input.GetAxisRaw("Horizontal") < 0)
-    //        {
-    //            activeReceiver.DoLeftAction();
-    //        }
-    //    }
-    //    else if (Input.GetButtonDown("Submit"))
-    //    {
-    //        activeReceiver.DoSubmitAction();
-    //    }
-    //    else if (Input.GetButtonDown("Cancel"))
-    //    {
-    //        activeReceiver.DoCancelAction();
-    //    }
-    //}
-    //private void ToggleMenus(Menus menuToToggle)
-    //{
-    //    switch (menuToToggle)
-    //    {
-    //        case Menus.Augments:
-    //            if (activeScene == Menus.None)
-    //            {
-    //                activeScene = Menus.Augments;
-    //                Game._gameSceneManager.OpenScene("AugmentsMenu", true, () =>
-    //                {
-    //                    Game._augmentManager.InitializeList();
-    //                    Game._augmentManager.SetAugment();
-    //                });
-    //            }
-    //            else if (activeScene == Menus.Augments)
-    //            {
-    //                Game._gameSceneManager.CloseScene("AugmentsMenu");
-    //                activeScene = Menus.None;
-    //            }
-    //            break;
-
-    //        case Menus.Equipment:
-    //            if (activeScene == Menus.None)
-    //            {
-    //                activeScene = Menus.Equipment;
-    //                Game._gameSceneManager.OpenScene("PlayerEquipmentMenu", true, null);
-    //            }
-    //            else if(activeScene == Menus.Equipment)
-    //            {
-    //                Game._gameSceneManager.CloseScene("PlayerEquipmentMenu"); 
-    //                activeScene = Menus.None;
-    //            }
-    //            break;
-    //    }
-    //}
+    
     private void UseSkills()
     {
         if (Input.GetKeyDown(KeyCode.Q))

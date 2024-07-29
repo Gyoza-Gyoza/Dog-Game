@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class SkillManager : MonoBehaviour
 {
+    //Holds the skills, the delegate for the skill effects as well as the UI location for the skill
     public class SkillLoadoutObject
     {
         private bool canCast;
@@ -348,6 +349,7 @@ public class SkillManager : MonoBehaviour
         return result;
     }
     //Creates a pool to contain the skill prefabs if it doesn't exist
+    //This is to speed up loading times 
     private void InitializePool(string skillName) 
     {
         if (skillPools.ContainsKey(skillName) == false)
