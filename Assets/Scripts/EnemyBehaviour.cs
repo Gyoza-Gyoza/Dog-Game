@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 
+//DONE BY WANG JIA LE
 public class EnemyBehaviour : EntityBehaviour
 {
     private GameObject
@@ -68,6 +69,7 @@ public class EnemyBehaviour : EntityBehaviour
             {
                 Debug.Log("Effect added");
                 EndWave();
+                Game._skillChoiceMenu.OpenSkillMenu();
             };
         }
     }

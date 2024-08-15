@@ -173,6 +173,7 @@ public class InventoryManager : MonoBehaviour
 
             UpdateInventory();
             UpdateShopMenu();
+            Game._analyticsUIManager.UpdateGoldUI();
         }
     }
     public void DropItem()
@@ -188,6 +189,7 @@ public class InventoryManager : MonoBehaviour
             DropItem();
 
             UpdateShopMenu(); //Updates shop menu here only as its the only way to get gold while in the shop
+            Game._analyticsUIManager.UpdateGoldUI();
         }
     }
     private void Update()

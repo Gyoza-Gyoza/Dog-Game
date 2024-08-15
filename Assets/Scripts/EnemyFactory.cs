@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEngine.EventSystems.EventTrigger;
 
+//DONE BY WANG JIA LE
 public class EnemyFactory : MonoBehaviour
 {
     [SerializeField]
@@ -25,10 +27,10 @@ public class EnemyFactory : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z))
-        {
-            DestroyAllEnemies();
-        }
+        //if(Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    DestroyAllEnemies();
+        //}
     }
     public GameObject GetEnemy(string enemyId, Transform spawnLocation)
     {
@@ -82,11 +84,11 @@ public class EnemyFactory : MonoBehaviour
         enemyPool.Clear();
         enemies.Clear();
     }
-    private void DestroyAllEnemies()
+    public void DestroyAllEnemies()
     {
         foreach(EnemyBehaviour enemy in enemies)
         {
-            enemy.TakeDamage(5000);
+            enemy.TakeDamage(enemy._hp * enemy._defence);
         }
     }
 }

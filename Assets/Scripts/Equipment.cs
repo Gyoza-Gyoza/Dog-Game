@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//DONE BY WANG JIA LE
 [System.Serializable]
 public enum EquipmentSlot
 {

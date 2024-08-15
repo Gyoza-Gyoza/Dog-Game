@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
+//DONE BY WANG JIA LE
 public class Enemy : Entity
 {
     private int

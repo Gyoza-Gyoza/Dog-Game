@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//DONE BY DYLAN NG SHAO WEI & WANG JIA LE 
 public enum DatabaseTypes
 {
     Enemies, 

@@ -47,7 +47,7 @@ public class PlayerBehaviour : EntityBehaviour
     public string _projectileType
     { get { return projectileType; } }
     public int _attackSpeed
-    { get { return (int)(player.attackSpeed * Game._inventoryManager._statBoost.attackSpeed); } }
+    { get { return (int)(player.attackSpeed + (player.attackSpeed * Game._inventoryManager._statBoost.attackSpeed)); } }
     public int _critChance
     {  get { return player.critChance; } }
 
@@ -115,6 +115,7 @@ public class PlayerBehaviour : EntityBehaviour
     {
         currentHp = _hp;
         Game._gameSceneManager.OpenScene("Town", false, null);
+        Game._healthBar.UpdateHealthbar((float)currentHp / _hp);
     }
     protected override void Death()
     {

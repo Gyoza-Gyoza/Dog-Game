@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+//DONE BY WANG JIA LE
 public class GameSceneManager : MonoBehaviour
 {
     [SerializeField]

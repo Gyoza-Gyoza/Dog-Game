@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//DONE BY WANG JIA LE
 public static class AnalyticsManager 
 {
     private static int
@@ -40,7 +41,7 @@ public static class AnalyticsManager
         set 
         { 
             monstersKilled = value; 
-            Game._analyticsUIManager.UpdateKillsUI();
+            //Game._analyticsUIManager.UpdateKillsUI();
             if(monstersKilled >= monsterHunterAchievement)
             {
                 monsterHunter = true;
@@ -53,7 +54,7 @@ public static class AnalyticsManager
         set 
         { 
             damageDealt = value; 
-            Game._analyticsUIManager.UpdateDamageUI();
+            //Game._analyticsUIManager.UpdateDamageUI();
             if(damageDealt >= tonsOfDamageAchievement)
             {
                 tonsOfDamage = true;

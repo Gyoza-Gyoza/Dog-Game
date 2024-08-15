@@ -77,6 +77,21 @@ public class SkillManager : MonoBehaviour
     public List<SkillLoadoutObject> _skillLoadout
     { get { return skillLoadout; } }
 
+    public bool SkillSlotAvailable
+    { 
+        get
+        {
+            if(skillLoadout.Count < skillSlots)
+            {
+                return true;
+            }
+            else
+            { 
+                return false; 
+            }
+        }
+    }
+
     private void Awake()
     {
         Game._skillManager = this; //Gives a reference to the static Game class 
@@ -170,38 +185,39 @@ public class SkillManager : MonoBehaviour
         }
 
         //Used to add in skills 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            InitializePrefabSkills("PROJ0005");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            InitializePrefabSkills("PROJ0006");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            InitializePrefabSkills("PROJ0007");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            InitializePrefabSkills("PROJ0008");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            InitializePrefabSkills("AREA0001");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            InitializePrefabSkills("AREA0002");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            InitializePrefabSkills("AREA0003");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            InitializePrefabSkills("AREA0004");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    Game._skillChoiceMenu.OpenSkillMenu();
+        //    //InitializePrefabSkills("PROJ0005");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    InitializePrefabSkills("PROJ0006");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    InitializePrefabSkills("PROJ0007");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    InitializePrefabSkills("PROJ0008");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha5))
+        //{
+        //    InitializePrefabSkills("AREA0001");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha6))
+        //{
+        //    InitializePrefabSkills("AREA0002");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha7))
+        //{
+        //    InitializePrefabSkills("AREA0003");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha8))
+        //{
+        //    InitializePrefabSkills("AREA0004");
+        //}
     }
     //Checks if there are enemies in range
     private void OnTriggerStay2D(Collider2D collision)

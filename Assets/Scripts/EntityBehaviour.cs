@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 
+//DONE BY WANG JIA LE
 public class EntityBehaviour : MonoBehaviour, IDamageable
 {
     protected int
@@ -69,7 +70,7 @@ public class EntityBehaviour : MonoBehaviour, IDamageable
     {
 
     }
-    public void ResetHealth()
+    public virtual void ResetHealth()
     {
         currentHp = hp;
     }
