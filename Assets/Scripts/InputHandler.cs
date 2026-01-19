@@ -70,10 +70,10 @@ public class InputHandler : MonoBehaviour
         {
             Game._player.Interact();
         }
-        //if (Input.GetKeyDown(KeyCode.Z))
-        //{
-        //    Game._enemyFactory.DestroyAllEnemies();
-        //}
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Game._enemyFactory.DestroyAllEnemies();
+        }
     }
     public void PauseGame()
     {

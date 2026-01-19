@@ -457,7 +457,7 @@ public class SkillManager : MonoBehaviour
     }
     private int CalculateDamage(float skillMultiplier) // Calculate the damage dealt
     {
-        return (int)((Game._player._attack /* + modifiers from equipment*/) * skillMultiplier);
+        return (int)(Game._player._attack * skillMultiplier);
     }
     private IEnumerator CooldownTimer(SkillLoadoutObject obj) //Handles the cooldown for each skill
     {
