@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+//DONE BY WANG JIA LE
 public class AnalyticsUIManager : MonoBehaviour
 {
     [SerializeField]
@@ -20,14 +21,14 @@ public class AnalyticsUIManager : MonoBehaviour
     }
     public void UpdateGoldUI()
     {
-        goldEarned.text = AnalyticsManager._goldEarned.ToString();
+        goldEarned.text = $"{Game._inventoryManager._goldCount.ToString()}";
     }
     public void UpdateKillsUI()
     {
-        monstersKilled.text = AnalyticsManager._monstersKilled.ToString();
+        monstersKilled.text = $"{AnalyticsManager._monstersKilled.ToString()}";
     }
     public void UpdateDamageUI()
     {
-        damageDealt.text = AnalyticsManager._damageDealt.ToString();
+        damageDealt.text = $"{AnalyticsManager._damageDealt.ToString()}";
     }
 }

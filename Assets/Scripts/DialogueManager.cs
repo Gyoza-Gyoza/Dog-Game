@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+//DONE BY WANG JIA LE
 public class DialogueManager : MonoBehaviour
 {
     //[SerializeField] //Remove after testing

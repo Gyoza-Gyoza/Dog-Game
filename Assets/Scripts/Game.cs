@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//DONE BY WANG JIA LE
 public static class Game
 {
     #region References
@@ -52,6 +53,7 @@ public static class Game
 
     private static AnalyticsUIManager
         analyticsUIManager;
+
     public static PlayerBehaviour _player
     { get { return player; } set { player = value; } }
 
@@ -96,6 +98,7 @@ public static class Game
 
     public static AnalyticsUIManager _analyticsUIManager
     { get { return analyticsUIManager; } set { analyticsUIManager = value; } }
+
     #endregion
     #region Objects
     private static Player
@@ -107,6 +110,15 @@ public static class Game
     private static List<ShopMenu>
         shopMenus = new List<ShopMenu>();
 
+    private static HealthBar
+        healthBar;
+
+    private static SkillChoiceMenu
+        skillChoiceMenu;
+
+    private static string
+        currentK9Dialogue = "D00005"; 
+
     public static Player _chosenPlayer
     { get { return chosenPlayer; } set { chosenPlayer = value; } }
 
@@ -115,10 +127,19 @@ public static class Game
 
     public static List<ShopMenu> _shopMenus
     { get { return shopMenus; } }
+    public static HealthBar _healthBar
+    { get { return healthBar; } set { healthBar = value; } }
+
+    public static SkillChoiceMenu _skillChoiceMenu
+    { get { return skillChoiceMenu; } set { skillChoiceMenu = value; } }
+
+    public static string _currentK9Dialogue
+    { get { return currentK9Dialogue; } set {  currentK9Dialogue = value; } }
     public static void AddToShopMenus(ShopMenu go)
     {
         shopMenus.Add(go);
     }
+   
     #endregion
     public static float CalculateDamageReduction(int defence)
     {

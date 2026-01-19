@@ -10,6 +10,7 @@ TagManager:
   - Loadout
   - InventoryMenu
   - EnemySpawnLocation
+  - Portal
   layers:
   - Default
   - TransparentFX

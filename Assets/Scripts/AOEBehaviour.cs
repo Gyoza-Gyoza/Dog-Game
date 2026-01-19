@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
+//DONE BY WANG JIA LE
 public class AOEBehaviour : SkillBehaviour
 {
     private int
@@ -14,15 +15,18 @@ public class AOEBehaviour : SkillBehaviour
     {  get { return damage; } set { damage = value; } } 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        IDamageable dmg = collision.GetComponent<IDamageable>(); //Stores the interface to reduce getcomponent calls
-
-        if (dmg != null) //Checks if the entity the skill collides with has the interface on it
+        if (collision.tag != "Player")
         {
-            dmg.TakeDamage(damage); //Deals damage to the enemy holding on to the interface
+            IDamageable dmg = collision.GetComponent<IDamageable>(); //Stores the interface to reduce getcomponent calls
 
-            if (spellEffects != null) //Checks if the delegate is null
+            if (dmg != null) //Checks if the entity the skill collides with has the interface on it
             {
-                spellEffects.Invoke(); //Calls the delegate that contains any extra effects 
+                dmg.TakeDamage(damage); //Deals damage to the enemy holding on to the interface
+
+                if (spellEffects != null) //Checks if the delegate is null
+                {
+                    spellEffects.Invoke(); //Calls the delegate that contains any extra effects 
+                }
             }
         }
     }

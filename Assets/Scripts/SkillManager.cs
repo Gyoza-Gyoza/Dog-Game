@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class SkillManager : MonoBehaviour
 {
+    //Holds the skills, the delegate for the skill effects as well as the UI location for the skill
     public class SkillLoadoutObject
     {
         private bool canCast;
@@ -75,6 +76,21 @@ public class SkillManager : MonoBehaviour
 
     public List<SkillLoadoutObject> _skillLoadout
     { get { return skillLoadout; } }
+
+    public bool SkillSlotAvailable
+    { 
+        get
+        {
+            if(skillLoadout.Count < skillSlots)
+            {
+                return true;
+            }
+            else
+            { 
+                return false; 
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -167,22 +183,41 @@ public class SkillManager : MonoBehaviour
         {
             StartCoroutine(Dash(Game._cursor.transform.position));
         }
-        if(Input.GetKeyDown(KeyCode.H))
-        {
-            InitializePrefabSkills("AREA0001");
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            InitializePrefabSkills("AREA0002");
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            InitializePrefabSkills("AREA0003");
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            InitializePrefabSkills("AREA0004");
-        }
+
+        //Used to add in skills 
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    Game._skillChoiceMenu.OpenSkillMenu();
+        //    //InitializePrefabSkills("PROJ0005");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    InitializePrefabSkills("PROJ0006");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    InitializePrefabSkills("PROJ0007");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    InitializePrefabSkills("PROJ0008");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha5))
+        //{
+        //    InitializePrefabSkills("AREA0001");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha6))
+        //{
+        //    InitializePrefabSkills("AREA0002");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha7))
+        //{
+        //    InitializePrefabSkills("AREA0003");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha8))
+        //{
+        //    InitializePrefabSkills("AREA0004");
+        //}
     }
     //Checks if there are enemies in range
     private void OnTriggerStay2D(Collider2D collision)
@@ -330,6 +365,7 @@ public class SkillManager : MonoBehaviour
         return result;
     }
     //Creates a pool to contain the skill prefabs if it doesn't exist
+    //This is to speed up loading times 
     private void InitializePool(string skillName) 
     {
         if (skillPools.ContainsKey(skillName) == false)
@@ -421,7 +457,7 @@ public class SkillManager : MonoBehaviour
     }
     private int CalculateDamage(float skillMultiplier) // Calculate the damage dealt
     {
-        return (int)((Game._player._attack /* + modifiers from equipment*/) * skillMultiplier);
+        return (int)(Game._player._attack * skillMultiplier);
     }
     private IEnumerator CooldownTimer(SkillLoadoutObject obj) //Handles the cooldown for each skill
     {

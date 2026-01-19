@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//DONE BY WANG JIA LE
 //Contains the values of the AOE skills
 public class AOE : Skill
 {

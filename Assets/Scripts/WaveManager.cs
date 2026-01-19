@@ -33,6 +33,9 @@ public class WaveManager : MonoBehaviour
     public GameObject[] _spawnLocations
     { get { return spawnLocations; } }
 
+    public bool _startWave
+    { get { return startWave; } set {  startWave = value; } }
+
     private void Awake()
     {
         if (Game._waveManager == null)
@@ -41,12 +44,6 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        //InitializeSpawns();
-        //InitializeWave(1);
-        //NextWave();
-    }
 
     private void Update()
     {

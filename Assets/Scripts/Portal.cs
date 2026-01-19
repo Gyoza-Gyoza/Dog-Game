@@ -8,9 +8,9 @@ public class Portal : MonoBehaviour
     private string
         dungeonName;
 
-    [SerializeField]
-    private bool
-        exitingDungeon;
+    //[SerializeField]
+    //private bool
+    //    exitingDungeon;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

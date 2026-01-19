@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//DONE BY DYLAN NG SHAO WEI & WANG JIA LE 
 public enum DatabaseTypes
 {
     Enemies, 
@@ -160,7 +161,6 @@ public class Database : MonoBehaviour
                 float.Parse(equipmentEntry[10]),
                 float.Parse(equipmentEntry[11])
                 ));
-            //Debug.Log(equipmentEntry[0] + equipmentEntry[1] + equipmentEntry[2] + equipmentEntry[3] + equipmentEntry[4] + equipmentEntry[5] + equipmentEntry[6] + equipmentEntry[7] + equipmentEntry[8] + equipmentEntry[9] + equipmentEntry[10] + equipmentEntry[11]);
         }
 
         List<string> projectiles = ParseCSV("/Databases/ProjectileSkillList.csv");
@@ -209,42 +209,7 @@ public class Database : MonoBehaviour
                 dialogueEntry[9]
                 ));
 
-            Debug.Log($"{dialogueEntry[0]} {dialogueEntry[1]} {dialogueEntry[2]} {dialogueEntry[3]} {dialogueEntry[4]} {dialogueEntry[5]} {dialogueEntry[6]} {dialogueEntry[7]} {dialogueEntry[8]} {dialogueEntry[9]}");
         }
-
-        //dialogueDB.Add("D00001", new Dialogue("SHOP", "FrogShop", "Welcome to my Frog Shop ribbit", "TRUE", "0", "Enter Shop", "SHOP", "Talk", "D00002"));
-        //dialogueDB.Add("D00002", new Dialogue("SHOP", "FrogShop", "Haven't seen many people around here", "FALSE", "D00003", "0", "0", "0", "0"));
-        //dialogueDB.Add("D00003", new Dialogue("SHOP", "FrogShop", "There's a lot of flies though", "FALSE", "D00004", "0", "0", "0", "0"));
-        //dialogueDB.Add("D00004", new Dialogue("SHOP", "FrogShop", "I like flies", "TRUE", "0", "...Okay?", "QUIT", "That's interesting", "QUIT"));
-
-        //For testing 
-        //foreach (Entity ent in playerClassList)
-        //{
-        //    playerList.Add(ent as Player);
-        //}
-
-
-        //augmentList.Add(new Augment("Weak augment", "This is a weak augment", 0)); 
-        //augmentList.Add(new Augment("Strong augment", "This is a strong augment", 1));
-        //augmentList.Add(new Augment("Legendary augment", "This is a legendary augment", 2));
-
-        //itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword1.png", 1, "Weapon", 1, 1, 1, 1, 1));
-        //itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword2.png", 1, "Weapon", 1, 1, 1, 1, 1));
-        //itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword3.png", 1, "Weapon", 1, 1, 1, 1, 1));
-        //itemList.Add(new Equipment("Sword1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Sword4.png", 1, "Weapon", 1, 1, 1, 1, 1));
-        //itemList.Add(new Equipment("Helmet1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Helmet1.png", 1, "Helmet", 1, 1 ,1, 1, 1));
-        //itemList.Add(new Equipment("Overall1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Overall1.png", 1, "Overall", 1 ,1, 1, 1, 1));
-        //itemList.Add(new Equipment("Boot1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Boot1.png", 1, "Boot", 1, 1, 1, 1 ,1));
-        //itemList.Add(new Equipment("Glove1", "A short sword, not used for much", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/Glove1.png", 1, "Glove", 1, 1, 1 ,1, 1));
-
-        //skillDB.Add("PROJ0001", new Projectile("Basic Projectile", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
-        //skillDB.Add("PROJ0002", new Projectile("Basic Projectile2", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
-        //skillDB.Add("PROJ0003", new Projectile("Basic Projectile3", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
-        //skillDB.Add("PROJ0004", new Projectile("Basic Projectile4", "EXAMPLE DESCRIPTION", "Assets/Images/SadHamster.png", 0, "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/BasicProjectile.prefab", 5, 2, 1, 30));
-        //skillDB.Add("AREA0001", new AOE("HEAVENLY STRIKE", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
-        //skillDB.Add("AREA0002", new AOE("HEAVENLY STRIKE2", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
-        //skillDB.Add("AREA0003", new AOE("HEAVENLY STRIKE3", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
-        //skillDB.Add("AREA0004", new AOE("HEAVENLY STRIKE4", "Call upon divine power to bring down a massive sword# targeting a specific area. Dealing massive damage to all enemies within the impact zone.", "Assets/Images/SadHamster.png", "Assets/Art Assets/Shikashi's Fantasy Icons Pack v2/Shikashi's Fantasy Icons Pack v2/TextExplosion.prefab", 3, 7, 3));
     }
     private void Start()
     {
@@ -269,19 +234,34 @@ public class Database : MonoBehaviour
         AnalyticsManager._timePlayed = Time.realtimeSinceStartup;
         string filePath = Application.streamingAssetsPath + "/Databases/AnalyticsList.csv";
 
+        string achievements = "";
+
+        if(AnalyticsManager._monsterHunter)
+        {
+            achievements += "monsterHunter#"; 
+        }
+        if (AnalyticsManager._drowningInGold)
+        {
+            achievements += "drowningInGold#";
+        }
+        if (AnalyticsManager._tonsOfDamage)
+        {
+            achievements += "tonsOfDamage#";
+        }
+
         if (File.Exists(filePath))
         {
             using (sw = new StreamWriter(filePath, true)) //If file exists, add on to the file 
             {
-                sw.WriteLine($"{AnalyticsManager._goldEarned},{AnalyticsManager._monstersKilled},{AnalyticsManager._damageDealt},{AnalyticsManager._timePlayed}");
+                sw.WriteLine($"{AnalyticsManager._goldEarned},{AnalyticsManager._monstersKilled},{AnalyticsManager._damageDealt},{AnalyticsManager._timePlayed},{achievements}");
             }
         }
         else
         {
             using (sw = new StreamWriter(filePath)) //If it doesn't, create a new file and add on to it 
             {
-                sw.WriteLine("goldEarned,monstersKilled,damageDealt,timePlayed");
-                sw.WriteLine($"{AnalyticsManager._goldEarned},{AnalyticsManager._monstersKilled},{AnalyticsManager._damageDealt},{AnalyticsManager._timePlayed}");
+                sw.WriteLine("goldEarned,monstersKilled,damageDealt,timePlayed,achievements");
+                sw.WriteLine($"{AnalyticsManager._goldEarned},{AnalyticsManager._monstersKilled},{AnalyticsManager._damageDealt},{AnalyticsManager._timePlayed},{achievements}");
             }
         }
     }

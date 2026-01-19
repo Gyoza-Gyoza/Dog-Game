@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//DONE BY WANG JIA LE
 public class EquipmentSlotScript : SlotScript
 {
     [SerializeField]

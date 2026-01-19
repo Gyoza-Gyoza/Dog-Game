@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEngine.EventSystems.EventTrigger;
 
+//DONE BY WANG JIA LE
 public class EnemyFactory : MonoBehaviour
 {
     [SerializeField]
@@ -12,6 +14,9 @@ public class EnemyFactory : MonoBehaviour
     private Dictionary<string, Stack<GameObject>>
         enemyPool = new Dictionary<string, Stack<GameObject>>();
 
+    private List<EnemyBehaviour> 
+        enemies = new List<EnemyBehaviour>();
+
     private void Awake()
     {
         if(Game._enemyFactory == null)
@@ -19,7 +24,14 @@ public class EnemyFactory : MonoBehaviour
             Game._enemyFactory = this;
         }
     }
-    
+
+    private void Update()
+    {
+        //if(Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    DestroyAllEnemies();
+        //}
+    }
     public GameObject GetEnemy(string enemyId, Transform spawnLocation)
     {
         GetPoolStack(Game._database._enemyList[enemyId]._name).TryPop(out GameObject result);
@@ -61,13 +73,23 @@ public class EnemyFactory : MonoBehaviour
         GameObject chosenEnemy = Instantiate(enemyBase, spawnLocation.position, spawnLocation.rotation);
         Enemy enemyStats = Game._database._enemyList[enemyId] as Enemy;
 
-        chosenEnemy.GetComponent<EnemyBehaviour>().SetStats(enemyStats._name, enemyStats._hp, enemyStats._attack, enemyStats._movementSpeed, enemyStats._defence, enemyStats._entitySprite, enemyStats._goldDrop); 
+        chosenEnemy.GetComponent<EnemyBehaviour>().SetStats(enemyId, enemyStats._name, enemyStats._hp, enemyStats._attack, enemyStats._movementSpeed, enemyStats._defence, enemyStats._entitySprite, enemyStats._goldDrop);
+
+        enemies.Add(chosenEnemy.GetComponent<EnemyBehaviour>());
 
         return chosenEnemy;
     }
     public void ResetFactory()
     {
         enemyPool.Clear();
+        enemies.Clear();
+    }
+    public void DestroyAllEnemies()
+    {
+        foreach(EnemyBehaviour enemy in enemies)
+        {
+            enemy.TakeDamage(enemy._hp * enemy._defence);
+        }
     }
 }
 

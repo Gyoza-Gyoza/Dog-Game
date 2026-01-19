@@ -24,6 +24,13 @@ public class NPCBehaviour : MonoBehaviour
     }
     public virtual void Interact()
     {
-        Game._dialogueManager.StartDialogue(dialogueRef);
+        if(name == "Sir K9")
+        {
+            Game._dialogueManager.StartDialogue(Game._currentK9Dialogue); 
+        }
+        else
+        {
+            Game._dialogueManager.StartDialogue(dialogueRef);
+        }
     }
 }
